@@ -1,12 +1,102 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Vank Deri</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vertical Line Exactly Centered with Text Right</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      min-height: 100vh;
+       background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4npvJAiAQ_sV_xBu749A3rbnP8O2VPVBGtwh9kkK7qxu-o6qmgb1OYStwO_7ZMCfdJM9Ii9t6FQFW5Z8vG4nz8-NyINsRyAHwfIe-_WALqx4v05YBOoNiQk9VP42TdkoOp-jf5Tq=s1360-w1360-h1020-rw'); 
+    }
+
+    img {
+      height: 21vh;
+      width: 21vh;
+      transition: transform 0.3s ease;
+      margin-bottom: 40px;
+      display: inline-block;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    p {
+      max-width: 600px;
+      margin: 40px auto 0;
+      font-size: 1rem;
+      line-height: 1.5;
+      text-align: center;
+      padding: 0 10px;
+      color: #f5f5f7;
+    }
+
+    .line-text-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100px; /* taller container */
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    .center-line {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 2px;
+      height: 126px; /* taller line */
+      background-color: #888;
+    }
+
+    .nedir-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(10px, -50%);
+      font-weight: bold;
+      font-size: 1.3rem;
+      user-select: none;
+      white-space: nowrap;
+      color: #f5f5f7;
+    }
+
+    @media (max-width: 600px) {
+      .line-text-wrapper {
+        height: 70px;
+      }
+      .center-line {
+        height: 120px;
+      }
+      .nedir-text {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <p>deneme</p>
+
+    <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Logo" />
+
+
+  <div class="line-text-wrapper">
+    <div class="center-line"></div>
+    <div class="nedir-text">Nedir?</div>
+  </div>
+
+  <p>Adıyaman'ın Vank köyünden Kapalı Çarşı'ya ardından da Eskişehir'e uzanan yaklaşık 54 yıllık birikim ve işçilik...</p>
 
 </body>
 </html>
