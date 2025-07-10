@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vertical Line Exactly Centered with Text Right</title>
+  <title>Vank Deri</title>
+  <link rel="icon" type="image/webp" href="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/sd-removebg-preview.webp">
   <style>
     * {
       box-sizing: border-box;
@@ -14,10 +15,8 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      text-align: center;
-      position: relative;
       min-height: 100vh;
-       background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4npvJAiAQ_sV_xBu749A3rbnP8O2VPVBGtwh9kkK7qxu-o6qmgb1OYStwO_7ZMCfdJM9Ii9t6FQFW5Z8vG4nz8-NyINsRyAHwfIe-_WALqx4v05YBOoNiQk9VP42TdkoOp-jf5Tq=s1360-w1360-h1020-rw'); 
+      background-color: #666666;
     }
 
     img {
@@ -25,7 +24,8 @@
       width: 21vh;
       transition: transform 0.3s ease;
       margin-bottom: 40px;
-      display: inline-block;
+      display: flex;
+      margin-inline: auto;
     }
 
     img:hover {
@@ -34,18 +34,20 @@
 
     p {
       max-width: 600px;
-      margin: 40px auto 0;
-      font-size: 1rem;
+      margin: 40px auto;
+      font-size: 12px;
       line-height: 1.5;
-      text-align: center;
-      padding: 0 10px;
+      text-align: left;
+      padding: 0 5px;
       color: #f5f5f7;
+      font-family: sans-serif;
+      letter-spacing: 1.2px;
     }
 
     .line-text-wrapper {
       position: relative;
       width: 100%;
-      height: 100px; /* taller container */
+      height: 100px;
       margin: 0 auto;
       max-width: 600px;
     }
@@ -55,12 +57,13 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 2px;
-      height: 126px; /* taller line */
+      width: 2.6px;
+      height: 126px;
       background-color: #888;
+      border-radius: 2px;
     }
 
-    .nedir-text {
+    .line-label {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -74,29 +77,38 @@
 
     @media (max-width: 600px) {
       .line-text-wrapper {
-        height: 70px;
+        height: 50px;
       }
       .center-line {
         height: 120px;
       }
-      .nedir-text {
+      .line-label {
         font-size: 1.1rem;
       }
     }
   </style>
 </head>
 <body>
-
-
-    <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Logo" />
-
+  <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Logo" />
 
   <div class="line-text-wrapper">
     <div class="center-line"></div>
-    <div class="nedir-text">Nedir?</div>
+    <div class="line-label">Nedir?</div>
   </div>
 
-  <p>Adıyaman'ın Vank köyünden Kapalı Çarşı'ya ardından da Eskişehir'e uzanan yaklaşık 54 yıllık birikim ve işçilik...</p>
+  <p>Adıyaman'ın Vank köyünden Kapalıçarşı'ya ardından da Eskişehir'e uzanan yaklaşık <span style="font-weight: 900;">54</span> yıllık birikim ve işçilik...</p>
+
+  <div class="line-text-wrapper">
+    <div class="center-line"></div>
+    <div class="line-label">İşlerimiz</div>
+  </div>
+
+  <p>Vank Deri olarak çoğunluğu kendi imalatımız olan ürünleri en kaliteli ve en uygun fiyatlarla müşterilerimize ulaştırmayı hedefliyoruz. Çanta, cüzdan, mont, kemer vb. ürünlerin yanında Terzi ve Prova Manken imalatı ve satışı da yapmaktayız. İster mağazamıza gelip ürünlerimizi yakından görerek ister iletişim bilgilerimizden detaylı bilgi alabilir, ürünlerimiz için özel sipariş verebilirsiniz.</p>
+
+  <div class="line-text-wrapper">
+    <div class="center-line"></div>
+    <div class="line-label">İletişim</div>
+  </div>
 
 </body>
 </html>
