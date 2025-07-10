@@ -26,6 +26,7 @@
       margin-bottom: 40px;
       display: flex;
       margin-inline: auto;
+      border: none;
     }
 
     img:hover {
@@ -86,29 +87,92 @@
         font-size: 1.1rem;
       }
     }
+
+    /* Contact section styles */
+    .contact-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #555;
+      padding: 20px;
+      border-radius: 8px;
+      color: #f5f5f7;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .contact-item {
+    margin-bottom: 12px;
+    margin-top: 12px;
+    text-align: center;
+    }
+
+    .contact-item a {
+      color: #ffd700;
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .contact-container {
+        padding: 15px;
+        font-size: 13px;
+      }
+    }
   </style>
 </head>
 <body>
   <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Logo" />
 
-  <div class="line-text-wrapper">
+  <div class="line-text-wrapper" id="line-text-wrapper1">
     <div class="center-line"></div>
     <div class="line-label">Nedir?</div>
   </div>
 
-  <p>Adıyaman'ın Vank köyünden Kapalıçarşı'ya ardından da Eskişehir'e uzanan yaklaşık <span style="font-weight: 900;">54</span> yıllık birikim ve işçilik...</p>
+  <p>Adıyaman'ın Vank köyünden Kapalıçarşı'ya ardından da Eskişehir'e uzanan yaklaşık <span style="font-weight: 900;">54 yıllık</span> birikim ve işçilik...</p>
 
-  <div class="line-text-wrapper">
+  <div class="line-text-wrapper" id="line-text-wrapper2">
     <div class="center-line"></div>
-    <div class="line-label">İşlerimiz</div>
+    <div class="line-label" onclick="toggleContext('line-text-wrapper2')">İşlerimiz</div>
   </div>
 
   <p>Vank Deri olarak çoğunluğu kendi imalatımız olan ürünleri en kaliteli ve en uygun fiyatlarla müşterilerimize ulaştırmayı hedefliyoruz. Çanta, cüzdan, mont, kemer vb. ürünlerin yanında Terzi ve Prova Manken imalatı ve satışı da yapmaktayız. İster mağazamıza gelip ürünlerimizi yakından görerek ister iletişim bilgilerimizden detaylı bilgi alabilir, ürünlerimiz için özel sipariş verebilirsiniz.</p>
 
-  <div class="line-text-wrapper">
+  <div class="line-text-wrapper" id="line-text-wrapper3">
     <div class="center-line"></div>
-    <div class="line-label">İletişim</div>
+    <div class="line-label" onclick="toggleContext('line-text-wrapper3')">İletişim</div>
+  </div>
+
+  <div class="contact-container">
+    <div class="contact-item"> Telefon: <a href="tel:+905322319074">+90 532 231 90 74</a></div>
+    <div class="contact-item"> Adres: Atatürk Cad. No:123, Odunpazarı / Eskişehir</div>
+    <div class="contact-item"> <a href="https://instagram.com/vankderi" target="_blank">Instagram'da Takip Et</a></div>
   </div>
 
 </body>
+
+<script>
+  function toggleContext(contextId) {
+  
+  const contexts = document.querySelectorAll('.line-text-wrapper');
+  contexts.forEach(context => {
+    if (context.id !== contextId) {
+      context.classList.remove('show');
+    }
+  });
+
+  
+  const current = document.getElementById(contextId);
+  current.classList.toggle('show');
+
+  
+  const button = document.querySelector(`[onclick="toggleContext('${contextId}')"]`);
+  if (button) {
+    button.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+</script>
+
 </html>
