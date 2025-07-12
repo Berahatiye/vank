@@ -19,19 +19,6 @@
       background-color: #666666;
     }
 
-    .logo {
-      height: 21vh;
-      width: 21vh;
-      transition: transform 0.3s ease;
-      margin-bottom: 40px;
-      display: flex;
-      margin-inline: auto;
-      border: 1px #f5f5f7 solid;
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
-    }
 
     p {
       max-width: 600px;
@@ -157,6 +144,7 @@
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
       background-color: #fff;
       touch-action: pan-y;
+      margin: 40px auto;
     }
 
     .slider-track {
@@ -184,7 +172,7 @@
     .overlay-image {
       position: absolute;
       bottom: 1px;
-      left: 10px;
+      right: 10px;
       width: 100px;
       height: auto;
       z-index: 10;
@@ -195,7 +183,7 @@
 
     .dots {
       position: absolute;
-      bottom: 14px;
+      top: 2px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -204,15 +192,15 @@
     }
 
     .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.2);
+      width: 36px;
+      height: 6px;
+      border-radius: 4px;
+      background-color: rgba(245, 245, 247, 0.2);
       transition: background-color 0.3s ease;
     }
 
     .dot.active {
-      background-color: #1d1d1f;
+      background-color: #f5f5f7;
     }
 
     @media (max-width: 768px) {
@@ -221,14 +209,14 @@
       }
 
       .overlay-image {
-        width: 70px;
-        bottom: 1px;
-        left: 8px;
+        width: 60px;
+        bottom: -8px;
+        right: 1px;
       }
 
       .dot {
-        width: 12px;
-        height: 12px;
+        width: 24px;
+        height: 4px;
       }
     }
 
@@ -260,10 +248,210 @@
     .disable-interaction {
       pointer-events: none;
     }
+
+
+
+
+
+
+
+
+
+    .layout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 600px;
+      margin: 40px auto;
+      margin-top: 0;
+      gap: 12px;
+      flex-wrap: nowrap;
+    }
+
+    /* Left and right texts */
+    .side-text {
+      font-size: clamp(0.85rem, 2.5vw, 1.2rem);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+      text-align: center;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      color: #f5f5f7;
+    font-style: normal;
+    font-weight: bolder;
+    }
+
+    /* Special class to allow breaking on small screens */
+    .break-word {
+      white-space: nowrap; /* default no wrap */
+    }
+
+    /* Logo styles */
+    .logo {
+      height: auto;
+      width: clamp(90px, 18vw, 100px);
+      max-height: 100px;
+      border: 1px #f5f5f7 solid;
+      transition: transform 0.3s ease;
+      flex: 0 0 auto;
+      object-fit: contain;
+      cursor: default;
+    }
+
+    /* On small screens, reduce font sizes and logo */
+    @media (max-width: 480px) {
+      .side-text {
+        font-size: 1rem;
+      }
+
+      .logo {
+        max-height: 90px;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .side-text {
+        font-size: 0.9rem;
+      }
+
+      /* Allow Ürün Talebi to break onto two lines */
+      .break-word {
+        white-space: normal;
+        word-break: break-word;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            margin: 40px auto;
+            border-radius: 15px; /* Softer rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px; /* Softer input corners */
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #333;
+            transition: all 0.3s ease; /* Smooth transition for focus */
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #88b0ff; /* Light blue on focus */
+            box-shadow: 0 0 8px rgba(136, 176, 255, 0.4); /* Soft glow on focus */
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #6a90ff; /* Soft blue button */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #5a7ee0; /* Slightly darker blue on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 25px;
+                margin: 40px auto;
+            }
+
+            h2 {
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            textarea,
+            button {
+                font-size: 0.95em;
+                padding: 10px 12px;
+            }
+        }
   </style>
 </head>
 <body>
-  <img class="logo" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Logo" />
+
+  <div class="layout">
+    <span class="side-text">İletişim</span>
+    <img class="logo" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Logo" />
+    <span class="side-text break-word">Ürün Talebi</span>
+  </div>
 
   <div class="line-text-wrapper" id="line-text-wrapper1">
     <div class="center-line"></div>
@@ -279,20 +467,9 @@
 
   <p>Vank Deri olarak çoğunluğu kendi imalatımız olan ürünleri en kaliteli ve en uygun fiyatlarla müşterilerimize ulaştırmayı hedefliyoruz. Çanta, cüzdan, mont, kemer vb. ürünlerin yanında Terzi ve Prova Manken imalatı ve satışı da yapmaktayız. İster mağazamıza gelip ürünlerimizi yakından görerek ister iletişim bilgilerimizden detaylı bilgi alabilir, ürünlerimiz için özel sipariş verebilirsiniz.</p>
 
-  <div class="line-text-wrapper" id="line-text-wrapper3">
-    <div class="center-line"></div>
-    <div class="line-label" onclick="toggleContext('line-text-wrapper3')">İletişim</div>
-  </div>
-
-  <div class="contact-container">
-    <div class="contact-item"> Telefon: <a href="tel:+905322319074">+90 532 231 90 74</a></div>
-    <div class="contact-item"> Adres: Arifiye, Özger Sk. No: 12 / B, 26010 Odunpazarı/Eskişehir</div>
-    <div class="contact-item"> <a href="https://instagram.com/vankderi" target="_blank">Instagram'da Takip Et</a></div>
-  </div>
-
     <div class="line-text-wrapper" id="line-text-wrapper4">
     <div class="center-line"></div>
-    <div class="line-label" onclick="toggleContext('line-text-wrapper3')">Ürün Yelpazesi</div>
+    <div class="line-label" onclick="toggleContext('line-text-wrapper4')">Ürün Yelpazesi</div>
   </div>
 
 
@@ -304,9 +481,9 @@
 
   
   <div class="slider-track">
-    <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel1.webp" alt="Slide 1"></div>
+    <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel3.webp" alt="Slide 1"></div>
     <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel2.webp" alt="Slide 2"></div>
-    <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel3.webp" alt="Slide 3"></div>
+    <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel1.webp " alt="Slide 3"></div>
     <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel4.webp" alt="Slide 4"></div>
     <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel5.webp" alt="Slide 5"></div>
     <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel6.webp" alt="Slide 6"></div>
@@ -325,6 +502,42 @@
     <div class="dot"></div>
   </div>
 </div>
+
+  <div class="line-text-wrapper" id="line-text-wrapper3">
+    <div class="center-line"></div>
+    <div class="line-label" onclick="toggleContext('line-text-wrapper3')">İletişim</div>
+  </div>
+
+  <div class="contact-container">
+    <div class="contact-item"> Telefon: <a href="tel:+905322319074">+90 532 231 90 74</a></div>
+    <div class="contact-item"> Adres: Arifiye, Özger Sk. No: 12 / B, 26010 Odunpazarı/Eskişehir</div>
+    <div class="contact-item"> <a href="https://instagram.com/vankderi" target="_blank">Instagram'da Takip Et</a></div>
+  </div>
+
+  <div class="line-text-wrapper" id="line-text-wrapper5">
+    <div class="center-line"></div>
+    <div class="line-label" onclick="toggleContext('line-text-wrapper5')">Ürün Talebi</div>
+  </div>
+
+    <div class="form-container">
+        <h2>Contact Us</h2>
+        <form action="https://berahatiye.github.io/vank" method="POST">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
 
 </body>
 
