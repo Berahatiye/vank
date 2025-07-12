@@ -10,7 +10,15 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      box-shadow: none !important;
+      outline: none !important; 
+      user-select: none; 
+      -ms-user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none; 
     }
+
 
     body {
       font-family: Arial, sans-serif;
@@ -294,7 +302,7 @@
       height: auto;
       width: clamp(90px, 18vw, 100px);
       max-height: 100px;
-      border: 1px #f5f5f7 solid;
+      border: 1px #888 solid;
       transition: transform 0.3s ease;
       flex: 0 0 auto;
       object-fit: contain;
@@ -443,12 +451,173 @@
                 padding: 10px 12px;
             }
         }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   #scrollBtnContainer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: width 0.3s ease-in-out, height 0.3s ease-in-out, bottom 0.3s ease-in-out, right 0.3s ease-in-out;
+            /* Hide by default until scrolled down */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        #scrollBtnContainer.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Button interaction styles on active/focus (for touch/click) */
+        #scrollBtnContainer:active .scroll-top-button,
+        #scrollBtnContainer:focus .scroll-top-button {
+            background-color: #2D4059; /* Darker blue when pressed */
+            transform: translateY(-2px);
+        }
+
+        /* SVG ring color change on interaction (handled by JS adding 'interacted' class) */
+        #scrollBtnContainer .scroll-top-button.interacted + .progress-ring-svg circle.progress-ring-track {
+             stroke: #F4D35E; /* Yellow/ochre when interacted */
+        }
+
+        #scrollBtnContainer .scroll-top-button.interacted + .progress-ring-svg circle.progress-ring {
+            stroke: #EE964B; /* Orange/yellow when interacted */
+        }
+
+        .scroll-top-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #4CAF50; /* Base color: A deep blue inspired by Van Gogh */
+            color: white; /* Arrow color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s, width 0.3s ease-in-out, height 0.3s ease-in-out, font-size 0.3s ease-in-out;
+            position: absolute;
+            border: none;
+            outline: none;
+            touch-action: manipulation;
+        }
+
+        .scroll-top-button span {
+            line-height: 1;
+        }
+
+        /* SVG Progress Ring Styling */
+        .progress-ring-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg); /* Start progress from the top */
+        }
+
+        .progress-ring-track {
+            stroke: #F7F5DD; /* Light, parchment-like background for the track */
+            stroke-width: 4;
+            fill: transparent;
+        }
+
+        .progress-ring {
+            stroke: #4A90E2; /* A vibrant blue for the progress */
+            stroke-width: 4;
+            fill: transparent;
+            stroke-linecap: round;
+            transition: stroke 0.3s ease-in-out;
+        }
+
+        /* --- */
+
+        /* Responsive Adjustments using Media Queries */
+        @media (max-width: 480px) {
+            #scrollBtnContainer {
+                width: 50px;
+                height: 50px;
+                bottom: 1px;
+                right: 1px;
+            }
+
+            .scroll-top-button {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .progress-ring-track,
+            .progress-ring {
+                stroke-width: 3;
+            }
+        }
+
+        @media (max-width: 320px) {
+            #scrollBtnContainer {
+                width: 45px;
+                height: 45px;
+                bottom: 1px;
+                right: 1px;
+            }
+
+            .scroll-top-button {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .progress-ring-svg circle {
+                r: 21; /* Adjusted radius for 45px container, 2.5px stroke */
+                cx: 22.5;
+                cy: 22.5;
+            }
+
+            .progress-ring-track,
+            .progress-ring {
+                stroke-width: 2.5;
+            }
+        }
   </style>
 </head>
 <body>
 
   <div class="layout">
-    <span class="side-text">İletişim</span>
+    <span class="side-text" onclick="scrollToSection('form-container')">İletişim</span>
     <img class="logo" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Logo" />
     <span class="side-text break-word">Ürün Talebi</span>
   </div>
@@ -459,13 +628,6 @@
   </div>
 
   <p>Adıyaman'ın Vank köyünden Kapalıçarşı'ya ardından da Eskişehir'e uzanan yaklaşık <span style="font-weight: 900;">54 yıllık</span> birikim ve işçilik...</p>
-
-  <div class="line-text-wrapper" id="line-text-wrapper2">
-    <div class="center-line"></div>
-    <div class="line-label" onclick="toggleContext('line-text-wrapper2')">İşlerimiz</div>
-  </div>
-
-  <p>Vank Deri olarak çoğunluğu kendi imalatımız olan ürünleri en kaliteli ve en uygun fiyatlarla müşterilerimize ulaştırmayı hedefliyoruz. Çanta, cüzdan, mont, kemer vb. ürünlerin yanında Terzi ve Prova Manken imalatı ve satışı da yapmaktayız. İster mağazamıza gelip ürünlerimizi yakından görerek ister iletişim bilgilerimizden detaylı bilgi alabilir, ürünlerimiz için özel sipariş verebilirsiniz.</p>
 
     <div class="line-text-wrapper" id="line-text-wrapper4">
     <div class="center-line"></div>
@@ -519,7 +681,7 @@
     <div class="line-label" onclick="toggleContext('line-text-wrapper5')">Ürün Talebi</div>
   </div>
 
-    <div class="form-container">
+    <div class="form-container" id="form-container">
         <h2>Contact Us</h2>
         <form action="https://berahatiye.github.io/vank" method="POST">
             <div class="form-group">
@@ -539,6 +701,14 @@
     </div>
 
 
+    <div id="scrollBtnContainer" onclick="scrollToTop()">
+        <svg class="progress-ring-svg">
+            <circle class="progress-ring-track" cx="27.5" cy="27.5" r="25.5"></circle>
+            <circle class="progress-ring" cx="27.5" cy="27.5" r="25.5"></circle>
+        </svg>
+        <button class="scroll-top-button">
+            <span>&#9650;</span> </button>
+    </div>
 </body>
 
 <script>
@@ -651,6 +821,120 @@
     overlay.style.display = 'none';
     slider.classList.remove('disable-interaction');
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function scrollToSection(elementId) {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          const scrollBtnContainer = document.getElementById('scrollBtnContainer');
+        const scrollButton = document.querySelector('.scroll-top-button');
+        const progressBarCircle = document.querySelector('.progress-ring');
+        let radius, circumference;
+
+        function updateCircleDimensions() {
+            const svgEl = progressBarCircle.closest('svg');
+            const svgWidth = svgEl.clientWidth;
+            const strokeWidth = parseFloat(getComputedStyle(progressBarCircle).strokeWidth);
+            radius = (svgWidth - strokeWidth) / 2;
+
+            const trackCircle = document.querySelector('.progress-ring-track');
+            progressBarCircle.setAttribute('r', radius);
+            progressBarCircle.setAttribute('cx', svgWidth / 2);
+            progressBarCircle.setAttribute('cy', svgWidth / 2);
+            trackCircle.setAttribute('r', radius);
+            trackCircle.setAttribute('cx', svgWidth / 2);
+            trackCircle.setAttribute('cy', svgWidth / 2);
+
+            circumference = 2 * Math.PI * radius;
+            progressBarCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+        }
+
+        function updateScrollProgress() {
+            updateCircleDimensions();
+
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const maxScrollTop = scrollHeight - clientHeight;
+
+            let scrollPercentage = 0;
+            if (maxScrollTop > 0) {
+                scrollPercentage = (scrollTop / maxScrollTop) * 100;
+            } else {
+                scrollPercentage = 100;
+            }
+
+            scrollPercentage = Math.max(0, Math.min(100, scrollPercentage));
+
+            const offset = circumference - (scrollPercentage / 100) * circumference;
+            progressBarCircle.style.strokeDashoffset = offset;
+
+            if (scrollTop > 200 && maxScrollTop > 0) {
+                scrollBtnContainer.classList.add('show');
+            } else {
+                scrollBtnContainer.classList.remove('show');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            scrollButton.classList.add('interacted');
+            setTimeout(() => {
+                scrollButton.classList.remove('interacted');
+            }, 500); 
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', updateScrollProgress);
+        window.addEventListener('scroll', updateScrollProgress);
+        window.addEventListener('resize', updateScrollProgress);
 </script>
 
 </html>
