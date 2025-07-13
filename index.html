@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Vank Deri</title>
   <link rel="icon" type="image/webp" href="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/sd-removebg-preview.webp">
+  
   <style>
     * {
       box-sizing: border-box;
@@ -122,147 +123,177 @@
 
 
 
-
-  .slider-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-    background-color: #fafafa;
-    touch-action: pan-y;
-    margin: 40px auto;
-    user-select: none;
-  }
-
-  .slider-track {
-    display: flex;
-    height: 100%;
-    transition: transform 0.3s ease;
-    will-change: transform;
-    cursor: grab;
-  }
-  .slider-track.dragging {
-    cursor: grabbing;
-    transition: none !important;
-  }
-
-  .slide {
-    flex: 0 0 100%;
-    height: 100%;
-  }
-
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    user-select: none;
-    -webkit-user-drag: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  }
-
-  .overlay-image {
-    position: absolute;
-    bottom: 1px;
-    right: 10px;
-    width: 100px;
-    height: auto;
-    z-index: 10;
-    opacity: 0.9;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .dots {
-    position: absolute;
-    bottom: 3px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 11;
-  }
-
-  .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: rgba(255,255,255,0.3);
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-    cursor: pointer;
-  }
-
-  .dot.active {
-    background-color: #ffffff;
-    transform: scale(1.3);
-  }
-
-  .loading-overlay {
-    position: absolute;
-    inset: 0;
-    background-color: rgba(255,255,255,0.85);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .spinner {
-    border: 5px solid #eee;
-    border-top: 5px solid #444;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 0.8s ease-in-out infinite;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg);}
-    100% { transform: rotate(360deg);}
-  }
-
-  @media (max-width: 768px) {
-    .slider-wrapper {
-      border-radius: 10px;
+   .slider-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      background-color: #fafafa;
+      touch-action: pan-y;
+      margin: 40px auto;
+      user-select: none;
     }
+
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.3s ease;
+      will-change: transform;
+      cursor: grab;
+    }
+
+    .slider-track.dragging {
+      cursor: grabbing;
+      transition: none !important;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      height: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
     .overlay-image {
-      width: 50px;
-      bottom: -6px;
-      right: 1px;
+      position: absolute;
+      bottom: 1px;
+      right: 10px;
+      width: 100px;
+      height: auto;
+      z-index: 10;
+      opacity: 0.9;
+      pointer-events: none;
+      user-select: none;
     }
-    .dot {
-      width: 10px;
-      height: 10px;
-    }
-    .dots {
-      gap: 6px;
-    }
-  }
 
-  @media (max-width: 480px) {
-    .overlay-image {
-      width: 40px;
-      bottom: -6px;
-      right: 4px;
-    }
-    .dot {
-      width: 8px;
-      height: 8px;
-    }
     .dots {
-      gap: 5px;
-      bottom: 2.5px;
+      position: absolute;
+      bottom: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 11;
     }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.3);
+      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #ffffff;
+      transform: scale(1.3);
+    }
+
+    .loading-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(255,255,255,0.85);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .spinner {
-      width: 30px;
-      height: 30px;
-      border-width: 4px;
+      border: 5px solid #eee;
+      border-top: 5px solid #444;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 0.8s ease-in-out infinite;
     }
-  }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.3);
+      border: none;
+      color: #f5f5f7;
+      font-size: 28px;
+      padding: 8px 6px;
+      cursor: pointer;
+      z-index: 20;
+      border-radius: 4px;
+      transition: 0.15s ease-in-out;
+      user-select: none;
+    }
+
+    .nav-button:active {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .prev-button {
+      left: 1.2px;
+    }
+
+    .next-button {
+      right: 1.2px;
+    }
+
+    @media (max-width: 768px) {
+      .slider-wrapper {
+        border-radius: 10px;
+      }
+      .overlay-image {
+        width: 50px;
+        bottom: -6px;
+        right: 1px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+      }
+      .dots {
+        gap: 6px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .overlay-image {
+        width: 40px;
+        bottom: -6px;
+        right: 4px;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+      }
+      .dots {
+        gap: 5px;
+        bottom: 2.5px;
+      }
+      .spinner {
+        width: 30px;
+        height: 30px;
+        border-width: 4px;
+      }
+    }
+
+
 
 
 
@@ -335,140 +366,6 @@
       }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            .form-container {
-            background-color: #ffffff;
-            padding: 40px;
-            margin: 40px auto;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-            box-sizing: border-box;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 1.8em;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 600;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px; 
-            box-sizing: border-box;
-            font-size: 1em;
-            color: #333;
-            transition: all 0.3s ease; 
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        textarea:focus {
-            border-color: #88b0ff; 
-            box-shadow: 0 0 8px rgba(136, 176, 255, 0.4); 
-            outline: none;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            background-color: #6a90ff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        button:hover {
-            background-color: #5a7ee0;
-            transform: translateY(-2px);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            .form-container {
-                padding: 25px;
-                margin: 40px auto;
-            }
-
-            h2 {
-                font-size: 1.5em;
-                margin-bottom: 20px;
-            }
-
-            input[type="text"],
-            input[type="email"],
-            textarea,
-            button {
-                font-size: 0.95em;
-                padding: 10px 12px;
-            }
-        }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -620,7 +517,7 @@
   <div class="layout">
     <span class="side-text" onclick="scrollToSection('line-text-wrapper3')">İletişim</span>
     <img class="logo" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Logo" />
-    <span class="side-text break-word" onclick="scrollToSection('form-container')">Ürün Talebi</span>
+    <span class="side-text break-word" onclick="scrollToSection('line-text-wrapper3')">Ürün Talebi</span>
   </div>
 
   <div class="line-text-wrapper" id="line-text-wrapper1">
@@ -635,29 +532,35 @@
     <div class="line-label" onclick="toggleContext('line-text-wrapper4')">Ürün Yelpazesi</div>
   </div>
 
+ <div class="slider-wrapper disable-interaction" id="slider">
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+    </div>
 
-<div class="slider-wrapper disable-interaction" id="slider">
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="spinner"></div>
+    <button class="nav-button prev-button" id="prevBtn">&#10094;</button>
+
+    <div class="slider-track">                  
+      <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel3.webp" alt="Slide 1" /></div>
+      <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel2.webp" alt="Slide 2" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel1.webp" alt="Slide 3" /></div>
+      <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel4.webp" alt="Slide 4" /></div>
+      <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel5.webp" alt="Slide 5" /></div>
+      <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel6.webp" alt="Slide 6" /></div>
+    </div>
+
+    <button class="nav-button next-button" id="nextBtn">&#10095;</button>
+
+    <img class="overlay-image" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Overlay" />
+
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
   </div>
-  <div class="slider-track">
-    <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel3.webp" alt="Slide 1" /></div>
-    <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel2.webp" alt="Slide 2" /></div>
-    <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel1.webp" alt="Slide 3" /></div>
-    <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel4.webp" alt="Slide 4" /></div>
-    <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel5.webp" alt="Slide 5" /></div>
-    <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel6.webp" alt="Slide 6" /></div>
-  </div>
-  <img class="overlay-image" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Overlay" />
-  <div class="dots">
-    <div class="dot active"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-  </div>
-</div>
 
   <div class="line-text-wrapper" id="line-text-wrapper3">
     <div class="center-line"></div>
@@ -665,35 +568,10 @@
   </div>
 
   <div class="contact-container">
-    <div class="contact-item"> Telefon: <a href="tel:+905322319074">+90 532 231 90 74</a></div>
-    <div class="contact-item"> Adres: Arifiye, Özger Sk. No: 12 / B, 26010 Odunpazarı/Eskişehir</div>
-    <div class="contact-item"> <a href="https://instagram.com/vankderi" target="_blank">Instagram'da Takip Et</a></div>
+    <div class="contact-item"><a href="tel:+905322319074">+90 532 231 90 74</a></div>
+    <div class="contact-item"> <a href="https://instagram.com/vank.deri" target="_blank">Instagram: @vank.deri</a></div>
+    <div class="contact-item"><a href="https://maps.app.goo.gl/3hgFtRwwEeJyw8FZA">Arifiye, Özger Sk. No: 12 / B, 26010 Odunpazarı/Eskişehir</a></div>
   </div>
-
-  <div class="line-text-wrapper" id="line-text-wrapper5">
-    <div class="center-line"></div>
-    <div class="line-label" onclick="toggleContext('line-text-wrapper5')">Ürün Talebi</div>
-  </div>
-
-    <div class="form-container" id="form-container">
-        <h2>Contact Us</h2>
-        <form action="https://berahatiye.github.io/vank" method="POST">
-            <div class="form-group">
-                <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
-            </div>
-            <button type="submit">Send Message</button>
-        </form>
-    </div>
-
 
     <div id="scrollBtnContainer" onclick="scrollToTop()">
         <svg class="progress-ring-svg">
@@ -730,104 +608,113 @@
 
 
 <script>
-  const slider = document.querySelector('.slider-wrapper');
-  const track = slider.querySelector('.slider-track');
-  const dots = slider.querySelectorAll('.dot');
-  const overlay = document.getElementById('loadingOverlay');
-  const images = slider.querySelectorAll('img:not(.overlay-image)');
-  const totalSlides = dots.length;
+    const slider = document.querySelector('.slider-wrapper');
+    const track = slider.querySelector('.slider-track');
+    const dots = slider.querySelectorAll('.dot');
+    const overlay = document.getElementById('loadingOverlay');
+    const images = slider.querySelectorAll('img:not(.overlay-image)');
+    const totalSlides = dots.length;
 
-  let index = 0;
-  let isDragging = false;
-  let startX = 0;
-  let currentX = 0;
+    let index = 0;
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
 
-  function setSlide(i) {
-    index = Math.min(Math.max(i, 0), totalSlides -1);
-    track.style.transition = 'transform 0.3s ease';
-    track.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach(dot => dot.classList.remove('active'));
-    dots[index].classList.add('active');
-  }
+    function setSlide(i) {
+      index = Math.min(Math.max(i, 0), totalSlides -1);
+      track.style.transition = 'transform 0.3s ease';
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
 
-  function onStart(x) {
-    isDragging = true;
-    startX = x;
-    currentX = x;
-    track.classList.add('dragging');
-    track.style.transition = 'none';
-  }
+    function onStart(x) {
+      isDragging = true;
+      startX = x;
+      currentX = x;
+      track.classList.add('dragging');
+      track.style.transition = 'none';
+    }
 
-  function onMove(x) {
-    if(!isDragging) return;
-    currentX = x;
-    const dx = currentX - startX;
-    const percent = (dx / slider.offsetWidth) * 100;
-    track.style.transform = `translateX(calc(-${index * 100}% + ${percent}%))`;
-  }
+    function onMove(x) {
+      if(!isDragging) return;
+      currentX = x;
+      const dx = currentX - startX;
+      const percent = (dx / slider.offsetWidth) * 100;
+      track.style.transform = `translateX(calc(-${index * 100}% + ${percent}%))`;
+    }
 
-  function onEnd() {
-    if(!isDragging) return;
-    const dx = currentX - startX;
-    track.classList.remove('dragging');
-    if(dx < -50 && index < totalSlides -1) index++;
-    else if(dx > 50 && index > 0) index--;
-    setSlide(index);
-    isDragging = false;
-  }
+    function onEnd() {
+      if(!isDragging) return;
+      const dx = currentX - startX;
+      track.classList.remove('dragging');
+      if(dx < -50 && index < totalSlides -1) index++;
+      else if(dx > 50 && index > 0) index--;
+      setSlide(index);
+      isDragging = false;
+    }
 
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      setSlide(i);
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        setSlide(i);
+      });
     });
-  });
 
-  slider.addEventListener('touchstart', e => {
-    onStart(e.touches[0].clientX);
-  }, { passive: true });
-  slider.addEventListener('touchmove', e => {
-    onMove(e.touches[0].clientX);
-  }, { passive: true });
-  slider.addEventListener('touchend', onEnd);
+    slider.addEventListener('touchstart', e => {
+      onStart(e.touches[0].clientX);
+    }, { passive: true });
+    slider.addEventListener('touchmove', e => {
+      onMove(e.touches[0].clientX);
+    }, { passive: true });
+    slider.addEventListener('touchend', onEnd);
 
-  slider.addEventListener('mousedown', e => {
-    e.preventDefault();
-    onStart(e.clientX);
-  });
-  slider.addEventListener('mousemove', e => {
-    if(isDragging) {
-      onMove(e.clientX);
-    }
-  });
-  slider.addEventListener('mouseup', onEnd);
-  slider.addEventListener('mouseleave', onEnd);
+    slider.addEventListener('mousedown', e => {
+      e.preventDefault();
+      onStart(e.clientX);
+    });
+    slider.addEventListener('mousemove', e => {
+      if(isDragging) {
+        onMove(e.clientX);
+      }
+    });
+    slider.addEventListener('mouseup', onEnd);
+    slider.addEventListener('mouseleave', onEnd);
 
-  images.forEach(img => {
-    img.addEventListener('dragstart', e => e.preventDefault());
-  });
+    images.forEach(img => {
+      img.addEventListener('dragstart', e => e.preventDefault());
+    });
 
-  let loaded = 0;
-  images.forEach(img => {
-    if(img.complete) {
-      loaded++;
-    } else {
-      img.addEventListener('load', () => {
+    let loaded = 0;
+    images.forEach(img => {
+      if(img.complete) {
         loaded++;
-        if(loaded === images.length) hideLoader();
-      });
-      img.addEventListener('error', () => {
-        loaded++;
-        if(loaded === images.length) hideLoader();
-      });
+      } else {
+        img.addEventListener('load', () => {
+          loaded++;
+          if(loaded === images.length) hideLoader();
+        });
+        img.addEventListener('error', () => {
+          loaded++;
+          if(loaded === images.length) hideLoader();
+        });
+      }
+    });
+
+    if(loaded === images.length) hideLoader();
+
+    function hideLoader() {
+      overlay.style.display = 'none';
+      slider.classList.remove('disable-interaction');
     }
-  });
 
-  if(loaded === images.length) hideLoader();
+    
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (index > 0) setSlide(index - 1);
+    });
 
-  function hideLoader() {
-    overlay.style.display = 'none';
-    slider.classList.remove('disable-interaction');
-  }
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (index < totalSlides - 1) setSlide(index + 1);
+    });
 
 
 
@@ -845,19 +732,6 @@
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -937,6 +811,33 @@
         document.addEventListener('DOMContentLoaded', updateScrollProgress);
         window.addEventListener('scroll', updateScrollProgress);
         window.addEventListener('resize', updateScrollProgress);
+
+
+
+
+
+
+
+
+
+
+  document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+
+
+    window.addEventListener('wheel', function (e) {
+      if (e.ctrlKey) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+ 
+    window.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=')) {
+        e.preventDefault();
+      }
+    });
 </script>
 
 </html>
