@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -125,7 +126,7 @@
 
 
 
-   .slider-wrapper {
+    .slider-wrapper {
       position: relative;
       width: 100%;
       max-width: 600px;
@@ -138,12 +139,18 @@
       margin: 40px auto;
       user-select: none;
       border: solid 2px #918c65;
+      transition: opacity 0.3s ease;
+    }
+
+    .slider-wrapper.disable-interaction {
+      pointer-events: none;
+      opacity: 0.6;
     }
 
     .slider-track {
       display: flex;
       height: 100%;
-      transition: transform 0.3s ease;
+      transition: transform 0.5s ease-in-out;
       will-change: transform;
       cursor: grab;
     }
@@ -165,8 +172,6 @@
       display: block;
       user-select: none;
       -webkit-user-drag: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
     }
 
     .overlay-image {
@@ -178,7 +183,6 @@
       z-index: 10;
       opacity: 0.9;
       pointer-events: none;
-      user-select: none;
     }
 
     .dots {
@@ -196,7 +200,7 @@
       height: 12px;
       border-radius: 50%;
       background-color: rgba(255,255,255,0.3);
-      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+      transition: background-color 0.3s ease, transform 0.3s ease;
       cursor: pointer;
     }
 
@@ -213,6 +217,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: opacity 0.3s ease;
     }
 
     .spinner {
@@ -258,42 +263,17 @@
     }
 
     @media (max-width: 768px) {
-      .slider-wrapper {
-        border-radius: 10px;
-      }
-      .overlay-image {
-        width: 50px;
-        bottom: -6px;
-        right: 1px;
-      }
-      .dot {
-        width: 10px;
-        height: 10px;
-      }
-      .dots {
-        gap: 6px;
-      }
+      .slider-wrapper { border-radius: 10px; }
+      .overlay-image { width: 50px; bottom: -6px; right: 1px; }
+      .dot { width: 10px; height: 10px; }
+      .dots { gap: 6px; }
     }
 
     @media (max-width: 480px) {
-      .overlay-image {
-        width: 40px;
-        bottom: -6px;
-        right: 4px;
-      }
-      .dot {
-        width: 8px;
-        height: 8px;
-      }
-      .dots {
-        gap: 5px;
-        bottom: 2.5px;
-      }
-      .spinner {
-        width: 30px;
-        height: 30px;
-        border-width: 4px;
-      }
+      .overlay-image { width: 40px; bottom: -6px; right: 4px; }
+      .dot { width: 8px; height: 8px; }
+      .dots { gap: 5px; bottom: 2.5px; }
+      .spinner { width: 30px; height: 30px; border-width: 4px; }
     }
 
 
@@ -535,14 +515,14 @@
     <div class="line-label" onclick="toggleContext('line-text-wrapper4')">Ürün Yelpazesi</div>
   </div>
 
- <div class="slider-wrapper disable-interaction" id="slider">
+   <div class="slider-wrapper disable-interaction" id="slider">
     <div class="loading-overlay" id="loadingOverlay">
       <div class="spinner"></div>
     </div>
 
     <button class="nav-button prev-button" id="prevBtn">&#10094;</button>
 
-    <div class="slider-track">                  
+    <div class="slider-track">
       <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel3.webp" alt="Slide 1" /></div>
       <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel2.webp" alt="Slide 2" /></div>
       <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel1.webp" alt="Slide 3" /></div>
@@ -564,7 +544,7 @@
       <div class="dot"></div>
     </div>
   </div>
-
+  
   <div class="line-text-wrapper" id="line-text-wrapper3">
     <div class="center-line"></div>
     <div class="line-label" onclick="toggleContext('line-text-wrapper3')">İletişim</div>
@@ -626,117 +606,136 @@
 
 
 <script>
-    const slider = document.querySelector('.slider-wrapper');
-    const track = slider.querySelector('.slider-track');
-    const dots = slider.querySelectorAll('.dot');
-    const overlay = document.getElementById('loadingOverlay');
-    const images = slider.querySelectorAll('img:not(.overlay-image)');
-    const totalSlides = dots.length;
+const slider = document.getElementById('slider');
+const track = slider.querySelector('.slider-track');
+const dots = slider.querySelectorAll('.dot');
+const overlay = document.getElementById('loadingOverlay');
+const images = slider.querySelectorAll('img:not(.overlay-image)');
+const totalSlides = dots.length;
 
-    let index = 0;
-    let isDragging = false;
-    let startX = 0;
-    let currentX = 0;
+let index = 0;
+let isDragging = false;
+let startX = 0;
+let currentX = 0;
+let autoPlaying = true;
 
-    function setSlide(i) {
-      index = Math.min(Math.max(i, 0), totalSlides -1);
-      track.style.transition = 'transform 0.3s ease';
-      track.style.transform = `translateX(-${index * 100}%)`;
-      dots.forEach(dot => dot.classList.remove('active'));
-      dots[index].classList.add('active');
+function setSlide(i) {
+  index = i;
+  track.style.transition = 'transform 0.5s ease-in-out';
+  track.style.transform = `translateX(-${index * 100}%)`;
+  dots.forEach(dot => dot.classList.remove('active'));
+  if (dots[index]) dots[index].classList.add('active');
+}
+
+function onStart(x) {
+  if (autoPlaying) return;
+  isDragging = true;
+  startX = x;
+  currentX = x;
+  track.classList.add('dragging');
+  track.style.transition = 'none';
+}
+
+function onMove(x) {
+  if (!isDragging) return;
+  currentX = x;
+  const dx = currentX - startX;
+  const percent = (dx / slider.offsetWidth) * 100;
+  track.style.transform = `translateX(calc(-${index * 100}% + ${percent}%))`;
+}
+
+function onEnd() {
+  if (!isDragging) return;
+  const dx = currentX - startX;
+  track.classList.remove('dragging');
+  if (dx < -50 && index < totalSlides - 1) index++;
+  else if (dx > 50 && index > 0) index--;
+  setSlide(index);
+  isDragging = false;
+}
+
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    if (!autoPlaying) setSlide(i);
+  });
+});
+
+slider.addEventListener('touchstart', e => onStart(e.touches[0].clientX), { passive: true });
+slider.addEventListener('touchmove', e => onMove(e.touches[0].clientX), { passive: true });
+slider.addEventListener('touchend', onEnd);
+
+slider.addEventListener('mousedown', e => { e.preventDefault(); onStart(e.clientX); });
+slider.addEventListener('mousemove', e => { if (isDragging) onMove(e.clientX); });
+slider.addEventListener('mouseup', onEnd);
+slider.addEventListener('mouseleave', onEnd);
+
+images.forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
+
+let loaded = 0;
+images.forEach(img => {
+  if (img.complete) {
+    loaded++;
+  } else {
+    img.addEventListener('load', checkLoaded);
+    img.addEventListener('error', checkLoaded);
+  }
+});
+if (loaded === images.length) hideLoader();
+
+function checkLoaded() {
+  loaded++;
+  if (loaded === images.length) hideLoader();
+}
+
+function hideLoader() {
+  // DON'T hide loader here; wait until autoplay done
+  // Just start autoplay now
+  startAutoplayOnce();
+}
+
+function startAutoplayOnce() {
+  slider.classList.add('disable-interaction');
+  autoPlaying = true;
+
+  let current = 0;
+  let delay = 800;
+
+  function goNext() {
+    if (current < totalSlides - 1) {
+      current++;
+      setSlide(current);
+      setTimeout(goNext, delay);
+    } else {
+      // After reaching last slide, return to first slide
+      setTimeout(() => {
+        current = 0;
+        setSlide(current);
+        finishAutoplay();
+      }, delay);
     }
+  }
 
-    function onStart(x) {
-      isDragging = true;
-      startX = x;
-      currentX = x;
-      track.classList.add('dragging');
-      track.style.transition = 'none';
-    }
+  setSlide(0);
+  setTimeout(goNext, delay);
+}
 
-    function onMove(x) {
-      if(!isDragging) return;
-      currentX = x;
-      const dx = currentX - startX;
-      const percent = (dx / slider.offsetWidth) * 100;
-      track.style.transform = `translateX(calc(-${index * 100}% + ${percent}%))`;
-    }
+function finishAutoplay() {
+  autoPlaying = false;
+  slider.classList.remove('disable-interaction');
+  // Now hide loading overlay smoothly
+  overlay.style.opacity = '0';
+  setTimeout(() => {
+    overlay.style.display = 'none';
+  }, 300);
+}
 
-    function onEnd() {
-      if(!isDragging) return;
-      const dx = currentX - startX;
-      track.classList.remove('dragging');
-      if(dx < -50 && index < totalSlides -1) index++;
-      else if(dx > 50 && index > 0) index--;
-      setSlide(index);
-      isDragging = false;
-    }
+document.getElementById('prevBtn').addEventListener('click', () => {
+  if (!autoPlaying && index > 0) setSlide(index - 1);
+});
 
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        setSlide(i);
-      });
-    });
-
-    slider.addEventListener('touchstart', e => {
-      onStart(e.touches[0].clientX);
-    }, { passive: true });
-    slider.addEventListener('touchmove', e => {
-      onMove(e.touches[0].clientX);
-    }, { passive: true });
-    slider.addEventListener('touchend', onEnd);
-
-    slider.addEventListener('mousedown', e => {
-      e.preventDefault();
-      onStart(e.clientX);
-    });
-    slider.addEventListener('mousemove', e => {
-      if(isDragging) {
-        onMove(e.clientX);
-      }
-    });
-    slider.addEventListener('mouseup', onEnd);
-    slider.addEventListener('mouseleave', onEnd);
-
-    images.forEach(img => {
-      img.addEventListener('dragstart', e => e.preventDefault());
-    });
-
-    let loaded = 0;
-    images.forEach(img => {
-      if(img.complete) {
-        loaded++;
-      } else {
-        img.addEventListener('load', () => {
-          loaded++;
-          if(loaded === images.length) hideLoader();
-        });
-        img.addEventListener('error', () => {
-          loaded++;
-          if(loaded === images.length) hideLoader();
-        });
-      }
-    });
-
-    if(loaded === images.length) hideLoader();
-
-    function hideLoader() {
-      overlay.style.display = 'none';
-      slider.classList.remove('disable-interaction');
-    }
-
-    
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      if (index > 0) setSlide(index - 1);
-    });
-
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      if (index < totalSlides - 1) setSlide(index + 1);
-    });
-
-
-
-
+document.getElementById('nextBtn').addEventListener('click', () => {
+  if (!autoPlaying && index < totalSlides - 1) setSlide(index + 1);
+});
 
 
 
