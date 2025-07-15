@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -126,7 +127,7 @@
       color: #f5f5f7;
       font-size: 14px;
       line-height: 1.6;
-      border: #918c65 1px solid;
+      border: #918c65 2px solid;
     }
 
     .contact-item {
@@ -146,7 +147,7 @@
 
     @media (max-width: 600px) {
       .contact-container {
-        padding: 15px;
+        padding: 18px;
         font-size: 13px;
       }
     }
@@ -162,7 +163,7 @@
       overflow: hidden;
       border-radius: 16px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-      background-color: #fafafa;
+      background-color: transparent;
       touch-action: pan-y;
       margin: 40px auto;
       user-select: none;
@@ -292,11 +293,12 @@
       height: auto;
       width: clamp(90px, 18vw, 100px);
       max-height: 100px;
-      border: 1px #918c65 solid;
+      border: 2px #918c65 solid;
       transition: transform 0.3s ease;
       flex: 0 0 auto;
       object-fit: contain;
       cursor: default;
+      border-radius: 3px;
     }
 
     
@@ -492,9 +494,9 @@
       background-color: var(--popupOverlay-bg);
       justify-content: center;
       align-items: flex-start;
-      overflow-y: auto;
+      overflow-y: unset;
       z-index: 1000;
-      padding: 40px 20px;
+      padding: 12px;
     }
     .popupOverlay-content {
       background: white;
@@ -757,7 +759,7 @@
     <div class="contact-item"> <a href="https://instagram.com/vank.deri" target="_blank">Instagram: @vank.deri</a></div>
     <div class="contact-item"><a href="https://maps.app.goo.gl/3hgFtRwwEeJyw8FZA">Arifiye, Özger Sk. No: 12 / B, 26010 Odunpazarı/Eskişehir</a></div>
 
-    <div style="margin: 0 auto; align-items: center; gap: 12px; display: flex; border-top: 1px #918c65 solid; margin-top: 12px; padding-top: 12px;">
+    <div style="margin: 0 auto; align-items: center; gap: 12px; display: flex; border-top: 2px #918c65 solid; margin-top: 12px; padding-top: 12px;">
 <svg style="margin-inline: auto;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="62" height="62" viewBox="0,0,256,256">
 <g fill="#f5f5f7" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M8,3c-2.757,0 -5,2.243 -5,5v8c0,2.757 2.243,5 5,5h8c2.757,0 5,-2.243 5,-5v-8c0,-2.757 -2.243,-5 -5,-5zM8,5h8c1.654,0 3,1.346 3,3v8c0,1.654 -1.346,3 -3,3h-8c-1.654,0 -3,-1.346 -3,-3v-8c0,-1.654 1.346,-3 3,-3zM17,6c-0.55228,0 -1,0.44772 -1,1c0,0.55228 0.44772,1 1,1c0.55228,0 1,-0.44772 1,-1c0,-0.55228 -0.44772,-1 -1,-1zM12,7c-2.757,0 -5,2.243 -5,5c0,2.757 2.243,5 5,5c2.757,0 5,-2.243 5,-5c0,-2.757 -2.243,-5 -5,-5zM12,9c1.654,0 3,1.346 3,3c0,1.654 -1.346,3 -3,3c-1.654,0 -3,-1.346 -3,-3c0,-1.654 1.346,-3 3,-3z"></path></g></g>
 </svg>
@@ -807,7 +809,7 @@
       <button onclick="activateCategoryTab('Çanta')">Çanta</button>
       <button onclick="activateCategoryTab('Yelek')">Yelek</button>
       <button onclick="activateCategoryTab('Kürk')">Kürk</button>
-      <button onclick="activateCategoryTab('SeriSonu')">Seri Sonu</button>
+      <button onclick="activateCategoryTab('SeriSonu')">Seri Sonu <i>1600₺</i></button>
       <button onclick="activateCategoryTab('Özel Üretim Talebi')">Özel Üretim Talebi</button>
     </div>
 
@@ -839,27 +841,27 @@
 
     <div class="popupProductGrid" id="popupProductList">
       <div class="popupProductItem" data-category="Çanta" data-code="Ç001">
-        <img src="https://via.placeholder.com/300x300?text=Çanta+1" alt="Çanta 1" />
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp" alt="Çanta 1" />
         <div class="popupProductPrice">₺99</div>
         <button onclick="addItemToBasket('Ç001')">Sepete Ekle</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç002">
-        <img src="https://via.placeholder.com/300x300?text=Çanta+2" alt="Çanta 2" />
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp" alt="Çanta 2" />
         <div class="popupProductPrice">₺109</div>
         <button onclick="addItemToBasket('Ç002')">Sepete Ekle</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç003">
-        <img src="https://via.placeholder.com/300x300?text=Çanta+3" alt="Çanta 3" />
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp" alt="Çanta 3" />
         <div class="popupProductPrice">₺119</div>
         <button onclick="addItemToBasket('Ç003')">Sepete Ekle</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç004">
-        <img src="https://via.placeholder.com/300x300?text=Çanta+4" alt="Çanta 4" />
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp" alt="Çanta 4" />
         <div class="popupProductPrice">₺129</div>
         <button onclick="addItemToBasket('Ç004')">Sepete Ekle</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç005">
-        <img src="https://via.placeholder.com/300x300?text=Çanta+5" alt="Çanta 5" />
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Çanta 5" />
         <div class="popupProductPrice">₺139</div>
         <button onclick="addItemToBasket('Ç005')">Sepete Ekle</button>
       </div>
@@ -943,7 +945,7 @@
       </div>
       
       <div class="popupProductItem" data-category="Yelek" data-code="Y001">
-        <img src="https://via.placeholder.com/300x300?text=Yelek+1" alt="Yelek 1" />
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp" alt="Yelek 1" />
         <div class="popupProductPrice">₺99</div>
         <button onclick="addItemToBasket('Y001')">Sepete Ekle</button>
       </div>
@@ -1024,28 +1026,28 @@
 
 
         <div class="popupProductItem" data-category="CeketMont" data-code="CM001">
-        <img src="https://via.placeholder.com/300x300?text=CeketMont+1" alt="CeketMont 1" />
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp" alt="CeketMont 1" />
         <div class="popupProductPrice">₺99</div>
         <button onclick="addItemToBasket('CM001')">Sepete Ekle</button>
       </div>
       <div class="popupProductItem" data-category="CeketMont" data-code="CM002">
-        <img src="https://via.placeholder.com/300x300?text=CeketMont+2" alt="CeketMont 2" />
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp" alt="CeketMont 2" />
         <div class="popupProductPrice">₺109</div>
         <button onclick="addItemToBasket('CM002')">Sepete Ekle</button>
       </div>
       <div class="popupProductItem" data-category="CeketMont" data-code="CM003">
-        <img src="https://via.placeholder.com/300x300?text=CeketMont+3" alt="CeketMont 3" />
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp" alt="CeketMont 3" />
         <div class="popupProductPrice">₺119</div>
         <button onclick="addItemToBasket('CM003')">Sepete Ekle</button>
       </div>
       <div class="popupProductItem" data-category="CeketMont" data-code="CM004">
-        <img src="https://via.placeholder.com/300x300?text=CeketMont+4" alt="CeketMont 4" />
-        <div class="popupProductPrice">₺129</div>
+        <img src="https://via.placeholder.com/300x300?text=CeketMont+4" alt="eklenecek" />
+        <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('CM004')">Sepete Ekle</button>
       </div>
       <div class="popupProductItem" data-category="CeketMont" data-code="CM005">
-        <img src="https://via.placeholder.com/300x300?text=CeketMont+5" alt="CeketMont 5" />
-        <div class="popupProductPrice">₺139</div>
+        <img src="https://via.placeholder.com/300x300?text=CeketMont+5" alt="eklenecek" />
+        <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('CM005')">Sepete Ekle</button>
       </div>
 
