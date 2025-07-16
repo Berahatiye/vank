@@ -32,11 +32,11 @@
       padding: 24px;
       min-height: 100vh;
       background-color: #362828;
-      overflow: hidden; /* Disable scroll during load */
+      overflow: hidden;
     }
 
     body.loaded {
-      overflow: auto; /* Enable scroll after load */
+      overflow: auto;
     }
 
     .loading-overlay {
@@ -283,7 +283,7 @@
       color: #f5f5f7;
       font-style: normal;
       font-weight: bolder;
-      line-height: 1.2; /* Added for better spacing on wrap */
+      line-height: 1.2;
     }
 
     .logo {
@@ -314,8 +314,6 @@
         font-size: 0.9rem;
       }
     }
-
-
 
 
 
@@ -463,8 +461,6 @@
 
 
 
-
-
            .popupShowTrigger {
       margin: 100px auto;
       display: block;
@@ -482,8 +478,8 @@
       inset: 0;
       background-color: var(--popupOverlay-bg);
       justify-content: center;
-      align-items: flex-start; /* Align to top for better UX, especially on smaller screens */
-      overflow-y: auto; /* Allow scrolling within overlay if content exceeds viewport */
+      align-items: flex-start;
+      overflow-y: auto;
       z-index: 1000;
       padding: 12px;
       visibility: hidden;
@@ -498,8 +494,8 @@
       background: white;
       width: 95%;
       max-width: 1100px;
-      max-height: 90vh; /* Limit content height */
-      overflow-y: auto; /* Enable scrolling for content if needed */
+      max-height: 90vh;
+      overflow-y: auto;
       border-radius: 10px;
       padding: 20px 24px 30px;
       position: relative;
@@ -508,7 +504,7 @@
       transform: translateY(20px);
       opacity: 0;
       transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Add shadow for better depth */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
     .popupOverlay.show .popupOverlay-content {
       transform: translateY(0);
@@ -534,13 +530,31 @@
       transform: scale(1.15);
       outline: none;
     }
+    .popupCategoryTabs button {
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: 1px solid #dadce0;
+      background: #f8f9fa;
+      color: #3c4043;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px 0 rgba(60,64,67,0.08), 0 1px 3px 1px rgba(60,64,67,0.05);
+    }
+    .popupCategoryTabs button:hover {
+      background-color: #e8eaed;
+      border-color: #d2d2d2;
+      box-shadow: 0 1px 3px 0 rgba(60,64,67,0.12), 0 1px 4px 1px rgba(60,64,67,0.08);
+    }
     .popupCategoryTabs button.selected {
-      background-color: #d2bba0;
-      color: #333;
+      background-color: var(--main-color);
+      color: white;
       font-weight: bold;
       border-color: var(--main-color);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    .popupCategoryTabs button:hover:not(.selected) { /* Only hover if not selected */
+    .popupCategoryTabs button:hover:not(.selected) {
       background-color: #e0e0e0;
     }
     .popupCategoryTabs {
@@ -548,14 +562,6 @@
       flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 16px;
-    }
-    .popupCategoryTabs button {
-      padding: 6px 16px;
-      border-radius: 16px;
-      border: 1px solid #ccc;
-      background: #eee;
-      cursor: pointer;
-      transition: all 0.2s ease;
     }
     .popupBasketButton {
       position: sticky;
@@ -594,8 +600,8 @@
       flex-wrap: wrap;
       gap: 16px;
       justify-content: center;
-      position: relative; /* Needed for loader positioning */
-      min-height: 150px; /* Ensure space for loader */
+      position: relative;
+      min-height: 150px;
     }
 
     .popupProductGrid.loading::before {
@@ -628,20 +634,20 @@
     .popupProductItem {
       opacity: 0;
       transform: scale(0.95);
-      transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease; /* Added background-color transition */
+      transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
       width: 130px;
       border: 1px solid #ddd;
       border-radius: 8px;
       padding: 10px;
       background: white;
       text-align: center;
-      display: none; /* Changed from flex to none, will be changed by JS */
+      display: none;
       flex-direction: column;
       gap: 6px;
-      cursor: pointer; /* Indicate clickable */
+      cursor: pointer;
     }
     .popupProductItem:hover {
-        background-color: #f9f9f9; /* Subtle hover effect */
+        background-color: #f9f9f9;
     }
     .popupProductItem.popupVisible {
       opacity: 1;
@@ -668,10 +674,19 @@
       cursor: pointer;
       font-size: 14px;
       transition: background-color 0.2s ease;
+      width: 100%;
     }
     .popupProductItem button:hover {
         background-color: #6f4f3f;
     }
+    .popupProductItem .details-button {
+        background-color: #555;
+        margin-top: 4px;
+    }
+    .popupProductItem .details-button:hover {
+        background-color: #333;
+    }
+
     .popupBasketButton-popupOverlay {
       display: none;
       position: fixed;
@@ -686,7 +701,7 @@
       max-width: 420px;
       z-index: 2000;
       font-family: 'Segoe UI', sans-serif;
-      transition: opacity 0.3s ease, transform 0.3s ease; /* For smooth show/hide */
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
     .popupBasketButton-popupOverlay.show {
         opacity: 1;
@@ -758,9 +773,8 @@
       color: #333;
     }
 
-    /* Custom Production Request Form Styles */
-    #customProductionForm {
-      display: none; /* Hidden by default */
+    .customProductionForm {
+      display: none;
       flex-direction: column;
       gap: 15px;
       max-width: 500px;
@@ -775,45 +789,44 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    #customProductionForm.popupVisible {
+    .customProductionForm.popupVisible {
       opacity: 1;
       transform: translateY(0);
-      /* display: flex; No need to set here, handled by JS activateCategoryTab */
     }
 
-    #customProductionForm label {
+    .customProductionForm label {
       font-weight: bold;
       color: #333;
       margin-bottom: 5px;
       display: block;
     }
 
-    #customProductionForm input[type="text"],
-    #customProductionForm input[type="email"],
-    #customProductionForm textarea {
+    .customProductionForm input[type="text"],
+    .customProductionForm input[type="email"],
+    .customProductionForm textarea {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 16px;
-      box-sizing: border-box; /* Ensures padding doesn't add to width */
+      box-sizing: border-box;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
-    #customProductionForm input[type="text"]:focus,
-    #customProductionForm input[type="email"]:focus,
-    #customProductionForm textarea:focus {
+    .customProductionForm input[type="text"]:focus,
+    .customProductionForm input[type="email"]:focus,
+    .customProductionForm textarea:focus {
         border-color: var(--main-color);
         box-shadow: 0 0 0 2px rgba(145, 140, 101, 0.2);
         outline: none;
     }
 
 
-    #customProductionForm textarea {
+    .customProductionForm textarea {
       resize: vertical;
       min-height: 100px;
     }
 
-    #customProductionForm button[type="submit"] {
+    .customProductionForm button[type="submit"] {
       background-color: var(--accent-color);
       color: white;
       padding: 12px 20px;
@@ -824,8 +837,130 @@
       transition: background-color 0.3s ease;
     }
 
-    #customProductionForm button[type="submit"]:hover {
+    .customProductionForm button[type="submit"]:hover {
       background-color: #6f4f3f;
+    }
+
+    .productDetailsPopupOverlay {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .productDetailsPopupOverlay.show {
+        visibility: visible;
+        opacity: 1;
+    }
+    .productDetailsPopupContent {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        max-width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: scale(0.9);
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    .productDetailsPopupOverlay.show .productDetailsPopupContent {
+        transform: scale(1);
+        opacity: 1;
+    }
+    .close-productDetailsPopup {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 28px;
+        color: #555;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        padding: 2px;
+        line-height: 1;
+        transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .close-productDetailsPopup:hover {
+        color: #222;
+        transform: scale(1.15);
+    }
+    .productDetailsPopupContent img {
+        max-width: 100%;
+        height: auto;
+        max-height: 70vh;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        object-fit: contain;
+    }
+    .productDetailsCode {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+    }
+
+    .custom-message-box-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3000;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .custom-message-box-overlay.show {
+        visibility: visible;
+        opacity: 1;
+    }
+    .custom-message-box-content {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        text-align: center;
+        max-width: 350px;
+        width: 90%;
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    .custom-message-box-overlay.show .custom-message-box-content {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    .custom-message-box-content p {
+        margin: 0 0 20px 0;
+        font-size: 16px;
+        color: #333;
+        max-width: none;
+        padding: 0;
+    }
+    .custom-message-box-content button {
+        background-color: var(--main-color);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.2s ease;
+    }
+    .custom-message-box-content button:hover {
+        background-color: #7b7550;
     }
 
   </style>
@@ -856,12 +991,12 @@
   <div class="slider-wrapper" id="slider">
 
     <div class="slider-track">
-      <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel3.webp" alt="Slide 1" /></div>
-      <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel2.webp" alt="Slide 2" /></div>
-      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel1.webp" alt="Slide 3" /></div>
-      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel4.webp" alt="Slide 4" /></div>
-      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel5.webp" alt="Slide 5" /></div>
-      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/heads/main/gorsel6.webp" alt="Slide 6" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel3%20(1).webp" alt="Slide 1" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel2%20(1).webp" alt="Slide 2" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel1%20(1).webp" alt="Slide 3" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel4%20(1).webp" alt="Slide 4" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel5%20(1).webp" alt="Slide 5" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel6%20(1).webp" alt="Slide 6" /></div>
     </div>
 
     <img class="overlay-image" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Overlay" />
@@ -910,7 +1045,7 @@
             <circle class="progress-ring" cx="27.5" cy="27.5" r="25.5"></circle>
         </svg>
         <button class="scroll-top-button">
-            <span>▲</span>
+            <span>&#9650;</span>
         </button>
     </div>
 
@@ -918,7 +1053,7 @@
 
 <div class="popupOverlay" id="popupContainerMain">
   <div class="popupOverlay-content">
-    <span class="close-popupOverlay" onclick="dismissPopup()">×</span>
+    <span class="close-popupOverlay" onclick="dismissPopup()">&times;</span>
 
     <div class="popupCategoryTabs">
       <button onclick="activateCategoryTab('Kemer')">Kemer</button>
@@ -928,11 +1063,11 @@
       <button onclick="activateCategoryTab('Çanta')">Çanta</button>
       <button onclick="activateCategoryTab('Yelek')">Yelek</button>
       <button onclick="activateCategoryTab('Kürk')">Kürk</button>
-      <button onclick="activateCategoryTab('SeriSonu')">Seri Sonu <i>1600₺</i></button>
+      <button onclick="activateCategoryTab('SeriSonu')">Seri Sonu <i>1600&#8378;</i></button>
       <button onclick="activateCategoryTab('Özel Üretim Talebi')">Özel Üretim Talebi</button>
     </div>
 
-    <div class="popupBasketButton" onclick="toggleBasketView()">🧺 Sepet <span id="popupBasketCount">0</span></div>
+    <div class="popupBasketButton" onclick="toggleBasketView()">&#128722; Sepet <span id="popupBasketCount">0</span></div>
 <div id="popupAddNotice" style="
       position: fixed;
       bottom: 20px;
@@ -953,227 +1088,267 @@
 
     <div class="popupBasketButton-popupOverlay" id="popupBasketPanel">
   <h3>Sepetiniz</h3>
-      <button class="popupCloseSmall" onclick="hideBasketPanel()">×</button>
+      <button class="popupCloseSmall" onclick="hideBasketPanel()">&times;</button>
       <div id="popupBasketItems">Sepetiniz boş.</div>
       <button class="popupWhatsAppButton" onclick="submitOrderWhatsApp()">WhatsApp'tan Gönder</button>
     </div>
 
     <div class="popupProductGrid" id="popupProductList">
       <div class="popupProductItem" data-category="Çanta" data-code="Ç001">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp" alt="Çanta 1" />
-        <div class="popupProductPrice">₺99</div>
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp" alt="Çanta 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;99</div>
         <button onclick="addItemToBasket('Ç001')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp', 'Ç001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç002">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp" alt="Çanta 2" />
-        <div class="popupProductPrice">₺109</div>
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp" alt="Çanta 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;109</div>
         <button onclick="addItemToBasket('Ç002')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp', 'Ç002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç003">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp" alt="Çanta 3" />
-        <div class="popupProductPrice">₺119</div>
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp" alt="Çanta 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;119</div>
         <button onclick="addItemToBasket('Ç003')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp', 'Ç003')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç004">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp" alt="Çanta 4" />
-        <div class="popupProductPrice">₺129</div>
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp" alt="Çanta 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;129</div>
         <button onclick="addItemToBasket('Ç004')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp', 'Ç004')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç005">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Çanta 5" />
-        <div class="popupProductPrice">₺139</div>
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Çanta 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;139</div>
         <button onclick="addItemToBasket('Ç005')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp', 'Ç005')">Detaylar</button>
       </div>
 
 
       <div class="popupProductItem" data-category="Cüzdan" data-code="C001">
-        <img src="https://via.placeholder.com/300x300?text=Cüzdan+1" alt="eklenecek" />
-        <div class="popupProductPrice">₺99</div>
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+1" alt="Cüzdan 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;99</div>
         <button onclick="addItemToBasket('C001')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+1', 'C001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Cüzdan" data-code="C002">
-        <img src="https://via.placeholder.com/300x300?text=Cüzdan+2" alt="eklenecek" />
-        <div class="popupProductPrice">₺109</div>
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+2" alt="Cüzdan 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;109</div>
         <button onclick="addItemToBasket('C002')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+2', 'C002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Cüzdan" data-code="C003">
-        <img src="https://via.placeholder.com/300x300?text=Cüzdan+3" alt="eklenecek" />
-        <div class="popupProductPrice">₺119</div>
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+3" alt="Cüzdan 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;119</div>
         <button onclick="addItemToBasket('C003')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+3', 'C003')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Cüzdan" data-code="C004">
-        <img src="https://via.placeholder.com/300x300?text=Cüzdan+4" alt="eklenecek" />
-        <div class="popupProductPrice">₺129</div>
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+4" alt="Cüzdan 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;129</div>
         <button onclick="addItemToBasket('C004')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+4', 'C004')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Cüzdan" data-code="C005">
-        <img src="https://via.placeholder.com/300x300?text=Cüzdan+5" alt="eklenecek" />
-        <div class="popupProductPrice">₺139</div>
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+5" alt="Cüzdan 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;139</div>
         <button onclick="addItemToBasket('C005')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+5', 'C005')">Detaylar</button>
       </div>
 
 
       <div class="popupProductItem" data-category="Kemer" data-code="K001">
-        <img src="https://via.placeholder.com/300x300?text=Kemer+1" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+1" alt="Kemer 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K001')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kemer+1', 'K001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Kemer" data-code="K002">
-        <img src="https://via.placeholder.com/300x300?text=Kemer+2" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+2" alt="Kemer 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K002')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kemer+2', 'K002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Kemer" data-code="K003">
-        <img src="https://via.placeholder.com/300x300?text=Kemer+3" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+3" alt="Kemer 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K003')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kemer+3', 'K003')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Kemer" data-code="K004">
-        <img src="https://via.placeholder.com/300x300?text=Kemer+4" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+4" alt="Kemer 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K004')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kemer+4', 'K004')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Kemer" data-code="K005">
-        <img src="https://via.placeholder.com/300x300?text=Kemer+5" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+5" alt="Kemer 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K005')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kemer+5', 'K005')">Detaylar</button>
       </div>
 
 
       <div class="popupProductItem" data-category="Aksesuar" data-code="A001">
-        <img src="https://via.placeholder.com/300x300?text=Aksesuar+1" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+1" alt="Aksesuar 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('A001')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+1', 'A001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Aksesuar" data-code="A002">
-        <img src="https://via.placeholder.com/300x300?text=Aksesuar+2" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+2" alt="Aksesuar 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('A002')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+2', 'A002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Aksesuar" data-code="A003">
-        <img src="https://via.placeholder.com/300x300?text=Aksesuar+3" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+3" alt="Aksesuar 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('A003')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+3', 'A003')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Aksesuar" data-code="A004">
-        <img src="https://via.placeholder.com/300x300?text=Aksesuar+4" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+4" alt="Aksesuar 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('A004')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+4', 'A004')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Aksesuar" data-code="A005">
-        <img src="https://via.placeholder.com/300x300?text=Aksesuar+5" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+5" alt="Aksesuar 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('A005')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+5', 'A005')">Detaylar</button>
       </div>
 
       <div class="popupProductItem" data-category="Yelek" data-code="Y001">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp" alt="Yelek 1" />
-        <div class="popupProductPrice">₺99</div>
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp" alt="Yelek 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;99</div>
         <button onclick="addItemToBasket('Y001')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp', 'Y001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Yelek" data-code="Y002">
-        <img src="https://via.placeholder.com/300x300?text=Yelek+2" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+2" alt="Yelek 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('Y002')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Yelek+2', 'Y002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Yelek" data-code="Y003">
-        <img src="https://via.placeholder.com/300x300?text=Yelek+3" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+3" alt="Yelek 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('Y003')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Yelek+3', 'Y003')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Yelek" data-code="Y004">
-        <img src="https://via.placeholder.com/300x300?text=Yelek+4" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+4" alt="Yelek 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('Y004')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Yelek+4', 'Y004')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Yelek" data-code="Y005">
-        <img src="https://via.placeholder.com/300x300?text=Yelek+5" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+5" alt="Yelek 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('Y005')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Yelek+5', 'Y005')">Detaylar</button>
       </div>
 
 
             <div class="popupProductItem" data-category="Kürk" data-code="KU001">
-        <img src="https://via.placeholder.com/300x300?text=Kürk+1" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+1" alt="Kürk 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('KU001')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kürk+1', 'KU001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Kürk" data-code="KU002">
-        <img src="https://via.placeholder.com/300x300?text=Kürk+2" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+2" alt="Kürk 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('KU002')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kürk+2', 'KU002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Kürk" data-code="KU003">
-        <img src="https://via.placeholder.com/300x300?text=Kürk+3" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+3" alt="Kürk 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('KU003')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kürk+3', 'KU003')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Kürk" data-code="KU004">
-        <img src="https://via.placeholder.com/300x300?text=Kürk+4" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+4" alt="Kürk 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('KU004')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kürk+4', 'KU004')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Kürk" data-code="KU005">
-        <img src="https://via.placeholder.com/300x300?text=Kürk+5" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+5" alt="Kürk 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('KU005')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kürk+5', 'KU005')">Detaylar</button>
       </div>
 
 
         <div class="popupProductItem" data-category="SeriSonu" data-code="SS001">
-        <img src="https://via.placeholder.com/300x300?text=SeriSonu+1" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+1" alt="Seri Sonu 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('SS001')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+1', 'SS001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="SeriSonu" data-code="SS002">
-        <img src="https://via.placeholder.com/300x300?text=SeriSonu+2" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+2" alt="Seri Sonu 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('SS002')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+2', 'SS002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="SeriSonu" data-code="SS003">
-        <img src="https://via.placeholder.com/300x300?text=SeriSonu+3" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+3" alt="Seri Sonu 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('SS003')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+3', 'SS003')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="SeriSonu" data-code="SS004">
-        <img src="https://via.placeholder.com/300x300?text=SeriSonu+4" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+4" alt="Seri Sonu 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('SS004')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+4', 'SS004')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="SeriSonu" data-code="SS005">
-        <img src="https://via.placeholder.com/300x300?text=SeriSonu+5" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+5" alt="Seri Sonu 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('SS005')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+5', 'SS005')">Detaylar</button>
       </div>
 
 
         <div class="popupProductItem" data-category="CeketMont" data-code="CM001">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp" alt="CeketMont 1" />
-        <div class="popupProductPrice">₺99</div>
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp" alt="Ceket/Mont 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;99</div>
         <button onclick="addItemToBasket('CM001')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp', 'CM001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="CeketMont" data-code="CM002">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp" alt="CeketMont 2" />
-        <div class="popupProductPrice">₺109</div>
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp" alt="Ceket/Mont 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;109</div>
         <button onclick="addItemToBasket('CM002')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp', 'CM002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="CeketMont" data-code="CM003">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp" alt="CeketMont 3" />
-        <div class="popupProductPrice">₺119</div>
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp" alt="Ceket/Mont 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">&#8378;119</div>
         <button onclick="addItemToBasket('CM003')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp', 'CM003')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="CeketMont" data-code="CM004">
-        <img src="https://via.placeholder.com/300x300?text=CeketMont+4" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+4" alt="Ceket/Mont 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('CM004')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+4', 'CM004')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="CeketMont" data-code="CM005">
-        <img src="https://via.placeholder.com/300x300?text=CeketMont+5" alt="eklenecek" />
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+5" alt="Ceket/Mont 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('CM005')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+5', 'CM005')">Detaylar</button>
       </div>
 
-      <div id="customProductionForm">
+      <div id="customProductionForm" class="customProductionForm">
         <h3>Özel Üretim Talebi</h3>
         <label for="customerName">Adınız Soyadınız:</label>
         <input type="text" id="customerName" name="customerName" required>
@@ -1197,6 +1372,20 @@
   </div>
 </div>
 
+<div class="productDetailsPopupOverlay" id="productDetailsPopup">
+  <div class="productDetailsPopupContent">
+    <button class="close-productDetailsPopup" onclick="hideProductDetails()">&times;</button>
+    <img id="productDetailsImage" src="" alt="Product Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing';" />
+    <div id="productDetailsCode" class="productDetailsCode"></div>
+  </div>
+</div>
+
+<div class="custom-message-box-overlay" id="customMessageBox">
+    <div class="custom-message-box-content">
+        <p id="customMessageBoxText"></p>
+        <button onclick="hideMessageBox()">Tamam</button>
+    </div>
+</div>
 
   </body>
 
@@ -1393,41 +1582,61 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   const popupBasketCount = document.getElementById('popupBasketCount');
   const products = document.querySelectorAll('.popupProductItem');
   const customProductionForm = document.getElementById('customProductionForm');
-  const popupProductList = document.getElementById('popupProductList'); // Get the product grid container
+  const popupProductList = document.getElementById('popupProductList');
+  const productDetailsPopup = document.getElementById('productDetailsPopup');
+  const productDetailsImage = document.getElementById('productDetailsImage');
+  const productDetailsCode = document.getElementById('productDetailsCode');
+  const customMessageBox = document.getElementById('customMessageBox');
+  const customMessageBoxText = document.getElementById('customMessageBoxText');
+
 
   let basketData = {}
 
+  function showMessageBox(message) {
+      customMessageBoxText.textContent = message;
+      customMessageBox.classList.add('show');
+      setTimeout(() => {
+          customMessageBox.querySelector('.custom-message-box-content').style.opacity = '1';
+          customMessageBox.querySelector('.custom-message-box-content').style.transform = 'translateY(0)';
+      }, 10);
+  }
+
+  function hideMessageBox() {
+      customMessageBox.querySelector('.custom-message-box-content').style.opacity = '0';
+      customMessageBox.querySelector('.custom-message-box-content').style.transform = 'translateY(-20px)';
+      setTimeout(() => {
+          customMessageBox.classList.remove('show');
+      }, 300);
+  }
+
   function launchPopup() {
     popupOverlay.classList.add('show');
-    // Ensure content transitions happen after overlay is visible
     setTimeout(() => {
       popupOverlayContent.style.visibility = 'visible';
       popupOverlayContent.style.opacity = '1';
       popupOverlayContent.style.transform = 'translateY(0)';
-      activateCategoryTab('Çanta'); // Default to 'Çanta'
+      activateCategoryTab('Çanta');
     }, 10);
   }
 
   function dismissPopup() {
     popupOverlayContent.style.opacity = '0';
     popupOverlayContent.style.transform = 'translateY(20px)';
-    hideBasketPanel(); // Hide basket panel immediately on main popup close
+    hideBasketPanel();
+    hideProductDetails();
 
     setTimeout(() => {
       popupOverlay.classList.remove('show');
       popupOverlayContent.style.visibility = 'hidden';
-      // Reset scroll position of popup content when closing
       popupOverlayContent.scrollTop = 0;
-    }, 300); // Matches popupOverlay-content transition duration
+    }, 300);
   }
 
   function activateCategoryTab(category) {
-    // Deselect all category buttons first
     document.querySelectorAll('.popupCategoryTabs button').forEach(btn => {
       btn.classList.remove('selected');
     });
 
-    // Select the current category button
     const selectedButton = Array.from(document.querySelectorAll('.popupCategoryTabs button')).find(btn =>
       btn.textContent.includes(category)
     );
@@ -1435,7 +1644,6 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
       selectedButton.classList.add('selected');
     }
 
-    // Hide all products and the custom form immediately
     products.forEach(p => {
         p.classList.remove('popupVisible');
         p.style.display = 'none';
@@ -1443,38 +1651,34 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
     customProductionForm.classList.remove('popupVisible');
     customProductionForm.style.display = 'none';
 
-    // Show loading animation
     popupProductList.classList.add('loading');
 
-    // Simulate network delay
     setTimeout(() => {
       if (category === 'Özel Üretim Talebi') {
-        customProductionForm.style.display = 'flex'; // Make form visible
-        setTimeout(() => customProductionForm.classList.add('popupVisible'), 50); // Animate form
+        customProductionForm.style.display = 'flex';
+        setTimeout(() => customProductionForm.classList.add('popupVisible'), 50);
       } else {
         const productItemsToShow = Array.from(products).filter(p => p.dataset.category === category);
 
         productItemsToShow.forEach((p, index) => {
-          p.style.display = 'flex'; // Set display to flex *before* setting opacity/transform for animation
-          // Add a small delay for each product to create a staggered fade-in effect
+          p.style.display = 'flex';
           setTimeout(() => {
-            p.classList.add('popupVisible'); // This triggers the opacity and transform transitions
+            p.classList.add('popupVisible');
           }, 50 + (index * 70));
         });
       }
-      // Hide loading animation after products are made visible
       popupProductList.classList.remove('loading');
-    }, 500); // Simulate 0.5 second loading time
+    }, 500);
   }
 
   function addItemToBasket(code) {
     const feedback = document.getElementById('popupAddNotice');
     feedback.style.display = 'block';
-    feedback.style.opacity = '1'; // Ensure it fades in
+    feedback.style.opacity = '1';
     setTimeout(() => {
         feedback.style.opacity = '0';
-        setTimeout(() => feedback.style.display = 'none', 300); // Wait for fade out
-    }, 1200); // Display for 1.2 seconds
+        setTimeout(() => feedback.style.display = 'none', 300);
+    }, 1200);
 
     basketData[code] = (basketData[code] || 0) + 1;
     updateBasketDisplay();
@@ -1483,7 +1687,7 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   function updateBasketDisplay() {
     const total = Object.values(basketData).reduce((a, b) => a + b, 0);
     popupBasketCount.textContent = total;
-    popupBasketItems.innerHTML = ''; // Clear previous items
+    popupBasketItems.innerHTML = '';
 
     if (total === 0) {
       popupBasketItems.textContent = 'Sepetiniz boş.';
@@ -1495,8 +1699,8 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
         item.appendChild(textSpan);
 
         const delBtn = document.createElement('button');
-        delBtn.textContent = '❌';
-        delBtn.onclick = (function(c) { // Use a closure to capture 'code' for the click handler
+        delBtn.textContent = '&#10060;';
+        delBtn.onclick = (function(c) {
             return function() {
                 if (--basketData[c] <= 0) {
                     delete basketData[c];
@@ -1512,14 +1716,14 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
 
   function toggleBasketView() {
     if (Object.keys(basketData).length === 0) {
-        alert('Sepetiniz boş.');
+        showMessageBox('Sepetiniz boş.');
         return;
     }
     if (popupBasketPanel.style.display === 'block') {
         hideBasketPanel();
     } else {
         popupBasketPanel.style.display = 'block';
-        setTimeout(() => popupBasketPanel.classList.add('show'), 10); // Trigger transition
+        setTimeout(() => popupBasketPanel.classList.add('show'), 10);
     }
   }
 
@@ -1527,18 +1731,17 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
     popupBasketPanel.classList.remove('show');
     setTimeout(() => {
       popupBasketPanel.style.display = 'none';
-    }, 300); // Matches transition duration
+    }, 300);
   }
 
   function submitOrderWhatsApp() {
-    // Check if the custom production form is active
     if (customProductionForm.classList.contains('popupVisible')) {
         submitCustomOrderWhatsApp();
         return;
     }
 
     if (Object.keys(basketData).length === 0) {
-        alert('Sepetiniz boş.');
+        showMessageBox('Sepetiniz boş.');
         return;
     }
     let msg = 'Merhaba, sipariş vermek istiyorum:%0A';
@@ -1546,7 +1749,6 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
       msg += `${code} x ${qty}%0A`;
     }
     window.open(`https://wa.me/905322319074?text=${msg}`, '_blank');
-    // Optionally clear basket and dismiss popup after submission
     basketData = {};
     updateBasketDisplay();
     dismissPopup();
@@ -1560,7 +1762,7 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
     const notes = document.getElementById('additionalNotes').value;
 
     if (!name || !phone || !details) {
-        alert('Lütfen adınızı, telefon numaranızı ve üretim detaylarını doldurunuz.');
+        showMessageBox('Lütfen adınızı, telefon numaranızı ve üretim detaylarını doldurunuz.');
         return;
     }
 
@@ -1572,31 +1774,49 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
     if (notes) msg += `Ek Notlar: ${notes}%0A`;
 
     window.open(`https://wa.me/905322319074?text=${msg}`, '_blank');
-    // Clear the form after submission
     document.getElementById('customerName').value = '';
     document.getElementById('customerEmail').value = '';
     document.getElementById('customerPhone').value = '';
     document.getElementById('productionDetails').value = '';
     document.getElementById('additionalNotes').value = '';
-    dismissPopup(); // Close the popup after submission
+    dismissPopup();
+  }
+
+  function showProductDetails(imgSrc, productCode) {
+    productDetailsImage.src = imgSrc;
+    productDetailsCode.textContent = productCode;
+    productDetailsPopup.classList.add('show');
+    setTimeout(() => {
+        productDetailsPopup.querySelector('.productDetailsPopupContent').style.opacity = '1';
+        productDetailsPopup.querySelector('.productDetailsPopupContent').style.transform = 'scale(1)';
+    }, 10);
+  }
+
+  function hideProductDetails() {
+    productDetailsPopup.querySelector('.productDetailsPopupContent').style.opacity = '0';
+    productDetailsPopup.querySelector('.productDetailsPopupContent').style.transform = 'scale(0.9)';
+    setTimeout(() => {
+        productDetailsPopup.classList.remove('show');
+    }, 300);
   }
 
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { dismissPopup(); hideBasketPanel(); }
+    if (e.key === 'Escape') {
+        dismissPopup();
+        hideBasketPanel();
+        hideProductDetails();
+        hideMessageBox();
+    }
   });
 
-  // --- Full Page Loader Script ---
   const loadingOverlay = document.getElementById('loadingOverlay');
   const allImages = document.getElementsByTagName('img');
   let imagesLoaded = 0;
   let totalImagesToLoad = 0;
 
-  // Count only images that are part of the main content and likely to be visible initially
-  // Exclude placeholder images or small decorative ones if they are not critical
   Array.from(allImages).forEach(img => {
-      // Exclude popup images for initial load, as they load on demand
-      if (!img.closest('.popupOverlay')) {
+      if (!img.closest('.popupOverlay') && !img.closest('.productDetailsPopupOverlay')) {
           totalImagesToLoad++;
       }
   });
@@ -1604,7 +1824,7 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
 
   function imageLoaded() {
     imagesLoaded++;
-    if (imagesLoaded >= totalImagesToLoad) { // Use >= for safety
+    if (imagesLoaded >= totalImagesToLoad) {
       hideFullScreenLoader();
     }
   }
@@ -1614,20 +1834,19 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
       document.body.classList.add('loaded');
       setTimeout(() => {
         loadingOverlay.style.display = 'none';
-      }, 500); // Match CSS transition time
+      }, 500);
   }
 
-  // Check all images on the page
   if (totalImagesToLoad === 0) {
       hideFullScreenLoader();
   } else {
     Array.from(allImages).forEach(img => {
-        if (!img.closest('.popupOverlay')) { // Only track non-popup images
+        if (!img.closest('.popupOverlay') && !img.closest('.productDetailsPopupOverlay')) {
             if (img.complete) {
                 imageLoaded();
             } else {
                 img.addEventListener('load', imageLoaded);
-                img.addEventListener('error', imageLoaded); // Count errors as loaded to avoid getting stuck
+                img.addEventListener('error', imageLoaded);
             }
         }
     });
