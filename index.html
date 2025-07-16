@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -6,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Vank Deri</title>
   <link rel="icon" type="image/webp" href="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/sd-removebg-preview.webp">
-  
+
   <style>
     :root {
       --main-color: #918c65;
@@ -20,11 +19,11 @@
       padding: 0;
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       box-shadow: none !important;
-      outline: none !important; 
-      user-select: none; 
+      outline: none !important;
+      user-select: none;
       -ms-user-select: none;
       -moz-user-select: none;
-      -webkit-user-select: none; 
+      -webkit-user-select: none;
     }
 
 
@@ -116,11 +115,11 @@
       }
     }
 
-    
+
     .contact-container {
       max-width: 600px;
       margin: 40px auto;
-      margin-bottom: 12px; 
+      margin-bottom: 12px;
       background-color: transparent;
       padding: 20px;
       border-radius: 8px;
@@ -262,9 +261,6 @@
 
 
 
-
-
-
     .layout {
       display: flex;
       align-items: center;
@@ -277,7 +273,7 @@
       flex-wrap: nowrap;
     }
 
-    
+
     .side-text {
       font-size: clamp(0.85rem, 2.5vw, 1.2rem);
       flex: 1;
@@ -289,7 +285,7 @@
       font-weight: bolder;
       line-height: 1.2; /* Added for better spacing on wrap */
     }
-   
+
     .logo {
       height: auto;
       width: clamp(90px, 18vw, 100px);
@@ -302,7 +298,7 @@
       border-radius: 3px;
     }
 
-    
+
     @media (max-width: 480px) {
       .side-text {
         font-size: 1rem;
@@ -318,18 +314,15 @@
         font-size: 0.9rem;
       }
     }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
    #scrollBtnContainer {
             position: fixed;
             bottom: 20px;
@@ -342,7 +335,7 @@
             align-items: center;
             cursor: pointer;
             transition: width 0.3s ease-in-out, height 0.3s ease-in-out, bottom 0.3s ease-in-out, right 0.3s ease-in-out;
-           
+
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
@@ -355,20 +348,20 @@
             transform: translateY(0);
         }
 
-       
+
         #scrollBtnContainer:active .scroll-top-button,
         #scrollBtnContainer:focus .scroll-top-button {
             background-color: #b45622;
             transform: translateY(-2px);
         }
 
-     
+
         #scrollBtnContainer .scroll-top-button.interacted + .progress-ring-svg circle.progress-ring-track {
-             stroke: #F4D35E; 
+             stroke: #F4D35E;
         }
 
         #scrollBtnContainer .scroll-top-button.interacted + .progress-ring-svg circle.progress-ring {
-            stroke: #EE964B; 
+            stroke: #EE964B;
         }
 
         .scroll-top-button {
@@ -376,7 +369,7 @@
             height: 45px;
             border-radius: 50%;
             background-color: #763000;
-            color: white; 
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -393,31 +386,31 @@
             line-height: 1;
         }
 
-        
+
         .progress-ring-svg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            transform: rotate(-90deg); 
+            transform: rotate(-90deg);
         }
 
         .progress-ring-track {
-            stroke: #F7F5DD; 
+            stroke: #F7F5DD;
             stroke-width: 4;
             fill: transparent;
         }
 
         .progress-ring {
-            stroke: #fb6601; 
+            stroke: #fb6601;
             stroke-width: 4;
             fill: transparent;
             stroke-linecap: round;
             transition: stroke 0.3s ease-in-out;
         }
 
-        
+
         @media (max-width: 480px) {
             #scrollBtnContainer {
                 width: 50px;
@@ -453,7 +446,7 @@
             }
 
             .progress-ring-svg circle {
-                r: 21; 
+                r: 21;
                 cx: 22.5;
                 cy: 22.5;
             }
@@ -463,11 +456,6 @@
                 stroke-width: 2.5;
             }
         }
-
-
-
-
-
 
 
 
@@ -489,27 +477,42 @@
       cursor: pointer;
     }
     .popupOverlay {
-      display: none;
+      display: flex;
       position: fixed;
       inset: 0;
       background-color: var(--popupOverlay-bg);
       justify-content: center;
-      align-items: flex-start;
-      overflow-y: unset;
+      align-items: flex-start; /* Align to top for better UX, especially on smaller screens */
+      overflow-y: auto; /* Allow scrolling within overlay if content exceeds viewport */
       z-index: 1000;
       padding: 12px;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .popupOverlay.show {
+      visibility: visible;
+      opacity: 1;
     }
     .popupOverlay-content {
       background: white;
       width: 95%;
       max-width: 1100px;
-      max-height: 90vh;
-      overflow-y: auto;
+      max-height: 90vh; /* Limit content height */
+      overflow-y: auto; /* Enable scrolling for content if needed */
       border-radius: 10px;
       padding: 20px 24px 30px;
       position: relative;
       display: flex;
       flex-direction: column;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Add shadow for better depth */
+    }
+    .popupOverlay.show .popupOverlay-content {
+      transform: translateY(0);
+      opacity: 1;
     }
     .close-popupOverlay {
       position: absolute;
@@ -531,9 +534,14 @@
       transform: scale(1.15);
       outline: none;
     }
-    .popupCategoryTabs button.selected,
-    .popupCategoryTabs button:hover {
+    .popupCategoryTabs button.selected {
       background-color: #d2bba0;
+      color: #333;
+      font-weight: bold;
+      border-color: var(--main-color);
+    }
+    .popupCategoryTabs button:hover:not(.selected) { /* Only hover if not selected */
+      background-color: #e0e0e0;
     }
     .popupCategoryTabs {
       display: flex;
@@ -547,6 +555,7 @@
       border: 1px solid #ccc;
       background: #eee;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
     .popupBasketButton {
       position: sticky;
@@ -566,6 +575,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.25);
       user-select: none;
       z-index: 10;
+      transition: background-color 0.2s ease;
     }
     .popupBasketButton:hover,
     .popupBasketButton:focus {
@@ -584,20 +594,54 @@
       flex-wrap: wrap;
       gap: 16px;
       justify-content: center;
+      position: relative; /* Needed for loader positioning */
+      min-height: 150px; /* Ensure space for loader */
     }
+
+    .popupProductGrid.loading::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .popupProductGrid.loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #918c65;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      z-index: 101;
+    }
+
+
     .popupProductItem {
       opacity: 0;
       transform: scale(0.95);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease; /* Added background-color transition */
       width: 130px;
       border: 1px solid #ddd;
       border-radius: 8px;
       padding: 10px;
       background: white;
       text-align: center;
-      display: flex;
+      display: none; /* Changed from flex to none, will be changed by JS */
       flex-direction: column;
       gap: 6px;
+      cursor: pointer; /* Indicate clickable */
+    }
+    .popupProductItem:hover {
+        background-color: #f9f9f9; /* Subtle hover effect */
     }
     .popupProductItem.popupVisible {
       opacity: 1;
@@ -623,6 +667,10 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 14px;
+      transition: background-color 0.2s ease;
+    }
+    .popupProductItem button:hover {
+        background-color: #6f4f3f;
     }
     .popupBasketButton-popupOverlay {
       display: none;
@@ -638,6 +686,11 @@
       max-width: 420px;
       z-index: 2000;
       font-family: 'Segoe UI', sans-serif;
+      transition: opacity 0.3s ease, transform 0.3s ease; /* For smooth show/hide */
+    }
+    .popupBasketButton-popupOverlay.show {
+        opacity: 1;
+        transform: translate(-50%, -50%);
     }
 
     .popupBasketButton-popupOverlay h3 {
@@ -665,6 +718,10 @@
       color: #d00;
       font-size: 16px;
       cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .popupBasketButton-popupOverlay #popupBasketItems div button:hover {
+        color: #f00;
     }
 
     .popupBasketButton-popupOverlay .popupWhatsAppButton {
@@ -700,6 +757,77 @@
     .popupBasketButton-popupOverlay .popupCloseSmall:hover {
       color: #333;
     }
+
+    /* Custom Production Request Form Styles */
+    #customProductionForm {
+      display: none; /* Hidden by default */
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #customProductionForm.popupVisible {
+      opacity: 1;
+      transform: translateY(0);
+      /* display: flex; No need to set here, handled by JS activateCategoryTab */
+    }
+
+    #customProductionForm label {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    #customProductionForm input[type="text"],
+    #customProductionForm input[type="email"],
+    #customProductionForm textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box; /* Ensures padding doesn't add to width */
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    #customProductionForm input[type="text"]:focus,
+    #customProductionForm input[type="email"]:focus,
+    #customProductionForm textarea:focus {
+        border-color: var(--main-color);
+        box-shadow: 0 0 0 2px rgba(145, 140, 101, 0.2);
+        outline: none;
+    }
+
+
+    #customProductionForm textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    #customProductionForm button[type="submit"] {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #customProductionForm button[type="submit"]:hover {
+      background-color: #6f4f3f;
+    }
+
   </style>
 </head>
 <body>
@@ -731,9 +859,9 @@
       <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel3.webp" alt="Slide 1" /></div>
       <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel2.webp" alt="Slide 2" /></div>
       <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel1.webp" alt="Slide 3" /></div>
-      <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel4.webp" alt="Slide 4" /></div>
-      <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel5.webp" alt="Slide 5" /></div>
-      <div class="slide"><img src="https://github.com/Berahatiye/vank/raw/refs/heads/main/gorsel6.webp" alt="Slide 6" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel4.webp" alt="Slide 4" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel5.webp" alt="Slide 5" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/heads/main/gorsel6.webp" alt="Slide 6" /></div>
     </div>
 
     <img class="overlay-image" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Overlay" />
@@ -749,7 +877,7 @@
   </div>
 
   <p style="margin-top: 12px;">Geniş ürün yelpazesiyle her ihtiyaca ve zevke uygun seçenekler sunuyoruz. Kategorilere göre düzenlenmiş ürünlerimize göz atın.</p>
-  
+
   <div class="line-text-wrapper" id="line-text-wrapper3">
     <div class="center-line"></div>
     <div class="line-label" onclick="toggleContext('line-text-wrapper3')">İletişim</div>
@@ -773,7 +901,7 @@
 <g fill="#f5f5f7" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M12.01172,2c-5.506,0 -9.98823,4.47838 -9.99023,9.98438c-0.001,1.76 0.45998,3.47819 1.33398,4.99219l-1.35547,5.02344l5.23242,-1.23633c1.459,0.796 3.10144,1.21384 4.77344,1.21484h0.00391c5.505,0 9.98528,-4.47937 9.98828,-9.98437c0.002,-2.669 -1.03588,-5.17841 -2.92187,-7.06641c-1.886,-1.887 -4.39245,-2.92673 -7.06445,-2.92773zM12.00977,4c2.136,0.001 4.14334,0.8338 5.65234,2.3418c1.509,1.51 2.33794,3.51639 2.33594,5.65039c-0.002,4.404 -3.58423,7.98633 -7.99023,7.98633c-1.333,-0.001 -2.65341,-0.3357 -3.81641,-0.9707l-0.67383,-0.36719l-0.74414,0.17578l-1.96875,0.46484l0.48047,-1.78516l0.2168,-0.80078l-0.41406,-0.71875c-0.698,-1.208 -1.06741,-2.58919 -1.06641,-3.99219c0.002,-4.402 3.58528,-7.98437 7.98828,-7.98437zM8.47656,7.375c-0.167,0 -0.43702,0.0625 -0.66602,0.3125c-0.229,0.249 -0.875,0.85208 -0.875,2.08008c0,1.228 0.89453,2.41503 1.01953,2.58203c0.124,0.166 1.72667,2.76563 4.26367,3.76563c2.108,0.831 2.53614,0.667 2.99414,0.625c0.458,-0.041 1.47755,-0.60255 1.68555,-1.18555c0.208,-0.583 0.20848,-1.0845 0.14648,-1.1875c-0.062,-0.104 -0.22852,-0.16602 -0.47852,-0.29102c-0.249,-0.125 -1.47608,-0.72755 -1.70508,-0.81055c-0.229,-0.083 -0.3965,-0.125 -0.5625,0.125c-0.166,0.25 -0.64306,0.81056 -0.78906,0.97656c-0.146,0.167 -0.29102,0.18945 -0.54102,0.06445c-0.25,-0.126 -1.05381,-0.39024 -2.00781,-1.24024c-0.742,-0.661 -1.24267,-1.47656 -1.38867,-1.72656c-0.145,-0.249 -0.01367,-0.38577 0.11133,-0.50977c0.112,-0.112 0.24805,-0.2915 0.37305,-0.4375c0.124,-0.146 0.167,-0.25002 0.25,-0.41602c0.083,-0.166 0.04051,-0.3125 -0.02149,-0.4375c-0.062,-0.125 -0.54753,-1.35756 -0.76953,-1.85156c-0.187,-0.415 -0.3845,-0.42464 -0.5625,-0.43164c-0.145,-0.006 -0.31056,-0.00586 -0.47656,-0.00586z"></path></g></g>
 </svg></a>
     </div>
-  
+
   </div>
 
     <div id="scrollBtnContainer" onclick="scrollToTop()">
@@ -785,10 +913,6 @@
             <span>▲</span>
         </button>
     </div>
-
-
-
-
 
 
 
@@ -860,8 +984,8 @@
         <div class="popupProductPrice">₺139</div>
         <button onclick="addItemToBasket('Ç005')">Sepete Ekle</button>
       </div>
-      
-      
+
+
       <div class="popupProductItem" data-category="Cüzdan" data-code="C001">
         <img src="https://via.placeholder.com/300x300?text=Cüzdan+1" alt="eklenecek" />
         <div class="popupProductPrice">₺99</div>
@@ -887,7 +1011,7 @@
         <div class="popupProductPrice">₺139</div>
         <button onclick="addItemToBasket('C005')">Sepete Ekle</button>
       </div>
-      
+
 
       <div class="popupProductItem" data-category="Kemer" data-code="K001">
         <img src="https://via.placeholder.com/300x300?text=Kemer+1" alt="eklenecek" />
@@ -914,7 +1038,7 @@
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K005')">Sepete Ekle</button>
       </div>
-      
+
 
       <div class="popupProductItem" data-category="Aksesuar" data-code="A001">
         <img src="https://via.placeholder.com/300x300?text=Aksesuar+1" alt="eklenecek" />
@@ -941,7 +1065,7 @@
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('A005')">Sepete Ekle</button>
       </div>
-      
+
       <div class="popupProductItem" data-category="Yelek" data-code="Y001">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp" alt="Yelek 1" />
         <div class="popupProductPrice">₺99</div>
@@ -1049,6 +1173,26 @@
         <button onclick="addItemToBasket('CM005')">Sepete Ekle</button>
       </div>
 
+      <div id="customProductionForm">
+        <h3>Özel Üretim Talebi</h3>
+        <label for="customerName">Adınız Soyadınız:</label>
+        <input type="text" id="customerName" name="customerName" required>
+
+        <label for="customerEmail">E-posta Adresiniz:</label>
+        <input type="email" id="customerEmail" name="customerEmail">
+
+        <label for="customerPhone">Telefon Numaranız:</label>
+        <input type="text" id="customerPhone" name="customerPhone" required>
+
+        <label for="productionDetails">Üretim Detayları (Model, Renk, Boyut vb.):</label>
+        <textarea id="productionDetails" name="productionDetails" required></textarea>
+
+        <label for="additionalNotes">Ek Notlar:</label>
+        <textarea id="additionalNotes" name="additionalNotes"></textarea>
+
+        <button type="submit" onclick="submitCustomOrderWhatsApp()">Talebi Gönder</button>
+      </div>
+
     </div>
   </div>
 </div>
@@ -1058,7 +1202,7 @@
 
 <script>
   function toggleContext(contextId) {
-  
+
   const contexts = document.querySelectorAll('.line-text-wrapper');
   contexts.forEach(context => {
     if (context.id !== contextId) {
@@ -1066,11 +1210,11 @@
     }
   });
 
-  
+
   const current = document.getElementById(contextId);
   current.classList.toggle('show');
 
-  
+
   const button = document.querySelector(`[onclick="toggleContext('${contextId}')"]`);
   if (button) {
     button.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1153,8 +1297,6 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
 
 
 
-
-
           const scrollBtnContainer = document.getElementById('scrollBtnContainer');
         const scrollButton = document.querySelector('.scroll-top-button');
         const progressBarCircle = document.querySelector('.progress-ring');
@@ -1213,19 +1355,13 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
             scrollButton.classList.add('interacted');
             setTimeout(() => {
                 scrollButton.classList.remove('interacted');
-            }, 500); 
+            }, 500);
         }
 
-        
+
         document.addEventListener('DOMContentLoaded', updateScrollProgress);
         window.addEventListener('scroll', updateScrollProgress);
         window.addEventListener('resize', updateScrollProgress);
-
-
-
-
-
-
 
 
 
@@ -1241,7 +1377,7 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
       }
     }, { passive: false });
 
- 
+
     window.addEventListener('keydown', function (e) {
       if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=')) {
         e.preventDefault();
@@ -1250,50 +1386,96 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
 
 
 
-
-
-
-
-
   const popupOverlay = document.getElementById('popupContainerMain');
+  const popupOverlayContent = popupOverlay.querySelector('.popupOverlay-content');
   const popupBasketPanel = document.getElementById('popupBasketPanel');
   const popupBasketItems = document.getElementById('popupBasketItems');
   const popupBasketCount = document.getElementById('popupBasketCount');
   const products = document.querySelectorAll('.popupProductItem');
+  const customProductionForm = document.getElementById('customProductionForm');
+  const popupProductList = document.getElementById('popupProductList'); // Get the product grid container
 
   let basketData = {}
 
   function launchPopup() {
-    popupOverlay.style.display = 'flex';
-    activateCategoryTab('Çanta');
+    popupOverlay.classList.add('show');
+    // Ensure content transitions happen after overlay is visible
+    setTimeout(() => {
+      popupOverlayContent.style.visibility = 'visible';
+      popupOverlayContent.style.opacity = '1';
+      popupOverlayContent.style.transform = 'translateY(0)';
+      activateCategoryTab('Çanta'); // Default to 'Çanta'
+    }, 10);
   }
 
   function dismissPopup() {
-    popupOverlay.style.display = 'none';
-    hideBasketPanel();
+    popupOverlayContent.style.opacity = '0';
+    popupOverlayContent.style.transform = 'translateY(20px)';
+    hideBasketPanel(); // Hide basket panel immediately on main popup close
+
+    setTimeout(() => {
+      popupOverlay.classList.remove('show');
+      popupOverlayContent.style.visibility = 'hidden';
+      // Reset scroll position of popup content when closing
+      popupOverlayContent.scrollTop = 0;
+    }, 300); // Matches popupOverlay-content transition duration
   }
 
-  
   function activateCategoryTab(category) {
-    products.forEach(p => {
-      p.classList.remove('popupVisible');
-      if (p.dataset.category === category) {
-        p.style.display = 'flex';
-        setTimeout(() => p.classList.add('popupVisible'), 10);
-      } else {
-        p.style.display = 'none';
-      }
+    // Deselect all category buttons first
+    document.querySelectorAll('.popupCategoryTabs button').forEach(btn => {
+      btn.classList.remove('selected');
     });
 
-    document.querySelectorAll('.popupCategoryTabs button').forEach(btn => {
-      btn.classList.toggle('selected', btn.textContent.trim() === category);
+    // Select the current category button
+    const selectedButton = Array.from(document.querySelectorAll('.popupCategoryTabs button')).find(btn =>
+      btn.textContent.includes(category)
+    );
+    if (selectedButton) {
+      selectedButton.classList.add('selected');
+    }
+
+    // Hide all products and the custom form immediately
+    products.forEach(p => {
+        p.classList.remove('popupVisible');
+        p.style.display = 'none';
     });
+    customProductionForm.classList.remove('popupVisible');
+    customProductionForm.style.display = 'none';
+
+    // Show loading animation
+    popupProductList.classList.add('loading');
+
+    // Simulate network delay
+    setTimeout(() => {
+      if (category === 'Özel Üretim Talebi') {
+        customProductionForm.style.display = 'flex'; // Make form visible
+        setTimeout(() => customProductionForm.classList.add('popupVisible'), 50); // Animate form
+      } else {
+        const productItemsToShow = Array.from(products).filter(p => p.dataset.category === category);
+
+        productItemsToShow.forEach((p, index) => {
+          p.style.display = 'flex'; // Set display to flex *before* setting opacity/transform for animation
+          // Add a small delay for each product to create a staggered fade-in effect
+          setTimeout(() => {
+            p.classList.add('popupVisible'); // This triggers the opacity and transform transitions
+          }, 50 + (index * 70));
+        });
+      }
+      // Hide loading animation after products are made visible
+      popupProductList.classList.remove('loading');
+    }, 500); // Simulate 0.5 second loading time
   }
 
   function addItemToBasket(code) {
     const feedback = document.getElementById('popupAddNotice');
     feedback.style.display = 'block';
-    setTimeout(() => feedback.style.display = 'none', 1500);
+    feedback.style.opacity = '1'; // Ensure it fades in
+    setTimeout(() => {
+        feedback.style.opacity = '0';
+        setTimeout(() => feedback.style.display = 'none', 300); // Wait for fade out
+    }, 1200); // Display for 1.2 seconds
+
     basketData[code] = (basketData[code] || 0) + 1;
     updateBasketDisplay();
   }
@@ -1301,19 +1483,30 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   function updateBasketDisplay() {
     const total = Object.values(basketData).reduce((a, b) => a + b, 0);
     popupBasketCount.textContent = total;
-    popupBasketItems.innerHTML = total === 0 ? 'Sepetiniz boş.' : '';
-    for (const [code, qty] of Object.entries(basketData)) {
-      const item = document.createElement('div');
-      item.textContent = `${code} x ${qty}`;
-      const delBtn = document.createElement('button');
-      delBtn.textContent = '❌';
-      delBtn.style.marginLeft = '8px';
-      delBtn.onclick = () => {
-        if (--basketData[code] <= 0) delete basketData[code];
-        updateBasketDisplay();
-      };
-      item.appendChild(delBtn);
-      popupBasketItems.appendChild(item);
+    popupBasketItems.innerHTML = ''; // Clear previous items
+
+    if (total === 0) {
+      popupBasketItems.textContent = 'Sepetiniz boş.';
+    } else {
+      for (const [code, qty] of Object.entries(basketData)) {
+        const item = document.createElement('div');
+        const textSpan = document.createElement('span');
+        textSpan.textContent = `${code} x ${qty}`;
+        item.appendChild(textSpan);
+
+        const delBtn = document.createElement('button');
+        delBtn.textContent = '❌';
+        delBtn.onclick = (function(c) { // Use a closure to capture 'code' for the click handler
+            return function() {
+                if (--basketData[c] <= 0) {
+                    delete basketData[c];
+                }
+                updateBasketDisplay();
+            };
+        })(code);
+        item.appendChild(delBtn);
+        popupBasketItems.appendChild(item);
+      }
     }
   }
 
@@ -1321,15 +1514,29 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
     if (Object.keys(basketData).length === 0) {
         alert('Sepetiniz boş.');
         return;
-    };
-    popupBasketPanel.style.display = popupBasketPanel.style.display === 'block' ? 'none' : 'block';
+    }
+    if (popupBasketPanel.style.display === 'block') {
+        hideBasketPanel();
+    } else {
+        popupBasketPanel.style.display = 'block';
+        setTimeout(() => popupBasketPanel.classList.add('show'), 10); // Trigger transition
+    }
   }
 
   function hideBasketPanel() {
-    popupBasketPanel.style.display = 'none';
+    popupBasketPanel.classList.remove('show');
+    setTimeout(() => {
+      popupBasketPanel.style.display = 'none';
+    }, 300); // Matches transition duration
   }
 
   function submitOrderWhatsApp() {
+    // Check if the custom production form is active
+    if (customProductionForm.classList.contains('popupVisible')) {
+        submitCustomOrderWhatsApp();
+        return;
+    }
+
     if (Object.keys(basketData).length === 0) {
         alert('Sepetiniz boş.');
         return;
@@ -1338,8 +1545,42 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
     for (const [code, qty] of Object.entries(basketData)) {
       msg += `${code} x ${qty}%0A`;
     }
-    window.open(`https://wa.me/?text=${msg}`, '_blank');
+    window.open(`https://wa.me/905322319074?text=${msg}`, '_blank');
+    // Optionally clear basket and dismiss popup after submission
+    basketData = {};
+    updateBasketDisplay();
+    dismissPopup();
   }
+
+  function submitCustomOrderWhatsApp() {
+    const name = document.getElementById('customerName').value;
+    const email = document.getElementById('customerEmail').value;
+    const phone = document.getElementById('customerPhone').value;
+    const details = document.getElementById('productionDetails').value;
+    const notes = document.getElementById('additionalNotes').value;
+
+    if (!name || !phone || !details) {
+        alert('Lütfen adınızı, telefon numaranızı ve üretim detaylarını doldurunuz.');
+        return;
+    }
+
+    let msg = `Özel Üretim Talebi:%0A` +
+              `Adı Soyadı: ${name}%0A` +
+              `Telefon: ${phone}%0A`;
+    if (email) msg += `E-posta: ${email}%0A`;
+    msg += `Detaylar: ${details}%0A`;
+    if (notes) msg += `Ek Notlar: ${notes}%0A`;
+
+    window.open(`https://wa.me/905322319074?text=${msg}`, '_blank');
+    // Clear the form after submission
+    document.getElementById('customerName').value = '';
+    document.getElementById('customerEmail').value = '';
+    document.getElementById('customerPhone').value = '';
+    document.getElementById('productionDetails').value = '';
+    document.getElementById('additionalNotes').value = '';
+    dismissPopup(); // Close the popup after submission
+  }
+
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') { dismissPopup(); hideBasketPanel(); }
@@ -1349,11 +1590,21 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   const loadingOverlay = document.getElementById('loadingOverlay');
   const allImages = document.getElementsByTagName('img');
   let imagesLoaded = 0;
-  const totalImages = allImages.length;
+  let totalImagesToLoad = 0;
+
+  // Count only images that are part of the main content and likely to be visible initially
+  // Exclude placeholder images or small decorative ones if they are not critical
+  Array.from(allImages).forEach(img => {
+      // Exclude popup images for initial load, as they load on demand
+      if (!img.closest('.popupOverlay')) {
+          totalImagesToLoad++;
+      }
+  });
+
 
   function imageLoaded() {
     imagesLoaded++;
-    if (imagesLoaded === totalImages) {
+    if (imagesLoaded >= totalImagesToLoad) { // Use >= for safety
       hideFullScreenLoader();
     }
   }
@@ -1367,17 +1618,19 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   }
 
   // Check all images on the page
-  if (totalImages === 0) {
+  if (totalImagesToLoad === 0) {
       hideFullScreenLoader();
   } else {
-    for (let i = 0; i < totalImages; i++) {
-      if (allImages[i].complete) {
-        imageLoaded();
-      } else {
-        allImages[i].addEventListener('load', imageLoaded);
-        allImages[i].addEventListener('error', imageLoaded); // Count errors as loaded to avoid getting stuck
-      }
-    }
+    Array.from(allImages).forEach(img => {
+        if (!img.closest('.popupOverlay')) { // Only track non-popup images
+            if (img.complete) {
+                imageLoaded();
+            } else {
+                img.addEventListener('load', imageLoaded);
+                img.addEventListener('error', imageLoaded); // Count errors as loaded to avoid getting stuck
+            }
+        }
+    });
   }
 </script>
 
