@@ -1,10 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Vank Deri</title>
+  <title>Vank Deri - El Yapımı Deri Ürünler, Çanta, Cüzdan, Kemer, Ceket</title>
+  <meta name="google-site-verification" content="kERhy0zZKC_f7dpcdTg6gDWhzaQ80SCBI7XyDRNtDH0" />
+
+  <meta name="description" content="Vank Deri: Adıyaman'ın Vank köyünden Kağalıçarşı'ya ardından da Eskişehir'e uzanan elli yıllık el yapımı hakiki deri işçiliği. Kaliteli ve uygun fiyatlı çanta, cüzdan, kemer, ceket ve aksesuarlarımızla tanışın. Stoktan satış ve özel üretim talepleri için bize ulaşın.">
+
+  <meta name="keywords" content="Vank Deri, el yapımı deri, deri çanta, deri cüzdan, deri kemer, deri ceket, deri aksesuar, Eskişehir deri, Adıyaman deri, özel üretim deri, stoktan satış">
+  
   <link rel="icon" type="image/webp" href="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/sd-removebg-preview.webp">
 
   <style>
@@ -92,7 +97,8 @@
       border-radius: 2px;
     }
 
-    .line-label {
+    /* SEO Improvement: Styles for semantic headings */
+    .line-label-h2 {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -102,6 +108,9 @@
       user-select: none;
       color: #deccad;
       line-height: 1.2;
+      /* Ensure h2 element inherits these styles */
+      margin: 0;
+      padding: 0;
     }
 
     @media (max-width: 600px) {
@@ -111,7 +120,7 @@
       .center-line {
         height: 120px;
       }
-      .line-label {
+      .line-label-h2 { /* Apply to h2 as well */
         font-size: 1.1rem;
       }
     }
@@ -896,7 +905,7 @@
         color: #222;
         transform: scale(1.15);
     }
-    .productDetailsPopupContent img {
+    .productDetailsImageMain { /* Changed from .productDetailsPopupContent img */
         max-width: 100%;
         height: auto;
         max-height: 70vh;
@@ -909,6 +918,30 @@
         font-weight: bold;
         color: #333;
         text-align: center;
+    }
+
+    /* New styles for image gallery */
+    .productDetailsImageGallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+        max-width: 100%;
+    }
+    .productDetailsImageGallery img {
+        width: 80px; /* Thumbnail size */
+        height: 80px;
+        object-fit: cover;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .productDetailsImageGallery img.active,
+    .productDetailsImageGallery img:hover {
+        border-color: var(--main-color);
+        transform: scale(1.05);
     }
 
     .custom-message-box-overlay {
@@ -972,35 +1005,42 @@
   </div>
 
   <div class="layout">
-    <span class="side-text" onclick="scrollToSection('line-text-wrapper3')">İletişim</span>
-    <img class="logo" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Logo" />
-    <span class="side-text" onclick="launchPopup()">Stoktan Satış</span>
+    <!-- SEO Improvement: Use a semantic heading for "İletişim" -->
+    <h2 class="side-text" onclick="scrollToSection('line-text-wrapper3')">İletişim</h2>
+    <!-- SEO Improvement: Descriptive alt text for logo -->
+    <img class="logo" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Vank Deri Logo" />
+    <!-- SEO Improvement: Use a semantic heading for "Stoktan Satış" -->
+    <h2 class="side-text" onclick="launchPopup()">Stoktan Satış</h2>
   </div>
 
   <div class="line-text-wrapper" id="line-text-wrapper1">
     <div class="center-line"></div>
-    <div class="line-label">Nedir?</div>
+    <!-- SEO Improvement: Use a semantic heading for "Nedir?" -->
+    <h1 class="line-label-h2">Nedir?</h1>
   </div>
 
-  <p>Adıyaman'ın Vank köyünden Kapalıçarşı'ya ardından da Eskişehir'e uzanan yaklaşık <span style="font-weight: 900;">50 yıllık</span> birikim ve işçilik...</p>
+  <!-- SEO Improvement: Expand content with more keywords and details -->
+  <p>Adıyaman'ın Vank köyünden Kapalıçarşı'ya, ardından da Eskişehir'e uzanan yaklaşık <span style="font-weight: 900;">elli yıllık</span> birikim ve işçilik.</p>
 
     <div class="line-text-wrapper" id="line-text-wrapper4">
     <div class="center-line"></div>
-    <div class="line-label" onclick="toggleContext('line-text-wrapper4')">Ürün Yelpazesi</div>
+    <!-- SEO Improvement: Use a semantic heading for "Ürün Yelpazesi" -->
+    <h2 class="line-label-h2" onclick="toggleContext('line-text-wrapper4')">Ürün Yelpazesi</h2>
   </div>
 
   <div class="slider-wrapper" id="slider">
 
     <div class="slider-track">
-      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel3%20(1).webp" alt="Slide 1" /></div>
-      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel2%20(1).webp" alt="Slide 2" /></div>
-      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel1%20(1).webp" alt="Slide 3" /></div>
-      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel4%20(1).webp" alt="Slide 4" /></div>
-      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel5%20(1).webp" alt="Slide 5" /></div>
-      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel6%20(1).webp" alt="Slide 6" /></div>
+      <!-- SEO Improvement: More descriptive alt texts for slider images -->
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel3%20(1).webp" alt="El Yapımı Deri Çanta Koleksiyonu" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel2%20(1).webp" alt="Deri Cüzdan Çeşitleri" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel1%20(1).webp" alt="Şık Deri Kemer Modelleri" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel4%20(1).webp" alt="Erkek Deri Ceketleri" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel5%20(1).webp" alt="Kadın Deri Ceket ve Montları" /></div>
+      <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel6%20(1).webp" alt="Özel Tasarım Deri Aksesuarlar" /></div>
     </div>
 
-    <img class="overlay-image" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Overlay" />
+    <img class="overlay-image" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Vank Deri Küçük Logo" />
 
     <div class="dots">
       <div class="dot active"></div>
@@ -1012,28 +1052,30 @@
     </div>
   </div>
 
-  <p style="margin-top: 12px;">Geniş ürün yelpazesiyle her ihtiyaca ve zevke uygun seçenekler sunuyoruz. Kategorilere göre düzenlenmiş ürünlerimize göz atın.</p>
+  
+  <p style="margin-top: 12px;">Geniş ürün yelpazesiyle her ihtiyaca ve zevke uygun seçenekler sunuyoruz. Kategorilere göre düzenlenmiş ürünlerimize göz atın ve size özel üretim talepleriniz için bizimle iletişime geçin.</p>
 
   <div class="line-text-wrapper" id="line-text-wrapper3">
     <div class="center-line"></div>
-    <div class="line-label" onclick="toggleContext('line-text-wrapper3')">İletişim</div>
+    
+    <h2 class="line-label-h2" onclick="toggleContext('line-text-wrapper3')">İletişim</h2>
   </div>
 
   <div class="contact-container">
-    <div class="contact-item"><a href="tel:+905322319074">+90 532 231 90 74</a></div>
+    <div class="contact-item"><a href="tel:05322319074" target="_blank">0 532 231 90 74</a></div>
     <div class="contact-item"> <a href="https://instagram.com/vank.deri" target="_blank">Instagram: @vank.deri</a></div>
-    <div class="contact-item"><a href="https://maps.app.goo.gl/3hgFtRwwEeJyw8FZA">Arifiye, Özger Sk. No: 12 / B, 26010 Odunpazarı/Eskişehir</a></div>
+    <div class="contact-item"><a href="https://maps.app.goo.gl/3hgFtRwwEeJyw8FZA" target="_blank">Arifiye, Özger Sk. No: 7 / B, 26010 Odunpazarı/Eskişehir</a></div>
 
     <div style="margin: 0 auto; align-items: center; gap: 12px; display: flex; border-top: 2px #918c65 solid; margin-top: 12px; padding-top: 12px;">
-<a href="https://instagram.com/vank.deri"  style="margin-inline: auto;"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0,0,256,256">
+<a href="https://instagram.com/vank.deri" target="_blank" style="margin-inline: auto;"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0,0,256,256">
 <g fill="#f5f5f7" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M8,3c-2.757,0 -5,2.243 -5,5v8c0,2.757 2.243,5 5,5h8c2.757,0 5,-2.243 5,-5v-8c0,-2.757 -2.243,-5 -5,-5zM8,5h8c1.654,0 3,1.346 3,3v8c0,1.654 -1.346,3 -3,3h-8c-1.654,0 -3,-1.346 -3,-3v-8c0,-1.654 1.346,-3 3,-3zM17,6c-0.55228,0 -1,0.44772 -1,1c0,0.55228 0.44772,1 1,1c0.55228,0 1,-0.44772 1,-1c0,-0.55228 -0.44772,-1 -1,-1zM12,7c-2.757,0 -5,2.243 -5,5c0,2.757 2.243,5 5,5c2.757,0 5,-2.243 5,-5c0,-2.757 -2.243,-5 -5,-5zM12,9c1.654,0 3,1.346 3,3c0,1.654 -1.346,3 -3,3c-1.654,0 -3,-1.346 -3,-3c0,-1.654 1.346,-3 3,-3z"></path></g></g>
 </svg></a>
 
-<a href="https://maps.app.goo.gl/3hgFtRwwEeJyw8FZA"  style="margin-inline: auto;"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0,0,256,256">
+<a href="https://maps.app.goo.gl/3hgFtRwwEeJyw8FZA" target="_blank"  style="margin-inline: auto;"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0,0,256,256">
 <g fill="#f5f5f7" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.33333,5.33333)"><path d="M35.76,26.36h0.01c0,0 -3.77,5.53 -6.94,9.64c-2.74,3.55 -3.54,6.59 -3.77,8.06c-0.09,0.54 -0.53,0.94 -1.06,0.94c-0.53,0 -0.97,-0.4 -1.06,-0.94c-0.23,-1.47 -1.03,-4.51 -3.77,-8.06c-0.42,-0.55 -0.85,-1.12 -1.28,-1.7l10.35,-12.3l8.33,-9.88c0.92,1.93 1.43,4.09 1.43,6.38c0,2.9 -0.83,5.59 -2.24,7.86z"></path><path d="M28.24,22l-10.35,12.3c-2.82,-3.78 -5.66,-7.94 -5.66,-7.94h0.01c-0.3,-0.48 -0.57,-0.97 -0.8,-1.48l8.32,-9.88c-0.79,0.95 -1.26,2.17 -1.26,3.5c0,3.04 2.46,5.5 5.5,5.5c1.71,0 3.24,-0.78 4.24,-2z"></path><path d="M28.4,4.74l-8.57,10.18l-6.56,-5.72c2.56,-3.18 6.42,-5.2 10.73,-5.2c1.54,0 3.02,0.26 4.4,0.74z"></path><path d="M19.83,14.92l-0.07,0.08l-8.32,9.88c-0.92,-1.93 -1.44,-4.09 -1.44,-6.38c0,-3.54 1.23,-6.79 3.27,-9.3z"></path><path d="M28.24,22c0.79,-0.95 1.26,-2.17 1.26,-3.5c0,-3.04 -2.46,-5.5 -5.5,-5.5c-1.71,0 -3.24,0.78 -4.24,2l8.64,-10.26c3.59,1.22 6.53,3.91 8.17,7.38z"></path></g></g>
 </svg></a>
 
-<a href="https://api.whatsapp.com/send/?phone=905059792823"  style="margin-inline: auto;"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0,0,256,256">
+<a href="https://api.whatsapp.com/send/?phone=905059792823" target="_blank" style="margin-inline: auto;"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0,0,256,256">
 <g fill="#f5f5f7" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M12.01172,2c-5.506,0 -9.98823,4.47838 -9.99023,9.98438c-0.001,1.76 0.45998,3.47819 1.33398,4.99219l-1.35547,5.02344l5.23242,-1.23633c1.459,0.796 3.10144,1.21384 4.77344,1.21484h0.00391c5.505,0 9.98528,-4.47937 9.98828,-9.98437c0.002,-2.669 -1.03588,-5.17841 -2.92187,-7.06641c-1.886,-1.887 -4.39245,-2.92673 -7.06445,-2.92773zM12.00977,4c2.136,0.001 4.14334,0.8338 5.65234,2.3418c1.509,1.51 2.33794,3.51639 2.33594,5.65039c-0.002,4.404 -3.58423,7.98633 -7.99023,7.98633c-1.333,-0.001 -2.65341,-0.3357 -3.81641,-0.9707l-0.67383,-0.36719l-0.74414,0.17578l-1.96875,0.46484l0.48047,-1.78516l0.2168,-0.80078l-0.41406,-0.71875c-0.698,-1.208 -1.06741,-2.58919 -1.06641,-3.99219c0.002,-4.402 3.58528,-7.98437 7.98828,-7.98437zM8.47656,7.375c-0.167,0 -0.43702,0.0625 -0.66602,0.3125c-0.229,0.249 -0.875,0.85208 -0.875,2.08008c0,1.228 0.89453,2.41503 1.01953,2.58203c0.124,0.166 1.72667,2.76563 4.26367,3.76563c2.108,0.831 2.53614,0.667 2.99414,0.625c0.458,-0.041 1.47755,-0.60255 1.68555,-1.18555c0.208,-0.583 0.20848,-1.0845 0.14648,-1.1875c-0.062,-0.104 -0.22852,-0.16602 -0.47852,-0.29102c-0.249,-0.125 -1.47608,-0.72755 -1.70508,-0.81055c-0.229,-0.083 -0.3965,-0.125 -0.5625,0.125c-0.166,0.25 -0.64306,0.81056 -0.78906,0.97656c-0.146,0.167 -0.29102,0.18945 -0.54102,0.06445c-0.25,-0.126 -1.05381,-0.39024 -2.00781,-1.24024c-0.742,-0.661 -1.24267,-1.47656 -1.38867,-1.72656c-0.145,-0.249 -0.01367,-0.38577 0.11133,-0.50977c0.112,-0.112 0.24805,-0.2915 0.37305,-0.4375c0.124,-0.146 0.167,-0.25002 0.25,-0.41602c0.083,-0.166 0.04051,-0.3125 -0.02149,-0.4375c-0.062,-0.125 -0.54753,-1.35756 -0.76953,-1.85156c-0.187,-0.415 -0.3845,-0.42464 -0.5625,-0.43164c-0.145,-0.006 -0.31056,-0.00586 -0.47656,-0.00586z"></path></g></g>
 </svg></a>
     </div>
@@ -1064,7 +1106,7 @@
       <button onclick="activateCategoryTab('Çanta')">Çanta</button>
       <button onclick="activateCategoryTab('Yelek')">Yelek</button>
       <button onclick="activateCategoryTab('Kürk')">Kürk</button>
-      <button onclick="activateCategoryTab('SeriSonu')">Seri Sonu <i>1600&#8378;</i></button>
+      <button onclick="activateCategoryTab('SeriSonu')">Seri Sonu <i>1600 TL</i></button>
       <button onclick="activateCategoryTab('Özel Üretim Talebi')">Özel Üretim Talebi</button>
     </div>
 
@@ -1095,258 +1137,312 @@
     </div>
 
     <div class="popupProductGrid" id="popupProductList">
-      <div class="popupProductItem" data-category="Çanta" data-code="Ç001">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp" alt="Çanta 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Çanta" data-code="Ç001" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp,https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/canta_detay_1.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp" alt="Vank Deri El Yapımı Çanta Ç001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">3500&#8378;</div>
         <button onclick="addItemToBasket('Ç001')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp', 'Ç001')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp', 'https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/canta_detay_1.webp'], 'Ç001')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Çanta" data-code="Ç002">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp" alt="Çanta 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Çanta" data-code="Ç002" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp" alt="Vank Deri El Yapımı Çanta Ç002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">3500&#8378;</div>
         <button onclick="addItemToBasket('Ç002')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp', 'Ç002')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp'], 'Ç002')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Çanta" data-code="Ç003">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp" alt="Çanta 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Çanta" data-code="Ç003" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp,https://placehold.co/300x300/362828/f5f5f7?text=Çanta+3+Detay,https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/canta_detay_2.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp" alt="Vank Deri El Yapımı Çanta Ç003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">3500&#8378;</div>
         <button onclick="addItemToBasket('Ç003')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp', 'Ç003')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp', 'https://placehold.co/300x300/362828/f5f5f7?text=Çanta+3+Detay', 'https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/canta_detay_2.webp'], 'Ç003')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Çanta" data-code="Ç004">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp" alt="Çanta 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Çanta" data-code="Ç004" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp" alt="Vank Deri El Yapımı Çanta Ç004" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">3500&#8378;</div>
         <button onclick="addItemToBasket('Ç004')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp', 'Ç004')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp'], 'Ç004')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Çanta" data-code="Ç005">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Çanta 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Çanta" data-code="Ç005" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Vank Deri El Yapımı Çanta Ç005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">3500&#8378;</div>
         <button onclick="addItemToBasket('Ç005')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp', 'Ç005')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp'], 'Ç005')">Detaylar</button>
       </div>
 
 
-      <div class="popupProductItem" data-category="Cüzdan" data-code="C001">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+1" alt="Cüzdan 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Cüzdan" data-code="C001" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+1">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+1" alt="Vank Deri El Yapımı Cüzdan C001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~&#8378;</div>
         <button onclick="addItemToBasket('C001')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+1', 'C001')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+1'], 'C001')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Cüzdan" data-code="C002">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+2" alt="Cüzdan 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Cüzdan" data-code="C002" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+2">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+2" alt="Vank Deri El Yapımı Cüzdan C002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~&#8378;</div>
         <button onclick="addItemToBasket('C002')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+2', 'C002')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+2'], 'C002')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Cüzdan" data-code="C003">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+3" alt="Cüzdan 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Cüzdan" data-code="C003" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+3">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+3" alt="Vank Deri El Yapımı Cüzdan C003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~&#8378;</div>
         <button onclick="addItemToBasket('C003')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+3', 'C003')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+3'], 'C003')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Cüzdan" data-code="C004">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+4" alt="Cüzdan 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Cüzdan" data-code="C004" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+4">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+4" alt="Vank Deri El Yapımı Cüzdan C004" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~&#8378;</div>
         <button onclick="addItemToBasket('C004')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+4', 'C004')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+4'], 'C004')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Cüzdan" data-code="C005">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+5" alt="Cüzdan 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Cüzdan" data-code="C005" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+5">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+5" alt="Vank Deri El Yapımı Cüzdan C005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~&#8378;</div>
         <button onclick="addItemToBasket('C005')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+5', 'C005')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+5'], 'C005')">Detaylar</button>
       </div>
 
 
-      <div class="popupProductItem" data-category="Kemer" data-code="K001">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+1" alt="Kemer 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Kemer" data-code="K001" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+1">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+1" alt="Vank Deri El Yapımı Kemer K001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K001')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kemer+1', 'K001')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kemer+1'], 'K001')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Kemer" data-code="K002">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+2" alt="Kemer 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Kemer" data-code="K002" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+2">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+2" alt="Vank Deri El Yapımı Kemer K002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K002')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kemer+2', 'K002')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kemer+2'], 'K002')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Kemer" data-code="K003">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+3" alt="Kemer 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Kemer" data-code="K003" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+3">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+3" alt="Vank Deri El Yapımı Kemer K003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K003')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kemer+3', 'K003')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kemer+3'], 'K003')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Kemer" data-code="K004">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+4" alt="Kemer 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Kemer" data-code="K004" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+4">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+4" alt="Vank Deri El Yapımı Kemer K004" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K004')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kemer+4', 'K004')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kemer+4'], 'K004')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Kemer" data-code="K005">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+5" alt="Kemer 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Kemer" data-code="K005" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+5">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Vank Deri El Yapımı Kemer K005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K005')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kemer+5', 'K005')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kemer+5'], 'K005')">Detaylar</button>
       </div>
 
 
-      <div class="popupProductItem" data-category="Aksesuar" data-code="A001">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+1" alt="Aksesuar 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Aksesuar" data-code="A001" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+1">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+1" alt="Vank Deri El Yapımı Aksesuar A001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('A001')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+1', 'A001')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+1'], 'A001')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Aksesuar" data-code="A002">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+2" alt="Aksesuar 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Aksesuar" data-code="A002" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+2">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+2" alt="Vank Deri El Yapımı Aksesuar A002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('A002')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+2', 'A002')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+2'], 'A002')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Aksesuar" data-code="A003">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+3" alt="Aksesuar 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Aksesuar" data-code="A003" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+3">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+3" alt="Vank Deri El Yapımı Aksesuar A003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('A003')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+3', 'A003')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+3'], 'A003')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Aksesuar" data-code="A004">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+4" alt="Aksesuar 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Aksesuar" data-code="A004" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+4">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+4" alt="Vank Deri El Yapımı Aksesuar A004" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('A004')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+4', 'A004')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+4'], 'A004')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Aksesuar" data-code="A005">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+5" alt="Aksesuar 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Aksesuar" data-code="A005" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+5">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+5" alt="Vank Deri El Yapımı Aksesuar A005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('A005')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+5', 'A005')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Aksesuar+5'], 'A005')">Detaylar</button>
       </div>
 
-      <div class="popupProductItem" data-category="Yelek" data-code="Y001">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp" alt="Yelek 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Yelek" data-code="Y001" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp" alt="Vank Deri El Yapımı Yelek Y001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">3500&#8378;</div>
         <button onclick="addItemToBasket('Y001')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp', 'Y001')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp'], 'Y001')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Yelek" data-code="Y002">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+2" alt="Yelek 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Yelek" data-code="Y002" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+2">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+2" alt="Vank Deri El Yapımı Yelek Y002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('Y002')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Yelek+2', 'Y002')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Yelek+2'], 'Y002')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Yelek" data-code="Y003">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+3" alt="Yelek 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Yelek" data-code="Y003" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+3">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+3" alt="Vank Deri El Yapımı Yelek Y003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('Y003')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Yelek+3', 'Y003')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Yelek+3'], 'Y003')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Yelek" data-code="Y004">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+4" alt="Yelek 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Yelek" data-code="Y004" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+4">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+4" alt="Vank Deri El Yapımı Yelek Y004" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('Y004')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Yelek+4', 'Y004')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Yelek+4'], 'Y004')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Yelek" data-code="Y005">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+5" alt="Yelek 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Yelek" data-code="Y005" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+5">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Yelek+5" alt="Vank Deri El Yapımı Yelek Y005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('Y005')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Yelek+5', 'Y005')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Yelek+5'], 'Y005')">Detaylar</button>
       </div>
 
 
-            <div class="popupProductItem" data-category="Kürk" data-code="KU001">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+1" alt="Kürk 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+            <div class="popupProductItem" data-category="Kürk" data-code="KU001" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+1">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+1" alt="Vank Deri El Yapımı Kürk KU001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('KU001')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kürk+1', 'KU001')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kürk+1'], 'KU001')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Kürk" data-code="KU002">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+2" alt="Kürk 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Kürk" data-code="KU002" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+2">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+2" alt="Vank Deri El Yapımı Kürk KU002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('KU002')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kürk+2', 'KU002')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kürk+2'], 'KU002')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Kürk" data-code="KU003">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+3" alt="Kürk 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Kürk" data-code="KU003" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+3">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+3" alt="Vank Deri El Yapımı Kürk KU003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('KU003')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kürk+3', 'KU003')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kürk+3'], 'KU003')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Kürk" data-code="KU004">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+4" alt="Kürk 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Kürk" data-code="KU004" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+4">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+4" alt="Vank Deri El Yapımı Kürk KU004" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('KU004')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kürk+4', 'KU004')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kürk+4'], 'KU004')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Kürk" data-code="KU005">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+5" alt="Kürk 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="Kürk" data-code="KU005" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+5">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Vank Deri El Yapımı Kürk KU005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('KU005')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Kürk+5', 'KU005')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kürk+5'], 'KU005')">Detaylar</button>
       </div>
 
 
-        <div class="popupProductItem" data-category="SeriSonu" data-code="SS001">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+1" alt="Seri Sonu 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">~~</div>
+        <div class="popupProductItem" data-category="SeriSonu" data-code="SS001" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170814.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170814.webp" alt="Vank Deri Seri Sonu Ürün SS001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS001')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+1', 'SS001')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170814.webp'], 'SS001')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="SeriSonu" data-code="SS002">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+2" alt="Seri Sonu 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">~~</div>
+      <div class="popupProductItem" data-category="SeriSonu" data-code="SS002" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170924.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170924.webp" alt="Vank Deri Seri Sonu Ürün SS002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS002')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+2', 'SS002')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170924.webp'], 'SS002')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="SeriSonu" data-code="SS003">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+3" alt="Seri Sonu 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">~~</div>
+      <div class="popupProductItem" data-category="SeriSonu" data-code="SS003" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170950.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170950.webp" alt="Vank Deri Seri Sonu Ürün SS003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS003')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+3', 'SS003')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170950.webp'], 'SS003')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="SeriSonu" data-code="SS004">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+4" alt="Seri Sonu 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">~~</div>
+      <div class="popupProductItem" data-category="SeriSonu" data-code="SS004" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171036.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171036.webp" alt="Vank Deri Seri Sonu Ürün SS004" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS004')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+4', 'SS004')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171036.webp'], 'SS004')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="SeriSonu" data-code="SS005">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+5" alt="Seri Sonu 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">~~</div>
+      <div class="popupProductItem" data-category="SeriSonu" data-code="SS005" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171203.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Vank Deri Seri Sonu Ürün SS005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS005')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=SeriSonu+5', 'SS005')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171203.webp'], 'SS005')">Detaylar</button>
+      </div>
+      <div class="popupProductItem" data-category="SeriSonu" data-code="SS006" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171242.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171242.webp" alt="Vank Deri Seri Sonu Ürün SS006" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
+        <button onclick="addItemToBasket('SS006')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171242.webp'], 'SS006')">Detaylar</button>
+      </div>
+            <div class="popupProductItem" data-category="SeriSonu" data-code="SS007" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171331.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171331.webp" alt="Vank Deri Seri Sonu Ürün SS007" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
+        <button onclick="addItemToBasket('SS007')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171331.webp'], 'SS007')">Detaylar</button>
+      </div>
+                  <div class="popupProductItem" data-category="SeriSonu" data-code="SS008" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171418.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171418.webp" alt="Vank Deri Seri Sonu Ürün SS008" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
+        <button onclick="addItemToBasket('SS008')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171418.webp'], 'SS008')">Detaylar</button>
+      </div>
+                  <div class="popupProductItem" data-category="SeriSonu" data-code="SS009" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171440.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171440.webp" alt="Vank Deri Seri Sonu Ürün SS009" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
+        <button onclick="addItemToBasket('SS009')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171440.webp'], 'SS009')">Detaylar</button>
+      </div>
+                  <div class="popupProductItem" data-category="SeriSonu" data-code="SS0010" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171522.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171522.webp" alt="Vank Deri Seri Sonu Ürün SS0010" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
+        <button onclick="addItemToBasket('SS0010')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171522.webp'], 'SS0010')">Detaylar</button>
+      </div>
+                        <div class="popupProductItem" data-category="SeriSonu" data-code="SS0011" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171559.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171559.webp" alt="Vank Deri Seri Sonu Ürün SS0011" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
+        <button onclick="addItemToBasket('SS0011')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171559.webp'], 'SS0011')">Detaylar</button>
+      </div>
+                              <div class="popupProductItem" data-category="SeriSonu" data-code="SS0012" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171633.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171633.webp" alt="Vank Deri Seri Sonu Ürün SS0012" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
+        <button onclick="addItemToBasket('SS0012')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171633.webp'], 'SS0012')">Detaylar</button>
+      </div>
+                                    <div class="popupProductItem" data-category="SeriSonu" data-code="SS0013" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171713.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171713.webp" alt="Vank Deri Seri Sonu Ürün SS0013" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
+        <button onclick="addItemToBasket('SS0013')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171713.webp'], 'SS0013')">Detaylar</button>
+      </div>
+                                          <div class="popupProductItem" data-category="SeriSonu" data-code="SS0014" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171845-1.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171845-1.webp" alt="Vank Deri Seri Sonu Ürün SS0014" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductPrice">1600 TL</div>
+        <button onclick="addItemToBasket('SS0014')">Sepete Ekle</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171845-1.webp'], 'SS0014')">Detaylar</button>
       </div>
 
 
-        <div class="popupProductItem" data-category="CeketMont" data-code="CM001">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp" alt="Ceket/Mont 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <div class="popupProductItem" data-category="CeketMont" data-code="CM001" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp,https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ceket_detay_1.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp" alt="Vank Deri Erkek Ceket CM001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">3500&#8378;</div>
         <button onclick="addItemToBasket('CM001')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp', 'CM001')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp', 'https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ceket_detay_1.webp'], 'CM001')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="CeketMont" data-code="CM002">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp" alt="Ceket/Mont 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="CeketMont" data-code="CM002" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp" alt="Vank Deri Kadın Ceket CM002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">6500&#8378;</div>
         <button onclick="addItemToBasket('CM002')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp', 'CM002')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp'], 'CM002')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="CeketMont" data-code="CM003">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp" alt="Ceket/Mont 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="CeketMont" data-code="CM003" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp">
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp" alt="Vank Deri Ceket CM003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">6500&#8378;</div>
         <button onclick="addItemToBasket('CM003')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp', 'CM003')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp'], 'CM003')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="CeketMont" data-code="CM004">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+4" alt="Ceket/Mont 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="CeketMont" data-code="CM004" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+4">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+4" alt="Vank Deri Ceket CM004" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('CM004')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+4', 'CM004')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+4'], 'CM004')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="CeketMont" data-code="CM005">
-        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+5" alt="Ceket/Mont 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+      <div class="popupProductItem" data-category="CeketMont" data-code="CM005" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+5">
+        <img src="https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+5" alt="Vank Deri Ceket CM005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('CM005')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails('https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+5', 'CM005')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Ceket/Mont+5'], 'CM005')">Detaylar</button>
       </div>
 
       <div id="customProductionForm" class="customProductionForm">
@@ -1376,7 +1472,10 @@
 <div class="productDetailsPopupOverlay" id="productDetailsPopup">
   <div class="productDetailsPopupContent">
     <button class="close-productDetailsPopup" onclick="hideProductDetails()">&times;</button>
-    <img id="productDetailsImage" src="" alt="Product Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing';" />
+    <img id="productDetailsImageMain" class="productDetailsImageMain" src="" alt="Product Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing';" />
+    <div id="productDetailsImageGallery" class="productDetailsImageGallery">
+      <!-- Thumbnail images will be inserted here by JavaScript -->
+    </div>
     <div id="productDetailsCode" class="productDetailsCode"></div>
   </div>
 </div>
@@ -1585,7 +1684,8 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   const customProductionForm = document.getElementById('customProductionForm');
   const popupProductList = document.getElementById('popupProductList');
   const productDetailsPopup = document.getElementById('productDetailsPopup');
-  const productDetailsImage = document.getElementById('productDetailsImage');
+  const productDetailsImageMain = document.getElementById('productDetailsImageMain'); /* Changed ID */
+  const productDetailsImageGallery = document.getElementById('productDetailsImageGallery'); /* New element */
   const productDetailsCode = document.getElementById('productDetailsCode');
   const customMessageBox = document.getElementById('customMessageBox');
   const customMessageBoxText = document.getElementById('customMessageBoxText');
@@ -1634,42 +1734,56 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   }
 
   function activateCategoryTab(category) {
+    // Remove 'selected' class from all category buttons
     document.querySelectorAll('.popupCategoryTabs button').forEach(btn => {
       btn.classList.remove('selected');
     });
 
-    const selectedButton = Array.from(document.querySelectorAll('.popupCategoryTabs button')).find(btn =>
-      btn.textContent.includes(category)
-    );
+    // Add 'selected' class to the clicked button (improved matching)
+    const selectedButton = Array.from(document.querySelectorAll('.popupCategoryTabs button')).find(btn => {
+        if (category === 'SeriSonu' && btn.textContent.includes('Seri Sonu')) {
+            return true;
+        }
+        if (category === 'CeketMont' && btn.textContent.includes('Ceket/Mont')) {
+            return true;
+        }
+        // For other categories, direct match with trimmed text content
+        return btn.textContent.trim() === category;
+    });
+
     if (selectedButton) {
       selectedButton.classList.add('selected');
     }
 
+    // Immediately hide all product items and the custom form
     products.forEach(p => {
         p.classList.remove('popupVisible');
-        p.style.display = 'none';
+        p.style.display = 'none'; // Ensure they are hidden
     });
     customProductionForm.classList.remove('popupVisible');
     customProductionForm.style.display = 'none';
 
-    popupProductList.classList.add('loading');
+    popupProductList.classList.add('loading'); // Show loading spinner
 
+    // Introduce a very small delay before showing the new products.
+    // This helps ensure the browser has processed the 'display: none' for all items.
     setTimeout(() => {
-      if (category === 'Özel Üretim Talebi') {
-        customProductionForm.style.display = 'flex';
-        setTimeout(() => customProductionForm.classList.add('popupVisible'), 50);
-      } else {
-        const productItemsToShow = Array.from(products).filter(p => p.dataset.category === category);
+        if (category === 'Özel Üretim Talebi') {
+            customProductionForm.style.display = 'flex';
+            setTimeout(() => customProductionForm.classList.add('popupVisible'), 50);
+        } else {
+            // Filter products strictly by data-category and display them
+            const productItemsToShow = Array.from(products).filter(p => p.dataset.category === category);
 
-        productItemsToShow.forEach((p, index) => {
-          p.style.display = 'flex';
-          setTimeout(() => {
-            p.classList.add('popupVisible');
-          }, 50 + (index * 70));
-        });
-      }
-      popupProductList.classList.remove('loading');
-    }, 500);
+            productItemsToShow.forEach((p, index) => {
+                p.style.display = 'flex'; // Make product item visible
+                setTimeout(() => {
+                    p.classList.add('popupVisible'); // Add animation class
+                }, 50 + (index * 70)); // Staggered animation
+            });
+        }
+        popupProductList.classList.remove('loading'); // Hide loading spinner
+    }, 50); // Small delay here (e.g., 50ms)
   }
 
   function addItemToBasket(code) {
@@ -1783,9 +1897,39 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
     dismissPopup();
   }
 
-  function showProductDetails(imgSrc, productCode) {
-    productDetailsImage.src = imgSrc;
+  // Modified showProductDetails to handle multiple images
+  function showProductDetails(imageUrls, productCode) {
     productDetailsCode.textContent = productCode;
+    productDetailsImageGallery.innerHTML = ''; // Clear previous thumbnails
+
+    // Set the main image
+    productDetailsImageMain.src = imageUrls[0];
+    productDetailsImageMain.onerror = function() {
+        this.src = 'https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing';
+    };
+
+    // Add thumbnails if more than one image
+    if (imageUrls.length > 1) {
+        imageUrls.forEach((url, index) => {
+            const thumbImg = document.createElement('img');
+            thumbImg.src = url;
+            thumbImg.alt = `Vank Deri ${productCode} Detay Görsel ${index + 1}`; /* SEO Improvement: Descriptive alt text for thumbnails */
+            thumbImg.onerror = function() {
+                this.src = 'https://placehold.co/80x80/362828/f5f5f7?text=Thumb';
+            };
+            thumbImg.addEventListener('click', () => {
+                productDetailsImageMain.src = url; // Change main image on thumbnail click
+                // Update active class for thumbnails
+                Array.from(productDetailsImageGallery.children).forEach(img => img.classList.remove('active'));
+                thumbImg.classList.add('active');
+            });
+            if (index === 0) {
+                thumbImg.classList.add('active'); // Set first thumbnail as active
+            }
+            productDetailsImageGallery.appendChild(thumbImg);
+        });
+    }
+
     productDetailsPopup.classList.add('show');
     setTimeout(() => {
         productDetailsPopup.querySelector('.productDetailsPopupContent').style.opacity = '1';
