@@ -522,21 +522,21 @@
     }
     .close-popupOverlay {
       position: absolute;
-      top: 8px;
-      right: 10px;
-      font-size: 28px;
-      color: #555;
+      top: 0;
+      right: 4px;
+      font-size: 3rem;
+      color: #222;
       background: transparent;
       border: none;
       cursor: pointer;
       z-index: 100;
-      padding: 4px;
+      padding: 0;
       line-height: 1;
-      transition: color 0.2s ease, transform 0.2s ease;
+      transition: color 0.15s ease, transform 0.15s ease;
     }
     .close-popupOverlay:hover,
-    .close-popupOverlay:focus {
-      color: #222;
+    .close-popupOverlay:active {
+      color: #deccad;
       transform: scale(1.15);
       outline: none;
     }
@@ -549,7 +549,7 @@
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
       box-shadow: 0 1px 2px 0 rgba(60,64,67,0.08), 0 1px 3px 1px rgba(60,64,67,0.05);
     }
     .popupCategoryTabs button:hover {
@@ -697,26 +697,41 @@
         background-color: #333;
     }
 
+    /* Updated styles for the basket panel to match the message box */
     .popupBasketButton-popupOverlay {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      padding: 24px 28px 32px;
-      border-radius: 16px;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-      width: 90%;
-      max-width: 420px;
-      z-index: 2000;
-      font-family: 'Segoe UI', sans-serif;
-      transition: opacity 0.3s ease, transform 0.3s ease;
+        position: fixed;
+        inset: 0; /* Cover the whole screen */
+        background-color: rgba(0, 0, 0, 0.5); /* Overlay background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3000; /* High z-index */
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
     }
     .popupBasketButton-popupOverlay.show {
+        visibility: visible;
         opacity: 1;
-        transform: translate(-50%, -50%);
     }
+    /* Content box within the basket overlay */
+    .popupBasketButton-popupOverlay > div { /* Target the direct child div for content styling */
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        text-align: center;
+        max-width: 350px;
+        width: 90%;
+        transform: translateY(-20px); /* Initial state for slide-up */
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    .popupBasketButton-popupOverlay.show > div {
+        transform: translateY(0); /* Final state for slide-up */
+        opacity: 1;
+    }
+
 
     .popupBasketButton-popupOverlay h3 {
       font-size: 20px;
@@ -769,18 +784,18 @@
 
     .popupBasketButton-popupOverlay .popupCloseSmall {
       position: absolute;
-      top: 12px;
+      top: 5px;
       right: 16px;
-      font-size: 22px;
+      font-size: 3rem;
       background: transparent;
       border: none;
       color: #888;
       cursor: pointer;
-      transition: color 0.3s ease;
+      transition: color 0.15s ease;
     }
 
-    .popupBasketButton-popupOverlay .popupCloseSmall:hover {
-      color: #333;
+    .popupBasketButton-popupOverlay .popupCloseSmall:active {
+      color: #deccad;
     }
 
     .customProductionForm {
@@ -891,8 +906,8 @@
         position: absolute;
         top: 0;
         right: 0;
-        font-size: 28px;
-        color: #555;
+        font-size: 3rem;
+        color: #222;
         background: transparent;
         border: none;
         cursor: pointer;
@@ -901,8 +916,8 @@
         line-height: 1;
         transition: color 0.2s ease, transform 0.2s ease;
     }
-    .close-productDetailsPopup:hover {
-        color: #222;
+    .close-productDetailsPopup:active {
+        color: #deccad;
         transform: scale(1.15);
     }
     .productDetailsImageMain { /* Changed from .productDetailsPopupContent img */
@@ -911,6 +926,7 @@
         max-height: 70vh;
         border-radius: 8px;
         margin-bottom: 15px;
+        margin-top: 15px;
         object-fit: contain;
     }
     .productDetailsCode {
@@ -995,6 +1011,23 @@
     }
     .custom-message-box-content button:hover {
         background-color: #7b7550;
+    }
+
+    /* Styles for the "Ürün sepete eklendi" notification */
+    #popupAddNotice {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(60, 179, 113, 0.95);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      display: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 9999; /* Increased z-index to ensure visibility */
+      transition: opacity 0.3s ease;
     }
 
   </style>
@@ -1092,6 +1125,24 @@
         </button>
     </div>
 
+    <!-- Moved #popupAddNotice outside of #popupContainerMain -->
+    <div id="popupAddNotice" style="
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(60, 179, 113, 0.95);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      display: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 9999; /* Increased z-index to ensure visibility */
+      transition: opacity 0.3s ease;
+    ">
+      Ürün sepete eklendi
+    </div>
 
 
 <div class="popupOverlay" id="popupContainerMain">
@@ -1111,30 +1162,10 @@
     </div>
 
     <div class="popupBasketButton" onclick="toggleBasketView()">&#128722; Sepet <span id="popupBasketCount">0</span></div>
-<div id="popupAddNotice" style="
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(60, 179, 113, 0.95);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-weight: 600;
-      display: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      z-index: 1500;
-      transition: opacity 0.3s ease;
-    ">
-      Ürün sepete eklendi
-    </div>
 
-    <div class="popupBasketButton-popupOverlay" id="popupBasketPanel">
-  <h3>Sepetiniz</h3>
-      <button class="popupCloseSmall" onclick="hideBasketPanel()">&times;</button>
-      <div id="popupBasketItems">Sepetiniz boş.</div>
-      <button class="popupWhatsAppButton" onclick="submitOrderWhatsApp()">WhatsApp'tan Gönder</button>
-    </div>
+
+    <!-- Moved popupBasketPanel out of popupOverlay-content -->
+    <!-- Its new position is as a direct child of <body> -->
 
     <div class="popupProductGrid" id="popupProductList">
       <div class="popupProductItem" data-category="Çanta" data-code="Ç001" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp,https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/canta_detay_1.webp">
@@ -1153,7 +1184,7 @@
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp" alt="Vank Deri El Yapımı Çanta Ç003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">3500&#8378;</div>
         <button onclick="addItemToBasket('Ç003')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp', 'https://placehold.co/300x300/362828/f5f5f7?text=Çanta+3+Detay', 'https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/canta_detay_2.webp'], 'Ç003')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp', 'https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/canta_detay_2.webp'], 'Ç003')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç004" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp" alt="Vank Deri El Yapımı Çanta Ç004" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
@@ -1332,13 +1363,13 @@
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170814.webp" alt="Vank Deri Seri Sonu Ürün SS001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS001')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170814.webp'], 'SS001')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170814.webp'], 'XL Kadın Dar Kesim. SS001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="SeriSonu" data-code="SS002" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170924.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170924.webp" alt="Vank Deri Seri Sonu Ürün SS002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS002')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170924.webp'], 'SS002')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170924.webp'], 'XL Kadın Dar Kesim. SS002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="SeriSonu" data-code="SS003" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170950.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_170950.webp" alt="Vank Deri Seri Sonu Ürün SS003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
@@ -1353,40 +1384,40 @@
         <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171036.webp'], 'SS004')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="SeriSonu" data-code="SS005" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171203.webp">
-        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Vank Deri Seri Sonu Ürün SS005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
+        <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171203.webp" alt="Vank Deri Seri Sonu Ürün SS005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS005')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171203.webp'], 'SS005')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171203.webp'], '2XL Kadın, Dar Kesim. SS005')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="SeriSonu" data-code="SS006" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171242.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171242.webp" alt="Vank Deri Seri Sonu Ürün SS006" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS006')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171242.webp'], 'SS006')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171242.webp'], 'M Kadın, Dar Kesim. SS006')">Detaylar</button>
       </div>
             <div class="popupProductItem" data-category="SeriSonu" data-code="SS007" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171331.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171331.webp" alt="Vank Deri Seri Sonu Ürün SS007" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS007')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171331.webp'], 'SS007')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171331.webp'], 'M Kadın, Dar Kesim. SS007')">Detaylar</button>
       </div>
                   <div class="popupProductItem" data-category="SeriSonu" data-code="SS008" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171418.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171418.webp" alt="Vank Deri Seri Sonu Ürün SS008" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS008')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171418.webp'], 'SS008')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171418.webp'], 'M Kadın, Dar Kesim. SS008')">Detaylar</button>
       </div>
                   <div class="popupProductItem" data-category="SeriSonu" data-code="SS009" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171440.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171440.webp" alt="Vank Deri Seri Sonu Ürün SS009" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS009')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171440.webp'], 'SS009')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171440.webp'], '3XL Kadın, Dar Kesim. SS009')">Detaylar</button>
       </div>
                   <div class="popupProductItem" data-category="SeriSonu" data-code="SS0010" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171522.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171522.webp" alt="Vank Deri Seri Sonu Ürün SS0010" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS0010')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171522.webp'], 'SS0010')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171522.webp'], 'XXL Kadın, Dar Kesim. SS0010')">Detaylar</button>
       </div>
                         <div class="popupProductItem" data-category="SeriSonu" data-code="SS0011" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171559.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171559.webp" alt="Vank Deri Seri Sonu Ürün SS0011" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
@@ -1398,19 +1429,19 @@
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171633.webp" alt="Vank Deri Seri Sonu Ürün SS0012" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS0012')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171633.webp'], 'SS0012')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171633.webp'], 'XL Kadın, Dar Kesim. SS0012')">Detaylar</button>
       </div>
                                     <div class="popupProductItem" data-category="SeriSonu" data-code="SS0013" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171713.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171713.webp" alt="Vank Deri Seri Sonu Ürün SS0013" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS0013')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171713.webp'], 'SS0013')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171713.webp'], 'XL Kadın, Dar Kesim. SS0013')">Detaylar</button>
       </div>
                                           <div class="popupProductItem" data-category="SeriSonu" data-code="SS0014" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171845-1.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171845-1.webp" alt="Vank Deri Seri Sonu Ürün SS0014" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">1600 TL</div>
         <button onclick="addItemToBasket('SS0014')">Sepete Ekle</button>
-        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171845-1.webp'], 'SS0014')">Detaylar</button>
+        <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/20250720_171845-1.webp'], '3XL ve XL Kadın, Dar Kesim. SS0014')">Detaylar</button>
       </div>
 
 
@@ -1484,6 +1515,16 @@
     <div class="custom-message-box-content">
         <p id="customMessageBoxText"></p>
         <button onclick="hideMessageBox()">Tamam</button>
+    </div>
+</div>
+
+<!-- Moved popupBasketPanel here, as a direct child of body -->
+<div class="popupBasketButton-popupOverlay" id="popupBasketPanel">
+    <div> <!-- This div acts as the content box -->
+        <h3>Sepetiniz</h3>
+        <button class="popupCloseSmall" onclick="hideBasketPanel()">&times;</button>
+        <div id="popupBasketItems">Sepetiniz boş.</div>
+        <button class="popupWhatsAppButton" onclick="submitOrderWhatsApp()">WhatsApp'tan Gönder</button>
     </div>
 </div>
 
@@ -1689,6 +1730,7 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   const productDetailsCode = document.getElementById('productDetailsCode');
   const customMessageBox = document.getElementById('customMessageBox');
   const customMessageBoxText = document.getElementById('customMessageBoxText');
+  const popupAddNotice = document.getElementById('popupAddNotice'); /* Get the element */
 
 
   let basketData = {}
@@ -1696,10 +1738,10 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   function showMessageBox(message) {
       customMessageBoxText.textContent = message;
       customMessageBox.classList.add('show');
-      setTimeout(() => {
-          customMessageBox.querySelector('.custom-message-box-content').style.opacity = '1';
-          customMessageBox.querySelector('.custom-message-box-content').style.transform = 'translateY(0)';
-      }, 10);
+      // The content div inside customMessageBoxOverlay already has the transition
+      // We just need to ensure it starts from its initial transformed state
+      customMessageBox.querySelector('.custom-message-box-content').style.opacity = '1';
+      customMessageBox.querySelector('.custom-message-box-content').style.transform = 'translateY(0)';
   }
 
   function hideMessageBox() {
@@ -1787,12 +1829,12 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   }
 
   function addItemToBasket(code) {
-    const feedback = document.getElementById('popupAddNotice');
-    feedback.style.display = 'block';
-    feedback.style.opacity = '1';
+    // Show the feedback notification
+    popupAddNotice.style.display = 'block';
+    popupAddNotice.style.opacity = '1';
     setTimeout(() => {
-        feedback.style.opacity = '0';
-        setTimeout(() => feedback.style.display = 'none', 300);
+        popupAddNotice.style.opacity = '0';
+        setTimeout(() => popupAddNotice.style.display = 'none', 300);
     }, 1200);
 
     basketData[code] = (basketData[code] || 0) + 1;
@@ -1814,7 +1856,7 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
         item.appendChild(textSpan);
 
         const delBtn = document.createElement('button');
-        delBtn.textContent = '&#10060;';
+        delBtn.textContent = 'Sepetten Çıkar';
         delBtn.onclick = (function(c) {
             return function() {
                 if (--basketData[c] <= 0) {
@@ -1834,19 +1876,21 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
         showMessageBox('Sepetiniz boş.');
         return;
     }
-    if (popupBasketPanel.style.display === 'block') {
-        hideBasketPanel();
+    popupBasketPanel.classList.toggle('show');
+    // Ensure the inner content div also transitions
+    if (popupBasketPanel.classList.contains('show')) {
+        popupBasketPanel.querySelector('div').style.opacity = '1';
+        popupBasketPanel.querySelector('div').style.transform = 'translateY(0)';
     } else {
-        popupBasketPanel.style.display = 'block';
-        setTimeout(() => popupBasketPanel.classList.add('show'), 10);
+        popupBasketPanel.querySelector('div').style.opacity = '0';
+        popupBasketPanel.querySelector('div').style.transform = 'translateY(-20px)';
     }
   }
 
   function hideBasketPanel() {
     popupBasketPanel.classList.remove('show');
-    setTimeout(() => {
-      popupBasketPanel.style.display = 'none';
-    }, 300);
+    popupBasketPanel.querySelector('div').style.opacity = '0';
+    popupBasketPanel.querySelector('div').style.transform = 'translateY(-20px)';
   }
 
   function submitOrderWhatsApp() {
