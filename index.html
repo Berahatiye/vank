@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -69,7 +70,7 @@
     p {
       max-width: 600px;
       margin: 40px auto;
-      font-size: 12px;
+      font-size: 14px;
       line-height: 1.5;
       text-align: left;
       padding: 0 5px;
@@ -97,7 +98,7 @@
       border-radius: 2px;
     }
 
-    /* SEO Improvement: Styles for semantic headings */
+    
     .line-label-h2 {
       position: absolute;
       top: 50%;
@@ -108,7 +109,7 @@
       user-select: none;
       color: #deccad;
       line-height: 1.2;
-      /* Ensure h2 element inherits these styles */
+      
       margin: 0;
       padding: 0;
     }
@@ -120,7 +121,7 @@
       .center-line {
         height: 120px;
       }
-      .line-label-h2 { /* Apply to h2 as well */
+      .line-label-h2 { 
         font-size: 1.1rem;
       }
     }
@@ -642,6 +643,7 @@
 
 
     .popupProductItem {
+  will-change: opacity, transform;
       opacity: 0;
       transform: scale(0.95);
       transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
@@ -697,15 +699,15 @@
         background-color: #333;
     }
 
-    /* Updated styles for the basket panel to match the message box */
+    
     .popupBasketButton-popupOverlay {
         position: fixed;
-        inset: 0; /* Cover the whole screen */
-        background-color: rgba(0, 0, 0, 0.5); /* Overlay background */
+        inset: 0; 
+        background-color: rgba(0, 0, 0, 0.5); 
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 3000; /* High z-index */
+        z-index: 3000; 
         visibility: hidden;
         opacity: 0;
         transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -714,8 +716,8 @@
         visibility: visible;
         opacity: 1;
     }
-    /* Content box within the basket overlay */
-    .popupBasketButton-popupOverlay > div { /* Target the direct child div for content styling */
+    
+    .popupBasketButton-popupOverlay > div { 
         background: white;
         padding: 25px;
         border-radius: 10px;
@@ -723,12 +725,12 @@
         text-align: center;
         max-width: 350px;
         width: 90%;
-        transform: translateY(-20px); /* Initial state for slide-up */
+        transform: translateY(-20px); 
         opacity: 0;
         transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     }
     .popupBasketButton-popupOverlay.show > div {
-        transform: translateY(0); /* Final state for slide-up */
+        transform: translateY(0); 
         opacity: 1;
     }
 
@@ -905,14 +907,14 @@
     .close-productDetailsPopup {
         position: absolute;
         top: 0;
-        right: 0;
+        right: 3px;
         font-size: 3rem;
         color: #222;
         background: transparent;
         border: none;
         cursor: pointer;
         z-index: 10;
-        padding: 2px;
+        padding: 0;
         line-height: 1;
         transition: color 0.2s ease, transform 0.2s ease;
     }
@@ -920,7 +922,7 @@
         color: #deccad;
         transform: scale(1.15);
     }
-    .productDetailsImageMain { /* Changed from .productDetailsPopupContent img */
+    .productDetailsImageMain { 
         max-width: 100%;
         height: auto;
         max-height: 70vh;
@@ -937,7 +939,7 @@
         margin-top: 12px;
     }
 
-    /* New styles for image gallery */
+    
     .productDetailsImageGallery {
         display: flex;
         flex-wrap: wrap;
@@ -947,7 +949,7 @@
         max-width: 100%;
     }
     .productDetailsImageGallery img {
-        width: 80px; /* Thumbnail size */
+        width: 80px; 
         height: 80px;
         object-fit: cover;
         border-radius: 5px;
@@ -1014,7 +1016,7 @@
         background-color: #7b7550;
     }
 
-    /* Styles for the "Ürün sepete eklendi" notification */
+    
     #popupAddNotice {
       position: fixed;
       bottom: 20px;
@@ -1027,7 +1029,7 @@
       font-weight: 600;
       display: none;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      z-index: 9999; /* Increased z-index to ensure visibility */
+      z-index: 9999; 
       transition: opacity 0.3s ease;
     }
 
@@ -1039,33 +1041,33 @@
   </div>
 
   <div class="layout">
-    <!-- SEO Improvement: Use a semantic heading for "İletişim" -->
+    
     <h2 class="side-text" onclick="scrollToSection('line-text-wrapper3')">İletişim</h2>
-    <!-- SEO Improvement: Descriptive alt text for logo -->
+    
     <img class="logo" src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ds-removebg-preview.webp" alt="Vank Deri Logo" />
-    <!-- SEO Improvement: Use a semantic heading for "Stoktan Satış" -->
-    <h2 class="side-text" onclick="launchPopup()">Stoktan Satış</h2>
+    
+    <h2 class="side-text" onclick="launchPopup()">Stoktan Satış <br><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#f5f5f7"><path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg></h2>
   </div>
 
   <div class="line-text-wrapper" id="line-text-wrapper1">
     <div class="center-line"></div>
-    <!-- SEO Improvement: Use a semantic heading for "Nedir?" -->
+    
     <h1 class="line-label-h2">Nedir?</h1>
   </div>
 
-  <!-- SEO Improvement: Expand content with more keywords and details -->
-  <p>Adıyaman'ın Vank köyünden Kapalıçarşı'ya, ardından da Eskişehir'e uzanan yaklaşık <span style="font-weight: 900;">elli yıllık</span> birikim ve işçilik.</p>
+  
+  <p>Adıyaman'ın Vank köyünden Kapalıçarşı'ya, ardından da Eskişehir'e uzanan yaklaşık <span style="font-weight: 900;">elli yıllık</span> birikim ve işçilik...</p>
 
     <div class="line-text-wrapper" id="line-text-wrapper4">
     <div class="center-line"></div>
-    <!-- SEO Improvement: Use a semantic heading for "Ürün Yelpazesi" -->
+    
     <h2 class="line-label-h2" onclick="toggleContext('line-text-wrapper4')">Ürün Yelpazesi</h2>
   </div>
 
   <div class="slider-wrapper" id="slider">
 
     <div class="slider-track">
-      <!-- SEO Improvement: More descriptive alt texts for slider images -->
+      
       <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel3%20(1).webp" alt="El Yapımı Deri Çanta Koleksiyonu" /></div>
       <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel2%20(1).webp" alt="Deri Cüzdan Çeşitleri" /></div>
       <div class="slide"><img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/gorsel1%20(1).webp" alt="Şık Deri Kemer Modelleri" /></div>
@@ -1122,11 +1124,11 @@
             <circle class="progress-ring" cx="27.5" cy="27.5" r="25.5"></circle>
         </svg>
         <button class="scroll-top-button">
-            <span>&#9650;</span>
+            <span>▲</span>
         </button>
     </div>
 
-    <!-- Moved #popupAddNotice outside of #popupContainerMain -->
+    
     <div id="popupAddNotice" style="
       position: fixed;
       bottom: 20px;
@@ -1139,7 +1141,7 @@
       font-weight: 600;
       display: none;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      z-index: 9999; /* Increased z-index to ensure visibility */
+      z-index: 9999; 
       transition: opacity 0.3s ease;
     ">
       Ürün sepete eklendi
@@ -1148,54 +1150,56 @@
 
 <div class="popupOverlay" id="popupContainerMain">
   <div class="popupOverlay-content">
-    <span class="close-popupOverlay" onclick="dismissPopup()">&times;</span>
+    <span class="close-popupOverlay" onclick="dismissPopup()">×</span>
 
     <div class="popupCategoryTabs">
-      <button onclick="activateCategoryTab('Kemer')">Kemer</button>
-      <button onclick="activateCategoryTab('Cüzdan')">Cüzdan</button>
-      <button onclick="activateCategoryTab('Aksesuar')">Aksesuar</button>
-      <button onclick="activateCategoryTab('CeketMont')">Ceket/Mont</button>
-      <button onclick="activateCategoryTab('Çanta')">Çanta</button>
-      <button onclick="activateCategoryTab('Yelek')">Yelek</button>
-      <button onclick="activateCategoryTab('Kürk')">Kürk</button>
-      <button onclick="activateCategoryTab('SeriSonu')">Seri Sonu <i>1600 TL</i></button>
-      <button onclick="activateCategoryTab('Özel Üretim Talebi')">Özel Üretim Talebi</button>
+      <button onclick="activateCategoryTab('Kemer'); scrollToSection('popupProductList')">Kemer</button>
+      <button onclick="activateCategoryTab('Cüzdan'); scrollToSection('popupProductList')">Cüzdan</button>
+      <button onclick="activateCategoryTab('Aksesuar'); scrollToSection('popupProductList')">Aksesuar</button>
+      <button onclick="activateCategoryTab('CeketMont'); scrollToSection('popupProductList')">Ceket/Mont</button>
+      <button onclick="activateCategoryTab('Çanta'); scrollToSection('popupProductList')">Çanta</button>
+      <button onclick="activateCategoryTab('Yelek'); scrollToSection('popupProductList')">Yelek</button>
+      <button onclick="activateCategoryTab('Kürk'); scrollToSection('popupProductList')">Kürk</button>
+      <button onclick="activateCategoryTab('SeriSonu'); scrollToSection('popupProductList')">Seri Sonu <i>1600 TL</i></button>
+      <button onclick="activateCategoryTab('Özel Üretim Talebi'); scrollToSection('popupProductList')">Özel Üretim Talebi</button>
     </div>
 
-    <div class="popupBasketButton" onclick="toggleBasketView()">&#128722; Sepet <span id="popupBasketCount">0</span></div>
+    <div class="popupBasketButton" onclick="toggleBasketView()">🛒 Sepet <span id="popupBasketCount">0</span></div>
 
 
-    <!-- Moved popupBasketPanel out of popupOverlay-content -->
-    <!-- Its new position is as a direct child of <body> -->
+    
+
+
+    
 
     <div class="popupProductGrid" id="popupProductList">
       <div class="popupProductItem" data-category="Çanta" data-code="Ç001" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp,https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/canta_detay_1.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp" alt="Vank Deri El Yapımı Çanta Ç001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">3500&#8378;</div>
+        <div class="popupProductPrice">3500₺</div>
         <button onclick="addItemToBasket('Ç001')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010793.webp', 'https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/canta_detay_1.webp'], 'Ç001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç002" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp" alt="Vank Deri El Yapımı Çanta Ç002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">3500&#8378;</div>
+        <div class="popupProductPrice">3500₺</div>
         <button onclick="addItemToBasket('Ç002')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010795.webp'], 'Ç002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç003" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp,https://placehold.co/300x300/362828/f5f5f7?text=Çanta+3+Detay,https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/canta_detay_2.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp" alt="Vank Deri El Yapımı Çanta Ç003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">3500&#8378;</div>
+        <div class="popupProductPrice">3500₺</div>
         <button onclick="addItemToBasket('Ç003')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010796.webp', 'https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/canta_detay_2.webp'], 'Ç003')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç004" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp" alt="Vank Deri El Yapımı Çanta Ç004" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">3500&#8378;</div>
+        <div class="popupProductPrice">3500₺</div>
         <button onclick="addItemToBasket('Ç004')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010797.webp'], 'Ç004')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Çanta" data-code="Ç005" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Vank Deri El Yapımı Çanta Ç005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">3500&#8378;</div>
+        <div class="popupProductPrice">3500₺</div>
         <button onclick="addItemToBasket('Ç005')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp'], 'Ç005')">Detaylar</button>
       </div>
@@ -1203,31 +1207,31 @@
 
       <div class="popupProductItem" data-category="Cüzdan" data-code="C001" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+1">
         <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+1" alt="Vank Deri El Yapımı Cüzdan C001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">~~&#8378;</div>
+        <div class="popupProductPrice">~~₺</div>
         <button onclick="addItemToBasket('C001')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+1'], 'C001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Cüzdan" data-code="C002" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+2">
         <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+2" alt="Vank Deri El Yapımı Cüzdan C002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">~~&#8378;</div>
+        <div class="popupProductPrice">~~₺</div>
         <button onclick="addItemToBasket('C002')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+2'], 'C002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Cüzdan" data-code="C003" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+3">
         <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+3" alt="Vank Deri El Yapımı Cüzdan C003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">~~&#8378;</div>
+        <div class="popupProductPrice">~~₺</div>
         <button onclick="addItemToBasket('C003')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+3'], 'C003')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Cüzdan" data-code="C004" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+4">
         <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+4" alt="Vank Deri El Yapımı Cüzdan C004" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">~~&#8378;</div>
+        <div class="popupProductPrice">~~₺</div>
         <button onclick="addItemToBasket('C004')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+4'], 'C004')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="Cüzdan" data-code="C005" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+5">
         <img src="https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+5" alt="Vank Deri El Yapımı Cüzdan C005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">~~&#8378;</div>
+        <div class="popupProductPrice">~~₺</div>
         <button onclick="addItemToBasket('C005')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Cüzdan+5'], 'C005')">Detaylar</button>
       </div>
@@ -1298,7 +1302,7 @@
 
       <div class="popupProductItem" data-category="Yelek" data-code="Y001" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp" alt="Vank Deri El Yapımı Yelek Y001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">3500&#8378;</div>
+        <div class="popupProductPrice">3500₺</div>
         <button onclick="addItemToBasket('Y001')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010773.webp'], 'Y001')">Detaylar</button>
       </div>
@@ -1448,19 +1452,19 @@
 
         <div class="popupProductItem" data-category="CeketMont" data-code="CM001" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp,https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ceket_detay_1.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp" alt="Vank Deri Erkek Ceket CM001" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">3500&#8378;</div>
+        <div class="popupProductPrice">3500₺</div>
         <button onclick="addItemToBasket('CM001')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010756.webp', 'https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/ceket_detay_1.webp'], 'CM001')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="CeketMont" data-code="CM002" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp" alt="Vank Deri Kadın Ceket CM002" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">6500&#8378;</div>
+        <div class="popupProductPrice">6500₺</div>
         <button onclick="addItemToBasket('CM002')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010752.webp'], 'CM002')">Detaylar</button>
       </div>
       <div class="popupProductItem" data-category="CeketMont" data-code="CM003" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp" alt="Vank Deri Ceket CM003" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
-        <div class="popupProductPrice">6500&#8378;</div>
+        <div class="popupProductPrice">6500₺</div>
         <button onclick="addItemToBasket('CM003')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010750.webp'], 'CM003')">Detaylar</button>
       </div>
@@ -1503,10 +1507,10 @@
 
 <div class="productDetailsPopupOverlay" id="productDetailsPopup">
   <div class="productDetailsPopupContent">
-    <button class="close-productDetailsPopup" onclick="hideProductDetails()">&times;</button>
+    <button class="close-productDetailsPopup" onclick="hideProductDetails()">×</button>
     <img id="productDetailsImageMain" class="productDetailsImageMain" src="" alt="Product Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing';" />
     <div id="productDetailsImageGallery" class="productDetailsImageGallery">
-      <!-- Thumbnail images will be inserted here by JavaScript -->
+      
     </div>
     <div id="productDetailsCode" class="productDetailsCode"></div>
   </div>
@@ -1519,11 +1523,11 @@
     </div>
 </div>
 
-<!-- Moved popupBasketPanel here, as a direct child of body -->
+
 <div class="popupBasketButton-popupOverlay" id="popupBasketPanel">
-    <div> <!-- This div acts as the content box -->
+    <div> 
         <h3>Sepetiniz</h3>
-        <button class="popupCloseSmall" onclick="hideBasketPanel()">&times;</button>
+        <button class="popupCloseSmall" onclick="hideBasketPanel()">×</button>
         <div id="popupBasketItems">Sepetiniz boş.</div>
         <button class="popupWhatsAppButton" onclick="submitOrderWhatsApp()">WhatsApp'tan Gönder</button>
     </div>
@@ -1726,12 +1730,12 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   const customProductionForm = document.getElementById('customProductionForm');
   const popupProductList = document.getElementById('popupProductList');
   const productDetailsPopup = document.getElementById('productDetailsPopup');
-  const productDetailsImageMain = document.getElementById('productDetailsImageMain'); /* Changed ID */
-  const productDetailsImageGallery = document.getElementById('productDetailsImageGallery'); /* New element */
+  const productDetailsImageMain = document.getElementById('productDetailsImageMain'); 
+  const productDetailsImageGallery = document.getElementById('productDetailsImageGallery'); 
   const productDetailsCode = document.getElementById('productDetailsCode');
   const customMessageBox = document.getElementById('customMessageBox');
   const customMessageBoxText = document.getElementById('customMessageBoxText');
-  const popupAddNotice = document.getElementById('popupAddNotice'); /* Get the element */
+  const popupAddNotice = document.getElementById('popupAddNotice'); 
 
 
   let basketData = {}
@@ -1739,8 +1743,8 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   function showMessageBox(message) {
       customMessageBoxText.textContent = message;
       customMessageBox.classList.add('show');
-      // The content div inside customMessageBoxOverlay already has the transition
-      // We just need to ensure it starts from its initial transformed state
+      
+      
       customMessageBox.querySelector('.custom-message-box-content').style.opacity = '1';
       customMessageBox.querySelector('.custom-message-box-content').style.transform = 'translateY(0)';
   }
@@ -1777,12 +1781,12 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
   }
 
   function activateCategoryTab(category) {
-    // Remove 'selected' class from all category buttons
+    
     document.querySelectorAll('.popupCategoryTabs button').forEach(btn => {
       btn.classList.remove('selected');
     });
 
-    // Add 'selected' class to the clicked button (improved matching)
+    
     const selectedButton = Array.from(document.querySelectorAll('.popupCategoryTabs button')).find(btn => {
         if (category === 'SeriSonu' && btn.textContent.includes('Seri Sonu')) {
             return true;
@@ -1790,7 +1794,7 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
         if (category === 'CeketMont' && btn.textContent.includes('Ceket/Mont')) {
             return true;
         }
-        // For other categories, direct match with trimmed text content
+        
         return btn.textContent.trim() === category;
     });
 
@@ -1798,39 +1802,40 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
       selectedButton.classList.add('selected');
     }
 
-    // Immediately hide all product items and the custom form
+    
     products.forEach(p => {
         p.classList.remove('popupVisible');
-        p.style.display = 'none'; // Ensure they are hidden
+        p.style.display = 'none'; 
     });
     customProductionForm.classList.remove('popupVisible');
     customProductionForm.style.display = 'none';
 
-    popupProductList.classList.add('loading'); // Show loading spinner
+    popupProductList.classList.add('loading'); 
 
-    // Introduce a very small delay before showing the new products.
-    // This helps ensure the browser has processed the 'display: none' for all items.
+    
+    
+    
     setTimeout(() => {
         if (category === 'Özel Üretim Talebi') {
             customProductionForm.style.display = 'flex';
             setTimeout(() => customProductionForm.classList.add('popupVisible'), 50);
         } else {
-            // Filter products strictly by data-category and display them
+            
             const productItemsToShow = Array.from(products).filter(p => p.dataset.category === category);
 
             productItemsToShow.forEach((p, index) => {
-                p.style.display = 'flex'; // Make product item visible
+                p.style.display = 'flex'; 
                 setTimeout(() => {
-                    p.classList.add('popupVisible'); // Add animation class
-                }, 50 + (index * 70)); // Staggered animation
+                    p.classList.add('popupVisible'); 
+                }, 50 + (index * 70)); 
             });
         }
-        popupProductList.classList.remove('loading'); // Hide loading spinner
-    }, 50); // Small delay here (e.g., 50ms)
+        popupProductList.classList.remove('loading'); 
+    }, 50); 
   }
 
   function addItemToBasket(code) {
-    // Show the feedback notification
+    
     popupAddNotice.style.display = 'block';
     popupAddNotice.style.opacity = '1';
     setTimeout(() => {
@@ -1878,7 +1883,7 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
         return;
     }
     popupBasketPanel.classList.toggle('show');
-    // Ensure the inner content div also transitions
+    
     if (popupBasketPanel.classList.contains('show')) {
         popupBasketPanel.querySelector('div').style.opacity = '1';
         popupBasketPanel.querySelector('div').style.transform = 'translateY(0)';
@@ -1942,34 +1947,34 @@ slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', 
     dismissPopup();
   }
 
-  // Modified showProductDetails to handle multiple images
+  
   function showProductDetails(imageUrls, productCode) {
     productDetailsCode.textContent = productCode;
-    productDetailsImageGallery.innerHTML = ''; // Clear previous thumbnails
+    productDetailsImageGallery.innerHTML = ''; 
 
-    // Set the main image
+    
     productDetailsImageMain.src = imageUrls[0];
     productDetailsImageMain.onerror = function() {
         this.src = 'https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing';
     };
 
-    // Add thumbnails if more than one image
+    
     if (imageUrls.length > 1) {
         imageUrls.forEach((url, index) => {
             const thumbImg = document.createElement('img');
             thumbImg.src = url;
-            thumbImg.alt = `Vank Deri ${productCode} Detay Görsel ${index + 1}`; /* SEO Improvement: Descriptive alt text for thumbnails */
+            thumbImg.alt = `Vank Deri ${productCode} Detay Görsel ${index + 1}`; 
             thumbImg.onerror = function() {
                 this.src = 'https://placehold.co/80x80/362828/f5f5f7?text=Thumb';
             };
             thumbImg.addEventListener('click', () => {
-                productDetailsImageMain.src = url; // Change main image on thumbnail click
-                // Update active class for thumbnails
+                productDetailsImageMain.src = url; 
+                
                 Array.from(productDetailsImageGallery.children).forEach(img => img.classList.remove('active'));
                 thumbImg.classList.add('active');
             });
             if (index === 0) {
-                thumbImg.classList.add('active'); // Set first thumbnail as active
+                thumbImg.classList.add('active'); 
             }
             productDetailsImageGallery.appendChild(thumbImg);
         });
