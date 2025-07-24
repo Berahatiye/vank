@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -930,7 +929,39 @@
         margin-bottom: 15px;
         margin-top: 15px;
         object-fit: contain;
+        /* Added for loading animation */
+        transition: opacity 0.3s ease;
     }
+    /* Styles for loading animation on main image */
+    .productDetailsImageMain.loading {
+        opacity: 0.5; /* Dim the image */
+        filter: blur(2px); /* Blur the image */
+    }
+    /* Spinner for main image loading */
+    .productDetailsImageMain-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%; /* Adjust as needed */
+        max-width: 100%; /* Adjust as needed */
+        min-height: 200px; /* Minimum height for the spinner to be visible */
+    }
+    .productDetailsImageMain-wrapper.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #918c65;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        z-index: 1;
+    }
+
     .productDetailsCode {
         font-size: 1.1rem;
         font-weight: bold;
@@ -948,19 +979,51 @@
         margin-top: 15px;
         max-width: 100%;
     }
-    .productDetailsImageGallery img {
+    /* New styles for thumbnail loading animation */
+    .productDetailsImageGallery-item-wrapper {
+        position: relative;
         width: 80px; 
         height: 80px;
-        object-fit: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 5px;
         cursor: pointer;
         border: 2px solid transparent;
         transition: border-color 0.2s ease, transform 0.2s ease;
     }
-    .productDetailsImageGallery img.active,
-    .productDetailsImageGallery img:hover {
+    .productDetailsImageGallery-item-wrapper.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #918c65;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+        z-index: 1;
+    }
+    .productDetailsImageGallery-item-wrapper.loading img {
+        opacity: 0.5;
+        filter: blur(1px);
+    }
+
+    .productDetailsImageGallery-item-wrapper.active,
+    .productDetailsImageGallery-item-wrapper:hover {
         border-color: var(--main-color);
         transform: scale(1.05);
+    }
+
+    .productDetailsImageGallery img {
+        width: 100%; 
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+        display: block; /* Ensure no extra space below image */
+        transition: opacity 0.3s ease, filter 0.3s ease;
     }
 
     .custom-message-box-overlay {
@@ -1292,7 +1355,7 @@
         <button onclick="addItemToBasket('K004')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kemer+4'], 'K004')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Kemer" data-code="K005" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kemer+5">
+      <div class="popupProductItem" data-category="Kemer" data-code="K005" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Vank Deri El Yapımı Kemer K005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('K005')">Sepete Ekle</button>
@@ -1389,7 +1452,7 @@
         <button onclick="addItemToBasket('KU004')">Sepete Ekle</button>
         <button class="details-button" onclick="showProductDetails(['https://placehold.co/300x300/362828/f5f5f7?text=Kürk+4'], 'KU004')">Detaylar</button>
       </div>
-      <div class="popupProductItem" data-category="Kürk" data-code="KU005" data-images="https://placehold.co/300x300/362828/f5f5f7?text=Kürk+5">
+      <div class="popupProductItem" data-category="Kürk" data-code="KU005" data-images="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp">
         <img src="https://raw.githubusercontent.com/Berahatiye/vank/refs/heads/main/1000010811.webp" alt="Vank Deri El Yapımı Kürk KU005" onerror="this.onerror=null;this.src='https://placehold.co/300x300/362828/f5f5f7?text=Image+Missing';" />
         <div class="popupProductPrice">~~</div>
         <button onclick="addItemToBasket('KU005')">Sepete Ekle</button>
@@ -1541,7 +1604,10 @@
 <div class="productDetailsPopupOverlay" id="productDetailsPopup">
   <div class="productDetailsPopupContent">
     <button class="close-productDetailsPopup" onclick="hideProductDetails()">×</button>
-    <img id="productDetailsImageMain" class="productDetailsImageMain" src="" alt="Product Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing';" />
+    <!-- Wrapper for main image to contain spinner -->
+    <div class="productDetailsImageMain-wrapper" id="productDetailsImageMainWrapper">
+        <img id="productDetailsImageMain" class="productDetailsImageMain" src="" alt="Product Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing';" />
+    </div>
     <div id="productDetailsImageGallery" class="productDetailsImageGallery">
       
     </div>
@@ -1768,6 +1834,7 @@ function scrollToSection(elementId) {
   const popupProductList = document.getElementById('popupProductList');
   const productDetailsPopup = document.getElementById('productDetailsPopup');
   const productDetailsImageMain = document.getElementById('productDetailsImageMain'); 
+  const productDetailsImageMainWrapper = document.getElementById('productDetailsImageMainWrapper'); // New element
   const productDetailsImageGallery = document.getElementById('productDetailsImageGallery'); 
   const productDetailsCode = document.getElementById('productDetailsCode');
   const customMessageBox = document.getElementById('customMessageBox');
@@ -1788,7 +1855,7 @@ function scrollToSection(elementId) {
 
   function hideMessageBox() {
       customMessageBox.querySelector('.custom-message-box-content').style.opacity = '0';
-      customMessageBox.querySelector('.custom-message-box-content').style.transform = 'translateY(-20px)';
+      customMessageBox.querySelector('div').style.transform = 'translateY(-20px)';
       setTimeout(() => {
           customMessageBox.classList.remove('show');
       }, 300);
@@ -1989,31 +2056,72 @@ function scrollToSection(elementId) {
     productDetailsCode.textContent = productCode;
     productDetailsImageGallery.innerHTML = ''; 
 
-    
+    // Add loading class to wrapper and main image
+    productDetailsImageMainWrapper.classList.add('loading');
+    productDetailsImageMain.classList.add('loading');
+
+    // Set main image source and handle load/error
     productDetailsImageMain.src = imageUrls[0];
+    productDetailsImageMain.onload = () => {
+        productDetailsImageMainWrapper.classList.remove('loading');
+        productDetailsImageMain.classList.remove('loading');
+    };
     productDetailsImageMain.onerror = function() {
         this.src = 'https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing';
+        productDetailsImageMainWrapper.classList.remove('loading');
+        productDetailsImageMain.classList.remove('loading');
     };
 
     
     if (imageUrls.length > 1) {
         imageUrls.forEach((url, index) => {
+            const thumbWrapper = document.createElement('div');
+            thumbWrapper.classList.add('productDetailsImageGallery-item-wrapper');
+
             const thumbImg = document.createElement('img');
             thumbImg.src = url;
             thumbImg.alt = `Vank Deri ${productCode} Detay Görsel ${index + 1}`; 
+            
+            // Add loading class to thumbnail wrapper and image
+            thumbWrapper.classList.add('loading');
+            thumbImg.classList.add('loading');
+
+            thumbImg.onload = () => {
+                thumbWrapper.classList.remove('loading');
+                thumbImg.classList.remove('loading');
+            };
             thumbImg.onerror = function() {
                 this.src = 'https://placehold.co/80x80/362828/f5f5f7?text=Thumb';
+                thumbWrapper.classList.remove('loading');
+                thumbImg.classList.remove('loading');
             };
-            thumbImg.addEventListener('click', () => {
+
+            thumbWrapper.appendChild(thumbImg);
+
+            thumbWrapper.addEventListener('click', () => {
+                // Add loading class when changing main image
+                productDetailsImageMainWrapper.classList.add('loading');
+                productDetailsImageMain.classList.add('loading');
                 productDetailsImageMain.src = url; 
                 
-                Array.from(productDetailsImageGallery.children).forEach(img => img.classList.remove('active'));
-                thumbImg.classList.add('active');
+                // Remove loading class once the new main image is loaded
+                productDetailsImageMain.onload = () => {
+                    productDetailsImageMainWrapper.classList.remove('loading');
+                    productDetailsImageMain.classList.remove('loading');
+                };
+                productDetailsImageMain.onerror = () => {
+                    productDetailsImageMainWrapper.classList.remove('loading');
+                    productDetailsImageMain.classList.remove('loading');
+                    productDetailsImageMain.src = 'https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing'; // Fallback
+                };
+
+                Array.from(productDetailsImageGallery.children).forEach(wrapper => wrapper.classList.remove('active'));
+                thumbWrapper.classList.add('active');
             });
             if (index === 0) {
-                thumbImg.classList.add('active'); 
+                thumbWrapper.classList.add('active'); 
             }
-            productDetailsImageGallery.appendChild(thumbImg);
+            productDetailsImageGallery.appendChild(thumbWrapper);
         });
     }
 
