@@ -1,0 +1,1082 @@
+    :root {
+      --main-color: #918c65;
+      --accent-color: #763000;
+      --popupOverlay-bg: rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      box-shadow: none !important;
+      outline: none !important;
+      user-select: none;
+      -ms-user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+    }
+
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 24px;
+      min-height: 100vh;
+      background-color: #362828;
+      overflow: hidden;
+    }
+
+    body.loaded {
+      overflow: auto;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: #362828;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.5s ease;
+    }
+
+    .spinner {
+      border: 5px solid #eee;
+      border-top: 5px solid #918c65;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+
+
+    p {
+      max-width: 600px;
+      margin: 40px auto;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: left;
+      padding: 0 5px;
+      color: #f5f5f7;
+      font-family: sans-serif;
+      letter-spacing: 1.2px;
+    }
+
+    .line-text-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    .center-line {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 2.6px;
+      height: 126px;
+      background-color: #918c65;
+      border-radius: 2px;
+    }
+
+    
+    .line-label-h2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(10px, -50%);
+      font-weight: bold;
+      font-size: 1.3rem;
+      user-select: none;
+      color: #deccad;
+      line-height: 1.2;
+      
+      margin: 0;
+      padding: 0;
+    }
+
+    @media (max-width: 600px) {
+      .line-text-wrapper {
+        height: 50px;
+      }
+      .center-line {
+        height: 120px;
+      }
+      .line-label-h2 { 
+        font-size: 1.1rem;
+      }
+    }
+
+
+    .contact-container {
+      max-width: 600px;
+      margin: 40px auto;
+      margin-bottom: 12px;
+      background-color: transparent;
+      padding: 20px;
+      border-radius: 8px;
+      color: #f5f5f7;
+      font-size: 14px;
+      line-height: 1.6;
+      border: #918c65 2px solid;
+    }
+
+    .contact-item {
+    margin-bottom: 12px;
+    margin-top: 12px;
+    text-align: center;
+    }
+
+    .contact-item a {
+      color: #f5f5f7;
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .contact-container {
+        padding: 18px;
+        font-size: 13px;
+      }
+    }
+
+
+
+
+    .slider-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      background-color: transparent;
+      touch-action: pan-y;
+      margin: 40px auto;
+      user-select: none;
+      border: solid 2px #918c65;
+      transition: opacity 0.3s ease;
+      margin-bottom: 0;
+    }
+
+    .slider-wrapper.disable-interaction {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+      will-change: transform;
+      cursor: grab;
+    }
+
+    .slider-track.dragging {
+      cursor: grabbing;
+      transition: none !important;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      height: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .overlay-image {
+      position: absolute;
+      bottom: 1px;
+      right: 10px;
+      width: 100px;
+      height: auto;
+      z-index: 10;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 11;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.3);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #ffffff;
+      transform: scale(1.3);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    @media (max-width: 768px) {
+      .slider-wrapper { border-radius: 10px; }
+      .overlay-image { width: 50px; bottom: -6px; right: 1px; }
+      .dot { width: 10px; height: 10px; }
+      .dots { gap: 6px; }
+    }
+
+    @media (max-width: 480px) {
+      .overlay-image { width: 40px; bottom: -6px; right: 4px; }
+      .dot { width: 8px; height: 8px; }
+      .dots { gap: 5px; bottom: 2.5px; }
+      .spinner { width: 30px; height: 30px; border-width: 4px; }
+    }
+
+
+
+
+
+    .layout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 600px;
+      margin: 40px auto;
+      margin-top: 0;
+      gap: 12px;
+      flex-wrap: nowrap;
+    }
+
+
+    .side-text {
+      font-size: clamp(0.85rem, 2.5vw, 1.2rem);
+      flex: 1;
+      text-align: center;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      color: #f5f5f7;
+      font-style: normal;
+      font-weight: bolder;
+      line-height: 1.2;
+    }
+
+    .logo {
+      height: auto;
+      width: clamp(90px, 18vw, 100px);
+      max-height: 100px;
+      border: 2px #918c65 solid;
+      transition: transform 0.3s ease;
+      flex: 0 0 auto;
+      object-fit: contain;
+      cursor: default;
+      border-radius: 3px;
+    }
+
+
+    @media (max-width: 480px) {
+      .side-text {
+        font-size: 1rem;
+      }
+
+      .logo {
+        max-height: 90px;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .side-text {
+        font-size: 0.9rem;
+      }
+    }
+
+
+
+
+
+
+
+   #scrollBtnContainer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: width 0.3s ease-in-out, height 0.3s ease-in-out, bottom 0.3s ease-in-out, right 0.3s ease-in-out;
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        #scrollBtnContainer.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+
+        #scrollBtnContainer:active .scroll-top-button,
+        #scrollBtnContainer:focus .scroll-top-button {
+            background-color: #b45622;
+            transform: translateY(-2px);
+        }
+
+
+        #scrollBtnContainer .scroll-top-button.interacted + .progress-ring-svg circle.progress-ring-track {
+             stroke: #F4D35E;
+        }
+
+        #scrollBtnContainer .scroll-top-button.interacted + .progress-ring-svg circle.progress-ring {
+            stroke: #EE964B;
+        }
+
+        .scroll-top-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #763000;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s, width 0.3s ease-in-out, height 0.3s ease-in-out, font-size 0.3s ease-in-out;
+            position: absolute;
+            border: none;
+            outline: none;
+            touch-action: manipulation;
+        }
+
+        .scroll-top-button span {
+            line-height: 1;
+        }
+
+
+        .progress-ring-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-track {
+            stroke: #F7F5DD;
+            stroke-width: 4;
+            fill: transparent;
+        }
+
+        .progress-ring {
+            stroke: #fb6601;
+            stroke-width: 4;
+            fill: transparent;
+            stroke-linecap: round;
+            transition: stroke 0.3s ease-in-out;
+        }
+
+
+        @media (max-width: 480px) {
+            #scrollBtnContainer {
+                width: 50px;
+                height: 50px;
+                bottom: 1px;
+                right: 1px;
+            }
+
+            .scroll-top-button {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .progress-ring-track,
+            .progress-ring {
+                stroke-width: 3;
+            }
+        }
+
+        @media (max-width: 320px) {
+            #scrollBtnContainer {
+                width: 45px;
+                height: 45px;
+                bottom: 1px;
+                right: 1px;
+            }
+
+            .scroll-top-button {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .progress-ring-svg circle {
+                r: 21;
+                cx: 22.5;
+                cy: 22.5;
+            }
+
+            .progress-ring-track,
+            .progress-ring {
+                stroke-width: 2.5;
+            }
+        }
+
+
+
+
+
+
+
+           .popupShowTrigger {
+      margin: 100px auto;
+      display: block;
+      padding: 16px 40px;
+      background-color: var(--main-color);
+      color: white;
+      border: none;
+      font-size: 18px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .popupOverlay {
+      display: flex;
+      position: fixed;
+      inset: 0;
+      background-color: var(--popupOverlay-bg);
+      justify-content: center;
+      align-items: flex-start;
+      overflow-y: auto;
+      z-index: 1000;
+      padding: 12px;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .popupOverlay.show {
+      visibility: visible;
+      opacity: 1;
+    }
+    .popupOverlay-content {
+      background: white;
+      width: 95%;
+      max-width: 1100px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 10px;
+      padding: 20px 24px 30px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .popupOverlay.show .popupOverlay-content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .close-popupOverlay {
+      position: absolute;
+      top: 0;
+      right: 4px;
+      font-size: 3rem;
+      color: #222;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 100;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+    .close-popupOverlay:hover,
+    .close-popupOverlay:active {
+      color: #deccad;
+      transform: scale(1.15);
+      outline: none;
+    }
+    .popupCategoryTabs button {
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: 1px solid #dadce0;
+      background: #f8f9fa;
+      color: #3c4043;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px 0 rgba(60,64,67,0.08), 0 1px 3px 1px rgba(60,64,67,0.05);
+    }
+    .popupCategoryTabs button:hover {
+      background-color: #e8eaed;
+      border-color: #d2d2d2;
+      box-shadow: 0 1px 3px 0 rgba(60,64,67,0.12), 0 1px 4px 1px rgba(60,64,67,0.08);
+    }
+    .popupCategoryTabs button.selected {
+      background-color: var(--main-color);
+      color: white;
+      font-weight: bold;
+      border-color: var(--main-color);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .popupCategoryTabs button:hover:not(.selected) {
+      background-color: #e0e0e0;
+    }
+    .popupCategoryTabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .popupBasketButton {
+      position: sticky;
+      top: 10px;
+      background: var(--accent-color);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 10px auto 20px;
+      max-width: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      user-select: none;
+      z-index: 10;
+      transition: background-color 0.2s ease;
+    }
+    .popupBasketButton:hover,
+    .popupBasketButton:focus {
+      background-color: #6f4f3f;
+      outline: none;
+    }
+
+    .popupBasketButton span {
+      background: white;
+      color: var(--accent-color);
+      padding: 4px 10px;
+      border-radius: 50px;
+    }
+    .popupProductGrid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      position: relative;
+      min-height: 150px;
+    }
+
+    .popupProductGrid.loading::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .popupProductGrid.loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #918c65;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      z-index: 101;
+    }
+
+
+    .popupProductItem {
+  will-change: opacity, transform;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+      width: 130px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      background: white;
+      text-align: center;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .popupProductItem:hover {
+        background-color: #f9f9f9;
+    }
+    .popupProductItem.popupVisible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .popupProductItem img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .popupProductItem .popupProductPrice {
+      font-size: 14px;
+      color: #333;
+      font-weight: bold;
+    }
+    .popupProductItem button {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s ease;
+      width: 100%;
+    }
+    .popupProductItem button:hover {
+        background-color: #6f4f3f;
+    }
+    .popupProductItem .details-button {
+        background-color: #555;
+        margin-top: 4px;
+    }
+    .popupProductItem .details-button:hover {
+        background-color: #333;
+    }
+
+    
+    .popupBasketButton-popupOverlay {
+        position: fixed;
+        inset: 0; 
+        background-color: rgba(0, 0, 0, 0.5); 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3000; 
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .popupBasketButton-popupOverlay.show {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+    .popupBasketButton-popupOverlay > div { 
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        text-align: center;
+        max-width: 350px;
+        width: 90%;
+        transform: translateY(-20px); 
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    .popupBasketButton-popupOverlay.show > div {
+        transform: translateY(0); 
+        opacity: 1;
+    }
+
+
+    .popupBasketButton-popupOverlay h3 {
+      font-size: 20px;
+      margin-top: 0;
+      margin-bottom: 16px;
+      color: #333;
+      text-align: center;
+    }
+
+    .popupBasketButton-popupOverlay #popupBasketItems div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .popupBasketButton-popupOverlay #popupBasketItems div button {
+      background: transparent;
+      border: none;
+      color: #d00;
+      font-size: 16px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .popupBasketButton-popupOverlay #popupBasketItems div button:hover {
+        color: #f00;
+    }
+
+    .popupBasketButton-popupOverlay .popupWhatsAppButton {
+      background: #25d366;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      width: 100%;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .popupBasketButton-popupOverlay .popupWhatsAppButton:hover {
+      background: #1ebe57;
+    }
+
+    .popupBasketButton-popupOverlay .popupCloseSmall {
+      position: absolute;
+      top: 5px;
+      right: 16px;
+      font-size: 3rem;
+      background: transparent;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .popupBasketButton-popupOverlay .popupCloseSmall:active {
+      color: #deccad;
+    }
+
+    .customProductionForm {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .customProductionForm.popupVisible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .customProductionForm label {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .customProductionForm input[type="text"],
+    .customProductionForm input[type="email"],
+    .customProductionForm textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .customProductionForm input[type="text"]:focus,
+    .customProductionForm input[type="email"]:focus,
+    .customProductionForm textarea:focus {
+        border-color: var(--main-color);
+        box-shadow: 0 0 0 2px rgba(145, 140, 101, 0.2);
+        outline: none;
+    }
+
+
+    .customProductionForm textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .customProductionForm button[type="submit"] {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .customProductionForm button[type="submit"]:hover {
+      background-color: #6f4f3f;
+    }
+
+    .productDetailsPopupOverlay {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .productDetailsPopupOverlay.show {
+        visibility: visible;
+        opacity: 1;
+    }
+    .productDetailsPopupContent {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        max-width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: scale(0.9);
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    .productDetailsPopupOverlay.show .productDetailsPopupContent {
+        transform: scale(1);
+        opacity: 1;
+    }
+    .close-productDetailsPopup {
+        position: absolute;
+        top: 0;
+        right: 3px;
+        font-size: 3rem;
+        color: #222;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        padding: 0;
+        line-height: 1;
+        transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .close-productDetailsPopup:active {
+        color: #deccad;
+        transform: scale(1.15);
+    }
+    .productDetailsImageMain { 
+        max-width: 100%;
+        height: auto;
+        max-height: 70vh;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        object-fit: contain;
+        /* Added for loading animation */
+        transition: opacity 0.3s ease;
+    }
+    /* Styles for loading animation on main image */
+    .productDetailsImageMain.loading {
+        opacity: 0.5; /* Dim the image */
+        filter: blur(2px); /* Blur the image */
+    }
+    /* Spinner for main image loading */
+    .productDetailsImageMain-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%; /* Adjust as needed */
+        max-width: 100%; /* Adjust as needed */
+        min-height: 200px; /* Minimum height for the spinner to be visible */
+    }
+    .productDetailsImageMain-wrapper.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #918c65;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        z-index: 1;
+    }
+
+    .productDetailsCode {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        margin-top: 12px;
+    }
+
+    
+    .productDetailsImageGallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+        max-width: 100%;
+    }
+    /* New styles for thumbnail loading animation */
+    .productDetailsImageGallery-item-wrapper {
+        position: relative;
+        width: 80px; 
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .productDetailsImageGallery-item-wrapper.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #918c65;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+        z-index: 1;
+    }
+    .productDetailsImageGallery-item-wrapper.loading img {
+        opacity: 0.5;
+        filter: blur(1px);
+    }
+
+    .productDetailsImageGallery-item-wrapper.active,
+    .productDetailsImageGallery-item-wrapper:hover {
+        border-color: var(--main-color);
+        transform: scale(1.05);
+    }
+
+    .productDetailsImageGallery img {
+        width: 100%; 
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+        display: block; /* Ensure no extra space below image */
+        transition: opacity 0.3s ease, filter 0.3s ease;
+    }
+
+    .custom-message-box-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3000;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .custom-message-box-overlay.show {
+        visibility: visible;
+        opacity: 1;
+    }
+    .custom-message-box-content {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        text-align: center;
+        max-width: 350px;
+        width: 90%;
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    .custom-message-box-overlay.show .custom-message-box-content {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    .custom-message-box-content p {
+        margin: 0 0 20px 0;
+        font-size: 16px;
+        color: #333;
+        max-width: none;
+        padding: 0;
+    }
+    .custom-message-box-content button {
+        background-color: var(--main-color);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.2s ease;
+    }
+    .custom-message-box-content button:hover {
+        background-color: #7b7550;
+    }
+
+    
+    #popupAddNotice {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(60, 179, 113, 0.95);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      display: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 9999; 
+      transition: opacity 0.3s ease;
+    }
