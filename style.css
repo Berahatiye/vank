@@ -241,14 +241,14 @@
     @media (max-width: 768px) {
       .slider-wrapper { border-radius: 10px; }
       .overlay-image { width: 50px; bottom: -6px; right: 1px; }
-      .dot { width: 10px; height: 10px; }
-      .dots { gap: 6px; }
+      .dot { width: 18px; height: 18px; }
+      .dots { gap: 12px; }
     }
 
     @media (max-width: 480px) {
       .overlay-image { width: 40px; bottom: -6px; right: 4px; }
-      .dot { width: 8px; height: 8px; }
-      .dots { gap: 5px; bottom: 2.5px; }
+      .dot { width: 14px; height: 14px; }
+      .dots { gap: 9px; bottom: 2.7px; }
       .spinner { width: 30px; height: 30px; border-width: 4px; }
     }
 
@@ -587,7 +587,7 @@
     .popupBasketButton span {
       background: white;
       color: var(--accent-color);
-      padding: 4px 10px;
+      padding: 4px 8px;
       border-radius: 50px;
     }
     .popupProductGrid {
