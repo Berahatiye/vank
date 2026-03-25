@@ -1,14 +1,16 @@
-
+  
     :root {
       --main-color: #918c65;
       --main-color-light: #a8a37b;
       --accent-color: #763000;
       --accent-hover: #9c4000;
-      --bg-color: #362828;
-      --bg-gradient: radial-gradient(circle at top, #4a3838 0%, #2a1f1f 100%);
+      --bg-color: #2a1f1f;
+      --bg-gradient: radial-gradient(circle at top, #4a3838 0%, #201717 100%);
       --text-light: #f5f5f7;
       --text-muted: #deccad;
-      --popupOverlay-bg: rgba(20, 15, 15, 0.75);
+      --popupOverlay-bg: rgba(15, 10, 10, 0.85);
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(145, 140, 101, 0.2);
     }
 
     * {
@@ -30,12 +32,50 @@
       min-height: 100vh;
       background: var(--bg-color);
       background-image: var(--bg-gradient);
-      overflow: hidden;
+      overflow-x: hidden;
       color: var(--text-light);
+      display: flex;
+      flex-direction: column;
     }
 
     body.loaded {
-      overflow: auto;
+      overflow-y: auto;
+    }
+
+    /* --- ZARİF ARKA PLAN DETAYLARI --- */
+    .ambient-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: -2;
+      pointer-events: none;
+    }
+    .glow-1 {
+      width: 45vw;
+      height: 45vw;
+      background: var(--main-color);
+      top: -15vw;
+      left: -15vw;
+      opacity: 0.15;
+    }
+    .glow-2 {
+      width: 55vw;
+      height: 55vw;
+      background: var(--accent-color);
+      bottom: -20vw;
+      right: -10vw;
+      opacity: 0.12;
+    }
+    .bg-watermark {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80vh;
+      opacity: 0.02;
+      z-index: -3;
+      pointer-events: none;
+      user-select: none;
     }
 
     /* Özel Scrollbar */
@@ -44,11 +84,11 @@
     ::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 10px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--main-color-light); }
 
-    /* Yükleme Ekranı (Premium Animasyon) */
+    /* Yükleme Ekranı */
     .loading-overlay {
       position: fixed;
       inset: 0;
-      background-color: var(--bg-color);
+      background-color: #201717;
       z-index: 9999;
       display: flex;
       justify-content: center;
@@ -84,17 +124,65 @@
       0% { transform: scale(0.9); opacity: 0.7; }
       100% { transform: scale(1.1); opacity: 1; }
     }
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
 
-    p {
+    /* --- MASAÜSTÜ ZARİF IZGARA (GRID) DÜZENİ --- */
+    .desktop-content-grid {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
       max-width: 600px;
-      margin: 40px auto;
+      margin: 0 auto;
+      flex: 1;
+    }
+    
+    .item-nedir { order: 1; width: 100%; }
+    .item-urunler { order: 2; width: 100%; }
+    .item-iletisim { order: 3; width: 100%; }
+
+    @media (min-width: 1024px) {
+      .layout {
+        max-width: 1050px !important;
+      }
+      .desktop-content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        grid-template-rows: auto auto;
+        column-gap: 60px;
+        max-width: 1050px;
+        align-items: center;
+        margin-top: 30px;
+      }
+      .item-nedir { grid-column: 1; grid-row: 1; align-self: end; }
+      .item-iletisim { grid-column: 1; grid-row: 2; align-self: start; }
+      .item-urunler { grid-column: 2; grid-row: 1 / span 2; }
+      .slider-wrapper { max-width: 100% !important; }
+    }
+
+    /* Glassmorphism Kartları (İletişim ve Nedir) */
+    .glass-card {
+      max-width: 600px;
+      margin: 20px auto 40px auto;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 24px;
+      border-radius: 16px;
+      color: var(--text-light);
       font-size: 15px;
       line-height: 1.6;
-      text-align: left;
-      padding: 0 5px;
-      color: var(--text-light);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    
+    .glass-card p {
+      margin: 0;
       font-weight: 300;
       letter-spacing: 0.5px;
+      text-align: center;
     }
 
     .line-text-wrapper {
@@ -129,54 +217,28 @@
       margin: 0;
       padding: 0;
       cursor: pointer;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, transform 0.3s ease;
     }
-    .line-label-h2:hover { color: #fff; }
+    .line-label-h2:hover { color: #fff; transform: translate(18px, -50%); }
 
     @media (max-width: 600px) {
       .line-text-wrapper { height: 60px; }
       .center-line { height: 100px; }
       .line-label-h2 { font-size: 1.2rem; transform: translate(10px, -50%); }
+      .line-label-h2:hover { transform: translate(13px, -50%); }
     }
 
-    /* İletişim Kutusu (Glassmorphism) */
-    .contact-container {
-      max-width: 600px;
-      margin: 40px auto;
-      margin-bottom: 24px;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 24px;
-      border-radius: 16px;
-      color: var(--text-light);
-      font-size: 15px;
-      line-height: 1.6;
-      border: 1px solid rgba(145, 140, 101, 0.4);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    .contact-item {
-      margin-bottom: 12px;
-      text-align: center;
-    }
-
+    .contact-item { margin-bottom: 12px; text-align: center; }
     .contact-item a {
       color: var(--text-light);
       text-decoration: none;
       transition: color 0.2s;
       font-weight: 400;
     }
-
-    .contact-item a:hover {
-      color: var(--main-color);
-    }
+    .contact-item a:hover { color: var(--main-color); }
 
     @media (max-width: 600px) {
-      .contact-container {
-        padding: 20px;
-        font-size: 14px;
-      }
+      .glass-card { padding: 20px; font-size: 14px; }
     }
 
     /* Slider Geliştirmeleri */
@@ -190,22 +252,16 @@
       box-shadow: 0 15px 40px rgba(0,0,0,0.4);
       background-color: transparent;
       touch-action: pan-y;
-      margin: 40px auto;
+      margin: 20px auto 10px auto;
       user-select: none;
-      border: 1px solid rgba(222, 204, 173, 0.2);
+      border: 1px solid var(--glass-border);
       transition: opacity 0.3s ease;
-      margin-bottom: 0;
-    }
-
-    .slider-wrapper.disable-interaction {
-      pointer-events: none;
-      opacity: 0.6;
     }
 
     .slider-track {
       display: flex;
       height: 100%;
-      transition: transform 0.5s ease-in-out;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       will-change: transform;
       cursor: grab;
     }
@@ -215,11 +271,7 @@
       transition: none !important;
     }
 
-    .slide {
-      flex: 0 0 100%;
-      height: 100%;
-    }
-
+    .slide { flex: 0 0 100%; height: 100%; }
     .slide img {
       width: 100%;
       height: 100%;
@@ -249,7 +301,7 @@
       display: flex;
       gap: 10px;
       z-index: 11;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.4);
       padding: 6px 12px;
       border-radius: 20px;
       backdrop-filter: blur(4px);
@@ -259,20 +311,11 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background-color: rgba(255,255,255,0.4);
+      background-color: rgba(255,255,255,0.3);
       transition: background-color 0.3s ease, transform 0.3s ease;
       cursor: pointer;
     }
-
-    .dot.active {
-      background-color: #ffffff;
-      transform: scale(1.4);
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg);}
-      100% { transform: rotate(360deg);}
-    }
+    .dot.active { background-color: #ffffff; transform: scale(1.4); }
 
     @media (max-width: 768px) {
       .slider-wrapper { border-radius: 16px; }
@@ -298,20 +341,22 @@
       flex: 1;
       text-align: center;
       cursor: pointer;
-      transition: color 0.3s ease, transform 0.2s ease;
+      transition: color 0.3s ease, transform 0.2s ease, background 0.3s ease;
       color: var(--text-light);
       font-weight: 700;
       line-height: 1.3;
-      padding: 10px;
-      background: rgba(255,255,255,0.05);
+      padding: 12px 10px;
+      background: var(--glass-bg);
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(5px);
     }
     
     .side-text:hover {
-      background: rgba(255,255,255,0.1);
-      transform: translateY(-2px);
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-3px);
       color: var(--main-color-light);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
     .logo {
@@ -387,29 +432,20 @@
       height: 100%;
       transform: rotate(-90deg);
     }
-
-    .progress-ring-track {
-      stroke: rgba(255,255,255,0.1);
-      stroke-width: 3;
-      fill: transparent;
-    }
-
+    .progress-ring-track { stroke: rgba(255,255,255,0.1); stroke-width: 3; fill: transparent; }
     .progress-ring {
-      stroke: var(--main-color);
-      stroke-width: 3;
-      fill: transparent;
-      stroke-linecap: round;
-      transition: stroke-dashoffset 0.1s linear;
+      stroke: var(--main-color); stroke-width: 3; fill: transparent;
+      stroke-linecap: round; transition: stroke-dashoffset 0.1s linear;
     }
 
-    /* Popup & Overlay Geliştirmeleri */
+    /* --- PREMIUM DARK THEME POPUP --- */
     .popupOverlay {
       display: flex;
       position: fixed;
       inset: 0;
       background-color: var(--popupOverlay-bg);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       justify-content: center;
       align-items: flex-start;
       overflow-y: auto;
@@ -419,26 +455,23 @@
       opacity: 0;
       transition: opacity 0.4s ease, visibility 0.4s ease;
     }
-    .popupOverlay.show {
-      visibility: visible;
-      opacity: 1;
-    }
+    .popupOverlay.show { visibility: visible; opacity: 1; }
     
     .popupOverlay-content {
-      background: #ffffff;
+      background: #231919; /* Dark Premium Arka Plan */
       width: 100%;
       max-width: 1100px;
-      max-height: 90vh;
-      overflow-y: auto;
+      min-height: 50vh;
       border-radius: 24px;
-      padding: 30px 24px;
+      padding: 35px 24px;
       position: relative;
       display: flex;
       flex-direction: column;
       transform: translateY(30px) scale(0.98);
       opacity: 0;
       transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      border: 1px solid var(--glass-border);
     }
     .popupOverlay.show .popupOverlay-content {
       transform: translateY(0) scale(1);
@@ -450,7 +483,7 @@
       top: 15px;
       right: 20px;
       font-size: 2.5rem;
-      color: #999;
+      color: #888;
       background: transparent;
       border: none;
       cursor: pointer;
@@ -460,11 +493,11 @@
       transition: color 0.2s ease, transform 0.2s ease;
     }
     .close-popupOverlay:hover {
-      color: var(--accent-color);
+      color: var(--main-color);
       transform: rotate(90deg);
     }
 
-    /* Kategori Tabları */
+    /* Dark Kategori Tabları */
     .popupCategoryTabs {
       display: flex;
       flex-wrap: wrap;
@@ -475,9 +508,9 @@
     .popupCategoryTabs button {
       padding: 10px 22px;
       border-radius: 30px;
-      border: 1px solid #eaeaea;
-      background: #f8f9fa;
-      color: #555;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.3);
+      color: var(--text-muted);
       font-size: 14px;
       font-weight: 600;
       font-family: 'Outfit', sans-serif;
@@ -486,24 +519,24 @@
     }
     .popupCategoryTabs button i {
       font-style: normal;
-      background: #ffebee;
-      color: #d32f2f;
+      background: rgba(211, 47, 47, 0.2);
+      color: #ff5252;
       padding: 2px 8px;
       border-radius: 12px;
       font-size: 12px;
       margin-left: 6px;
     }
     .popupCategoryTabs button:hover {
-      background-color: #fff;
+      background-color: rgba(255,255,255,0.05);
       border-color: var(--main-color);
+      color: #fff;
       transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(145, 140, 101, 0.15);
     }
     .popupCategoryTabs button.selected {
       background: linear-gradient(135deg, var(--main-color), var(--main-color-light));
-      color: white;
+      color: #1a1a1a;
       border-color: transparent;
-      box-shadow: 0 6px 15px rgba(145, 140, 101, 0.3);
+      box-shadow: 0 6px 15px rgba(145, 140, 101, 0.2);
     }
 
     /* Sepet Butonu */
@@ -522,7 +555,7 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 6px 16px rgba(118, 48, 0, 0.3);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
       user-select: none;
       z-index: 50;
       transition: all 0.3s ease;
@@ -530,7 +563,7 @@
     }
     .popupBasketButton:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(118, 48, 0, 0.4);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     }
     .popupBasketButton span {
       background: white;
@@ -553,7 +586,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(35, 25, 25, 0.8);
       border-radius: 16px;
       z-index: 100;
     }
@@ -563,7 +596,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      border: 4px solid #f3f3f3;
+      border: 4px solid rgba(255,255,255,0.1);
       border-top: 4px solid var(--main-color);
       border-radius: 50%;
       width: 40px;
@@ -572,26 +605,27 @@
       z-index: 101;
     }
 
-    /* Ürün Kartları */
+    /* Dark Ürün Kartları */
     .popupProductItem {
       opacity: 0;
       transform: scale(0.9);
       transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
       width: 145px;
-      border: 1px solid #f0f0f0;
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 16px;
       padding: 12px;
-      background: #ffffff;
+      background: rgba(0,0,0,0.2);
       text-align: center;
       display: none;
       flex-direction: column;
       gap: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
     .popupProductItem:hover {
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
       transform: translateY(-5px);
-      border-color: #e4e4e4;
+      border-color: rgba(145, 140, 101, 0.3);
+      background: rgba(255,255,255,0.02);
     }
     .popupProductItem.popupVisible {
       opacity: 1;
@@ -602,10 +636,11 @@
       height: 140px;
       object-fit: cover;
       border-radius: 12px;
+      background: #111;
     }
     .popupProductItem .popupProductPrice {
       font-size: 16px;
-      color: #222;
+      color: var(--main-color-light);
       font-weight: 800;
     }
     .popupProductItem button {
@@ -626,16 +661,16 @@
     }
     .popupProductItem .details-button {
       background-color: transparent;
-      color: #666;
-      border: 1px solid #ddd;
+      color: var(--text-muted);
+      border: 1px solid rgba(255,255,255,0.2);
     }
     .popupProductItem .details-button:hover {
-      background-color: #f5f5f5;
-      color: #222;
-      border-color: #ccc;
+      background-color: rgba(255,255,255,0.1);
+      color: #fff;
+      border-color: rgba(255,255,255,0.4);
     }
 
-    /* Özel Üretim Formu */
+    /* Özel Üretim Formu Dark */
     .customProductionForm {
       display: none;
       flex-direction: column;
@@ -644,10 +679,10 @@
       max-width: 500px;
       margin: 0 auto;
       padding: 30px;
-      border: 1px solid #eee;
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 20px;
-      background-color: #fff;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      background-color: rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       opacity: 0;
       transform: translateY(15px);
       transition: opacity 0.4s ease, transform 0.4s ease;
@@ -658,31 +693,32 @@
     }
     .customProductionForm h3 {
       font-size: 22px;
-      color: #222;
+      color: var(--main-color-light);
       margin-bottom: 5px;
       text-align: center;
     }
     .customProductionForm label {
-      font-weight: 600;
-      color: #444;
+      font-weight: 500;
+      color: #ccc;
       font-size: 14px;
     }
     .customProductionForm input,
     .customProductionForm textarea {
       width: 100%;
       padding: 12px 16px;
-      border: 1px solid #e0e0e0;
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 10px;
       font-size: 15px;
       font-family: inherit;
-      background: #fcfcfc;
+      background: rgba(255,255,255,0.05);
+      color: white;
       transition: all 0.2s ease;
     }
     .customProductionForm input:focus,
     .customProductionForm textarea:focus {
       border-color: var(--main-color);
-      background: #fff;
-      box-shadow: 0 0 0 4px rgba(145, 140, 101, 0.15);
+      background: rgba(0,0,0,0.5);
+      box-shadow: 0 0 0 3px rgba(145, 140, 101, 0.2);
     }
     .customProductionForm textarea {
       resize: vertical;
@@ -706,12 +742,12 @@
       box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
     }
 
-    /* Ürün Detay Popup */
+    /* Ürün Detay Popup (Dark) */
     .productDetailsPopupOverlay {
       display: flex;
       position: fixed;
       inset: 0;
-      background-color: rgba(0, 0, 0, 0.85);
+      background-color: rgba(0, 0, 0, 0.9);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       justify-content: center;
@@ -724,10 +760,11 @@
     .productDetailsPopupOverlay.show { visibility: visible; opacity: 1; }
     
     .productDetailsPopupContent {
-      background: #fff;
+      background: #1a1a1a;
       padding: 24px;
       border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.1);
       max-width: 90%;
       max-height: 90vh;
       overflow-y: auto;
@@ -748,7 +785,7 @@
       top: 10px;
       right: 15px;
       font-size: 2.5rem;
-      color: #999;
+      color: #666;
       background: transparent;
       border: none;
       cursor: pointer;
@@ -757,7 +794,7 @@
       line-height: 1;
       transition: color 0.2s, transform 0.2s;
     }
-    .close-productDetailsPopup:hover { color: var(--accent-color); transform: rotate(90deg); }
+    .close-productDetailsPopup:hover { color: var(--main-color); transform: rotate(90deg); }
 
     .productDetailsImageMain { 
       max-width: 100%;
@@ -781,7 +818,7 @@
     .productDetailsImageMain-wrapper.loading::after {
       content: '';
       position: absolute;
-      border: 4px solid #f3f3f3;
+      border: 4px solid rgba(255,255,255,0.1);
       border-top: 4px solid var(--main-color);
       border-radius: 50%;
       width: 40px;
@@ -792,11 +829,12 @@
     .productDetailsCode {
       font-size: 1.2rem;
       font-weight: 700;
-      color: #333;
+      color: var(--text-light);
       text-align: center;
       margin-top: 16px;
       padding: 10px 20px;
-      background: #f5f5f5;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 8px;
     }
 
@@ -821,7 +859,7 @@
     .productDetailsImageGallery-item-wrapper:hover {
       border-color: var(--main-color);
       transform: translateY(-3px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
     .productDetailsImageGallery img {
       width: 100%; 
@@ -830,11 +868,11 @@
       transition: opacity 0.3s;
     }
 
-    /* Mesaj Kutuları */
+    /* Mesaj Kutuları Dark */
     .custom-message-box-overlay, .popupBasketButton-popupOverlay {
       position: fixed;
       inset: 0;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(5px);
       display: flex;
       justify-content: center;
@@ -849,10 +887,11 @@
       opacity: 1;
     }
     .custom-message-box-content, .popupBasketButton-popupOverlay > div {
-      background: white;
+      background: #201717;
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.1);
       text-align: center;
       max-width: 360px;
       width: 90%;
@@ -868,8 +907,8 @@
     .custom-message-box-content p {
       margin: 0 0 24px 0;
       font-size: 16px;
-      color: #333;
-      font-weight: 500;
+      color: #eee;
+      font-weight: 400;
     }
     .custom-message-box-content button {
       background: var(--main-color);
@@ -888,39 +927,40 @@
       transform: translateY(-2px);
     }
 
-    /* Sepet Paneli İçi */
+    /* Sepet Paneli İçi Dark */
     .popupBasketButton-popupOverlay h3 {
       font-size: 22px;
       margin-top: 0;
       margin-bottom: 20px;
-      color: #222;
-      font-weight: 800;
+      color: var(--main-color-light);
+      font-weight: 700;
     }
     .popupBasketButton-popupOverlay #popupBasketItems div {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #f4f5f7;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 10px;
       padding: 10px 16px;
       margin-bottom: 12px;
       font-size: 15px;
-      font-weight: 500;
-      color: #444;
+      font-weight: 400;
+      color: #ddd;
     }
     .popupBasketButton-popupOverlay #popupBasketItems div button {
-      background: #ffebee;
+      background: rgba(211, 47, 47, 0.2);
       padding: 6px 12px;
       border-radius: 6px;
-      border: none;
-      color: #d32f2f;
+      border: 1px solid rgba(211, 47, 47, 0.3);
+      color: #ff5252;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
     }
     .popupBasketButton-popupOverlay #popupBasketItems div button:hover {
-      background: #ffcdd2;
+      background: rgba(211, 47, 47, 0.4);
     }
     .popupBasketButton-popupOverlay .popupWhatsAppButton {
       background: linear-gradient(135deg, #25d366, #1ebe57);
@@ -947,11 +987,11 @@
       font-size: 2.5rem;
       background: transparent;
       border: none;
-      color: #aaa;
+      color: #666;
       cursor: pointer;
       transition: color 0.2s;
     }
-    .popupBasketButton-popupOverlay .popupCloseSmall:hover { color: var(--accent-color); }
+    .popupBasketButton-popupOverlay .popupCloseSmall:hover { color: var(--main-color); }
 
     /* Bildirim */
     #popupAddNotice {
@@ -967,8 +1007,58 @@
       font-weight: 600;
       font-size: 15px;
       display: none;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       z-index: 9999; 
       transition: opacity 0.3s ease;
+    }
+
+    /* Minimal Footer */
+    .site-footer {
+      margin-top: auto;
+      padding: 40px 20px 20px;
+      text-align: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Vurgu Animasyonu - "Bak, ben buradayım!" */
+    @keyframes highlightPulse {
+      0% {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border-color: var(--glass-border);
+        transform: scale(1);
+        background: var(--glass-bg);
+      }
+      25% {
+        box-shadow: 0 0 35px rgba(145, 140, 101, 0.6);
+        border-color: var(--main-color);
+        transform: scale(1.02);
+        background: rgba(145, 140, 101, 0.1);
+      }
+      50% {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border-color: var(--glass-border);
+        transform: scale(1);
+        background: var(--glass-bg);
+      }
+      75% {
+        box-shadow: 0 0 35px rgba(118, 48, 0, 0.6); /* Kiremit tonu vurgusu */
+        border-color: var(--accent-color);
+        transform: scale(1.02);
+        background: rgba(118, 48, 0, 0.1);
+      }
+      100% {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border-color: var(--glass-border);
+        transform: scale(1);
+        background: var(--glass-bg);
+      }
+    }
+    
+    /* Bu class JS ile dinamik olarak eklenecek */
+    .is-highlighted {
+      animation: highlightPulse 1.8s ease-in-out;
     }
   

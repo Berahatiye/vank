@@ -1,4 +1,5 @@
 
+  // Slider Mantığı ve Otomatik Oynatma (Auto-play)
   const slider = document.getElementById('slider');
   const track = slider.querySelector('.slider-track');
   const dots = slider.querySelectorAll('.dot');
@@ -8,13 +9,27 @@
   let isDragging = false;
   let startX = 0;
   let currentX = 0;
+  let autoPlayTimer;
 
   function setSlide(i) {
     index = i;
-    track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     track.style.transform = `translateX(-${index * 100}%)`;
     dots.forEach(dot => dot.classList.remove('active'));
     if (dots[index]) dots[index].classList.add('active');
+  }
+
+  function startAutoPlay() {
+    autoPlayTimer = setInterval(() => {
+      if (!isDragging) {
+        let nextIndex = (index + 1) % totalSlides;
+        setSlide(nextIndex);
+      }
+    }, 4000); // 4 saniyede bir değişir
+  }
+
+  function stopAutoPlay() {
+    clearInterval(autoPlayTimer);
   }
 
   function onStart(x) {
@@ -23,6 +38,7 @@
     currentX = x;
     track.classList.add('dragging');
     track.style.transition = 'none';
+    stopAutoPlay();
   }
 
   function onMove(x) {
@@ -41,11 +57,14 @@
     else if (dx > 50 && index > 0) index--;
     setSlide(index);
     isDragging = false;
+    startAutoPlay();
   }
 
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
       setSlide(i);
+      stopAutoPlay();
+      startAutoPlay();
     });
   });
 
@@ -55,15 +74,40 @@
   slider.addEventListener('mousedown', e => { e.preventDefault(); onStart(e.clientX); });
   slider.addEventListener('mousemove', e => { if (isDragging) onMove(e.clientX); });
   slider.addEventListener('mouseup', onEnd);
-  slider.addEventListener('mouseleave', onEnd);
+  slider.addEventListener('mouseleave', () => { if(isDragging) onEnd(); else { stopAutoPlay(); startAutoPlay(); } });
+  slider.addEventListener('mouseenter', stopAutoPlay);
+  
   slider.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
+
+  // Sayfa yüklendiğinde slider otomatik başlasın
+  startAutoPlay();
+
+  // Scroll to Section + Highlight Animasyonu
+  function scrollToContactAndHighlight() {
+      const element = document.getElementById('contactBox');
+      if (element) {
+          // Sayfayı yumuşakça kaydır
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+          // Önceki animasyonu sıfırla (eğer peş peşe basılırsa diye)
+          element.classList.remove('is-highlighted');
+          
+          // Çok kısa bir bekleme ile animasyonu tetikle ki CSS algılasın
+          setTimeout(() => {
+              element.classList.add('is-highlighted');
+          }, 50);
+          
+          // Animasyon süresi bitince class'ı kaldır
+          setTimeout(() => {
+              element.classList.remove('is-highlighted');
+          }, 1850);
+      }
+  }
 
   function scrollToSection(elementId) {
       const element = document.getElementById(elementId);
       if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-          console.warn("Element with ID '" + elementId + "' not found.");
       }
   }
 
@@ -116,34 +160,25 @@
   }
 
   function scrollToTop() {
-      window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       scrollButton.classList.add('interacted');
-      setTimeout(() => {
-          scrollButton.classList.remove('interacted');
-      }, 500);
+      setTimeout(() => scrollButton.classList.remove('interacted'), 500);
   }
 
   document.addEventListener('DOMContentLoaded', updateScrollProgress);
   window.addEventListener('scroll', updateScrollProgress);
   window.addEventListener('resize', updateScrollProgress);
 
-  document.addEventListener('gesturestart', function (e) {
-      e.preventDefault();
-  });
-  window.addEventListener('wheel', function (e) {
-    if (e.ctrlKey) {
-      e.preventDefault();
-    }
-  }, { passive: false });
-  window.addEventListener('keydown', function (e) {
+  // Mobil Zoom Engeli
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  window.addEventListener('wheel', e => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
+  window.addEventListener('keydown', e => {
     if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=')) {
       e.preventDefault();
     }
   });
 
+  // Popup ve Sepet İşlemleri
   const popupOverlay = document.getElementById('popupContainerMain');
   const popupOverlayContent = popupOverlay.querySelector('.popupOverlay-content');
   const popupBasketPanel = document.getElementById('popupBasketPanel');
@@ -167,46 +202,32 @@
       customMessageBoxText.textContent = message;
       customMessageBox.classList.add('show');
   }
-
-  function hideMessageBox() {
-      customMessageBox.classList.remove('show');
-  }
+  function hideMessageBox() { customMessageBox.classList.remove('show'); }
 
   function launchPopup() {
     popupOverlay.classList.add('show');
-    setTimeout(() => {
-      activateCategoryTab('Çanta');
-    }, 10);
+    document.body.style.overflow = 'hidden'; // Arka plan kaymasını engelle
+    setTimeout(() => activateCategoryTab('Çanta'), 10);
   }
 
   function dismissPopup() {
     hideBasketPanel();
     hideProductDetails();
     popupOverlay.classList.remove('show');
-    setTimeout(() => {
-      popupOverlayContent.scrollTop = 0;
-    }, 300);
+    document.body.style.overflow = 'auto'; // Arka plan kaymasını geri aç
+    setTimeout(() => popupOverlayContent.scrollTop = 0, 300);
   }
 
   function activateCategoryTab(category) {
-    document.querySelectorAll('.popupCategoryTabs button').forEach(btn => {
-      btn.classList.remove('selected');
-    });
-
+    document.querySelectorAll('.popupCategoryTabs button').forEach(btn => btn.classList.remove('selected'));
     const selectedButton = Array.from(document.querySelectorAll('.popupCategoryTabs button')).find(btn => {
         if (category === 'SeriSonu' && btn.textContent.includes('Seri Sonu')) return true;
         if (category === 'CeketMont' && btn.textContent.includes('Ceket/Mont')) return true;
         return btn.textContent.trim() === category;
     });
+    if (selectedButton) selectedButton.classList.add('selected');
 
-    if (selectedButton) {
-      selectedButton.classList.add('selected');
-    }
-
-    products.forEach(p => {
-        p.classList.remove('popupVisible');
-        p.style.display = 'none'; 
-    });
+    products.forEach(p => { p.classList.remove('popupVisible'); p.style.display = 'none'; });
     customProductionForm.classList.remove('popupVisible');
     customProductionForm.style.display = 'none';
     popupProductList.classList.add('loading'); 
@@ -219,13 +240,11 @@
             const productItemsToShow = Array.from(products).filter(p => p.dataset.category === category);
             productItemsToShow.forEach((p, index) => {
                 p.style.display = 'flex'; 
-                setTimeout(() => {
-                    p.classList.add('popupVisible'); 
-                }, 50 + (index * 40)); 
+                setTimeout(() => p.classList.add('popupVisible'), 50 + (index * 40)); 
             });
         }
         popupProductList.classList.remove('loading'); 
-    }, 150); 
+    }, 200); 
   }
 
   function addItemToBasket(code) {
@@ -258,9 +277,7 @@
         delBtn.textContent = 'Kaldır';
         delBtn.onclick = (function(c) {
             return function() {
-                if (--basketData[c] <= 0) {
-                    delete basketData[c];
-                }
+                if (--basketData[c] <= 0) delete basketData[c];
                 updateBasketDisplay();
             };
         })(code);
@@ -271,30 +288,19 @@
   }
 
   function toggleBasketView() {
-    if (Object.keys(basketData).length === 0) {
-        showMessageBox('Sepetiniz henüz boş.');
-        return;
-    }
+    if (Object.keys(basketData).length === 0) { showMessageBox('Sepetiniz henüz boş.'); return; }
     popupBasketPanel.classList.toggle('show');
   }
-
-  function hideBasketPanel() {
-    popupBasketPanel.classList.remove('show');
-  }
+  function hideBasketPanel() { popupBasketPanel.classList.remove('show'); }
 
   function submitOrderWhatsApp() {
     if (customProductionForm.classList.contains('popupVisible')) {
         submitCustomOrderWhatsApp();
         return;
     }
-    if (Object.keys(basketData).length === 0) {
-        showMessageBox('Sepetiniz boş.');
-        return;
-    }
+    if (Object.keys(basketData).length === 0) { showMessageBox('Sepetiniz boş.'); return; }
     let msg = 'Merhaba, sipariş vermek istiyorum:%0A';
-    for (const [code, qty] of Object.entries(basketData)) {
-      msg += `👉 ${code} x ${qty} Adet%0A`;
-    }
+    for (const [code, qty] of Object.entries(basketData)) { msg += `👉 ${code} x ${qty} Adet%0A`; }
     window.open(`https://wa.me/905059792823?text=${msg}`, '_blank');
     basketData = {};
     updateBasketDisplay();
@@ -308,14 +314,9 @@
     const details = document.getElementById('productionDetails').value;
     const notes = document.getElementById('additionalNotes').value;
 
-    if (!name || !phone || !details) {
-        showMessageBox('Lütfen adınızı, telefon numaranızı ve üretim detaylarını doldurunuz.');
-        return;
-    }
+    if (!name || !phone || !details) { showMessageBox('Lütfen adınızı, telefon numaranızı ve üretim detaylarını doldurunuz.'); return; }
 
-    let msg = `✨ Özel Üretim Talebi ✨%0A` +
-              `👤 Adı Soyadı: ${name}%0A` +
-              `📱 Telefon: ${phone}%0A`;
+    let msg = `✨ Özel Üretim Talebi ✨%0A👤 Adı Soyadı: ${name}%0A📱 Telefon: ${phone}%0A`;
     if (email) msg += `✉️ E-posta: ${email}%0A`;
     msg += `📝 Detaylar: ${details}%0A`;
     if (notes) msg += `📌 Ek Notlar: ${notes}%0A`;
@@ -332,17 +333,16 @@
   function showProductDetails(imageUrls, productCode) {
     productDetailsCode.textContent = productCode;
     productDetailsImageGallery.innerHTML = ''; 
-
     productDetailsImageMainWrapper.classList.add('loading');
     productDetailsImageMain.classList.add('loading');
-
     productDetailsImageMain.src = imageUrls[0];
+    
     productDetailsImageMain.onload = () => {
         productDetailsImageMainWrapper.classList.remove('loading');
         productDetailsImageMain.classList.remove('loading');
     };
     productDetailsImageMain.onerror = function() {
-        this.src = 'https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing';
+        this.src = 'https://placehold.co/600x400/1a1a1a/f5f5f7?text=Image+Missing';
         productDetailsImageMainWrapper.classList.remove('loading');
         productDetailsImageMain.classList.remove('loading');
     };
@@ -351,7 +351,6 @@
         imageUrls.forEach((url, index) => {
             const thumbWrapper = document.createElement('div');
             thumbWrapper.classList.add('productDetailsImageGallery-item-wrapper');
-
             const thumbImg = document.createElement('img');
             thumbImg.src = url;
             thumbImg.alt = `Vank Deri ${productCode} Detay Görsel ${index + 1}`; 
@@ -359,23 +358,17 @@
             thumbWrapper.classList.add('loading');
             thumbImg.classList.add('loading');
 
-            thumbImg.onload = () => {
-                thumbWrapper.classList.remove('loading');
-                thumbImg.classList.remove('loading');
-            };
+            thumbImg.onload = () => { thumbWrapper.classList.remove('loading'); thumbImg.classList.remove('loading'); };
             thumbImg.onerror = function() {
-                this.src = 'https://placehold.co/80x80/362828/f5f5f7?text=Thumb';
-                thumbWrapper.classList.remove('loading');
-                thumbImg.classList.remove('loading');
+                this.src = 'https://placehold.co/80x80/1a1a1a/f5f5f7?text=Thumb';
+                thumbWrapper.classList.remove('loading'); thumbImg.classList.remove('loading');
             };
 
             thumbWrapper.appendChild(thumbImg);
-
             thumbWrapper.addEventListener('click', () => {
                 productDetailsImageMainWrapper.classList.add('loading');
                 productDetailsImageMain.classList.add('loading');
                 productDetailsImageMain.src = url; 
-                
                 productDetailsImageMain.onload = () => {
                     productDetailsImageMainWrapper.classList.remove('loading');
                     productDetailsImageMain.classList.remove('loading');
@@ -383,25 +376,19 @@
                 productDetailsImageMain.onerror = () => {
                     productDetailsImageMainWrapper.classList.remove('loading');
                     productDetailsImageMain.classList.remove('loading');
-                    productDetailsImageMain.src = 'https://placehold.co/600x400/362828/f5f5f7?text=Image+Missing'; 
+                    productDetailsImageMain.src = 'https://placehold.co/600x400/1a1a1a/f5f5f7?text=Image+Missing'; 
                 };
-
-                Array.from(productDetailsImageGallery.children).forEach(wrapper => wrapper.classList.remove('active'));
+                Array.from(productDetailsImageGallery.children).forEach(w => w.classList.remove('active'));
                 thumbWrapper.classList.add('active');
             });
-            if (index === 0) {
-                thumbWrapper.classList.add('active'); 
-            }
+            if (index === 0) thumbWrapper.classList.add('active'); 
             productDetailsImageGallery.appendChild(thumbWrapper);
         });
     }
-
     productDetailsPopup.classList.add('show');
   }
 
-  function hideProductDetails() {
-    productDetailsPopup.classList.remove('show');
-  }
+  function hideProductDetails() { productDetailsPopup.classList.remove('show'); }
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
@@ -418,34 +405,28 @@
   let totalImagesToLoad = 0;
 
   Array.from(allImages).forEach(img => {
-      if (!img.closest('.popupOverlay') && !img.closest('.productDetailsPopupOverlay')) {
+      if (!img.closest('.popupOverlay') && !img.closest('.productDetailsPopupOverlay') && !img.hasAttribute('loading')) {
           totalImagesToLoad++;
       }
   });
 
   function imageLoaded() {
     imagesLoaded++;
-    if (imagesLoaded >= totalImagesToLoad) {
-      hideFullScreenLoader();
-    }
+    if (imagesLoaded >= totalImagesToLoad) hideFullScreenLoader();
   }
 
   function hideFullScreenLoader() {
       loadingOverlay.style.opacity = '0';
       document.body.classList.add('loaded');
-      setTimeout(() => {
-        loadingOverlay.style.display = 'none';
-      }, 500);
+      setTimeout(() => loadingOverlay.style.display = 'none', 500);
   }
 
-  if (totalImagesToLoad === 0) {
-      hideFullScreenLoader();
-  } else {
+  if (totalImagesToLoad === 0) hideFullScreenLoader();
+  else {
     Array.from(allImages).forEach(img => {
-        if (!img.closest('.popupOverlay') && !img.closest('.productDetailsPopupOverlay')) {
-            if (img.complete) {
-                imageLoaded();
-            } else {
+        if (!img.closest('.popupOverlay') && !img.closest('.productDetailsPopupOverlay') && !img.hasAttribute('loading')) {
+            if (img.complete) imageLoaded();
+            else {
                 img.addEventListener('load', imageLoaded);
                 img.addEventListener('error', imageLoaded);
             }
@@ -455,15 +436,8 @@
 
   function toggleContext(contextId) {
     const contexts = document.querySelectorAll('.line-text-wrapper');
-    contexts.forEach(context => {
-      if (context.id !== contextId) {
-        context.classList.remove('show');
-      }
-    });
-    const current = document.getElementById(contextId);
-    current.classList.toggle('show');
+    contexts.forEach(context => { if (context.id !== contextId) context.classList.remove('show'); });
+    document.getElementById(contextId).classList.toggle('show');
     const button = document.querySelector(`[onclick="toggleContext('${contextId}')"]`);
-    if (button) {
-      button.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (button) button.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
