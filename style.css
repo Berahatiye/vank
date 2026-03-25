@@ -1,7 +1,14 @@
+
     :root {
       --main-color: #918c65;
+      --main-color-light: #a8a37b;
       --accent-color: #763000;
-      --popupOverlay-bg: rgba(0, 0, 0, 0.6);
+      --accent-hover: #9c4000;
+      --bg-color: #362828;
+      --bg-gradient: radial-gradient(circle at top, #4a3838 0%, #2a1f1f 100%);
+      --text-light: #f5f5f7;
+      --text-muted: #deccad;
+      --popupOverlay-bg: rgba(20, 15, 15, 0.75);
     }
 
     * {
@@ -17,50 +24,77 @@
       -webkit-user-select: none;
     }
 
-
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Outfit', sans-serif;
       padding: 24px;
       min-height: 100vh;
-      background-color: #362828;
+      background: var(--bg-color);
+      background-image: var(--bg-gradient);
       overflow: hidden;
+      color: var(--text-light);
     }
 
     body.loaded {
       overflow: auto;
     }
 
+    /* Özel Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--main-color-light); }
+
+    /* Yükleme Ekranı (Premium Animasyon) */
     .loading-overlay {
       position: fixed;
       inset: 0;
-      background-color: #362828;
+      background-color: var(--bg-color);
       z-index: 9999;
       display: flex;
       justify-content: center;
       align-items: center;
       transition: opacity 0.5s ease;
     }
+    
+    .spinner-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-    .spinner {
-      border: 5px solid #eee;
-      border-top: 5px solid #918c65;
+    .loading-logo-pulse {
+      width: 60px;
+      height: auto;
+      animation: pulse 1.5s infinite alternate ease-in-out;
+      z-index: 2;
+    }
+
+    .spinner-ring {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 3px solid rgba(145, 140, 101, 0.2);
+      border-top: 3px solid var(--main-color);
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
       animation: spin 1s linear infinite;
     }
 
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.7; }
+      100% { transform: scale(1.1); opacity: 1; }
+    }
 
     p {
       max-width: 600px;
       margin: 40px auto;
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: 15px;
+      line-height: 1.6;
       text-align: left;
       padding: 0 5px;
-      color: #f5f5f7;
-      font-family: sans-serif;
-      letter-spacing: 1.2px;
+      color: var(--text-light);
+      font-weight: 300;
+      letter-spacing: 0.5px;
     }
 
     .line-text-wrapper {
@@ -76,92 +110,89 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 2.6px;
+      width: 3px;
       height: 126px;
-      background-color: #918c65;
-      border-radius: 2px;
+      background: linear-gradient(to bottom, transparent, var(--main-color), transparent);
+      border-radius: 3px;
     }
 
-    
     .line-label-h2 {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(10px, -50%);
-      font-weight: bold;
-      font-size: 1.3rem;
+      transform: translate(15px, -50%);
+      font-weight: 700;
+      font-size: 1.4rem;
       user-select: none;
-      color: #deccad;
+      color: var(--text-muted);
       line-height: 1.2;
-      
       margin: 0;
       padding: 0;
+      cursor: pointer;
+      transition: color 0.3s ease;
     }
+    .line-label-h2:hover { color: #fff; }
 
     @media (max-width: 600px) {
-      .line-text-wrapper {
-        height: 50px;
-      }
-      .center-line {
-        height: 120px;
-      }
-      .line-label-h2 { 
-        font-size: 1.1rem;
-      }
+      .line-text-wrapper { height: 60px; }
+      .center-line { height: 100px; }
+      .line-label-h2 { font-size: 1.2rem; transform: translate(10px, -50%); }
     }
 
-
+    /* İletişim Kutusu (Glassmorphism) */
     .contact-container {
       max-width: 600px;
       margin: 40px auto;
-      margin-bottom: 12px;
-      background-color: transparent;
-      padding: 20px;
-      border-radius: 8px;
-      color: #f5f5f7;
-      font-size: 14px;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 24px;
+      border-radius: 16px;
+      color: var(--text-light);
+      font-size: 15px;
       line-height: 1.6;
-      border: #918c65 2px solid;
+      border: 1px solid rgba(145, 140, 101, 0.4);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
 
     .contact-item {
-    margin-bottom: 12px;
-    margin-top: 12px;
-    text-align: center;
+      margin-bottom: 12px;
+      text-align: center;
     }
 
     .contact-item a {
-      color: #f5f5f7;
+      color: var(--text-light);
       text-decoration: none;
+      transition: color 0.2s;
+      font-weight: 400;
     }
 
     .contact-item a:hover {
-      text-decoration: underline;
+      color: var(--main-color);
     }
 
     @media (max-width: 600px) {
       .contact-container {
-        padding: 18px;
-        font-size: 13px;
+        padding: 20px;
+        font-size: 14px;
       }
     }
 
-
-
-
+    /* Slider Geliştirmeleri */
     .slider-wrapper {
       position: relative;
       width: 100%;
       max-width: 600px;
       aspect-ratio: 16 / 9;
       overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
       background-color: transparent;
       touch-action: pan-y;
       margin: 40px auto;
       user-select: none;
-      border: solid 2px #918c65;
+      border: 1px solid rgba(222, 204, 173, 0.2);
       transition: opacity 0.3s ease;
       margin-bottom: 0;
     }
@@ -200,37 +231,42 @@
 
     .overlay-image {
       position: absolute;
-      bottom: 1px;
-      right: 10px;
-      width: 100px;
+      bottom: 10px;
+      right: 15px;
+      width: 90px;
       height: auto;
       z-index: 10;
       opacity: 0.9;
       pointer-events: none;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
     }
 
     .dots {
       position: absolute;
-      bottom: 3px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 8px;
+      gap: 10px;
       z-index: 11;
+      background: rgba(0,0,0,0.3);
+      padding: 6px 12px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
     }
 
     .dot {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background-color: rgba(255,255,255,0.3);
+      background-color: rgba(255,255,255,0.4);
       transition: background-color 0.3s ease, transform 0.3s ease;
       cursor: pointer;
     }
 
     .dot.active {
       background-color: #ffffff;
-      transform: scale(1.3);
+      transform: scale(1.4);
     }
 
     @keyframes spin {
@@ -239,390 +275,296 @@
     }
 
     @media (max-width: 768px) {
-      .slider-wrapper { border-radius: 10px; }
-      .overlay-image { width: 50px; bottom: -6px; right: 1px; }
-      .dot { width: 18px; height: 18px; }
-      .dots { gap: 12px; }
+      .slider-wrapper { border-radius: 16px; }
+      .overlay-image { width: 60px; bottom: 8px; right: 10px; }
+      .dot { width: 8px; height: 8px; }
+      .dots { gap: 8px; padding: 5px 10px; }
     }
 
-    @media (max-width: 480px) {
-      .overlay-image { width: 40px; bottom: -6px; right: 4px; }
-      .dot { width: 14px; height: 14px; }
-      .dots { gap: 9px; bottom: 2.7px; }
-      .spinner { width: 30px; height: 30px; border-width: 4px; }
-    }
-
-
-
-
-
+    /* Başlık Düzeni */
     .layout {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
       max-width: 600px;
-      margin: 40px auto;
-      margin-top: 0;
+      margin: 20px auto 40px;
       gap: 12px;
       flex-wrap: nowrap;
     }
 
-
     .side-text {
-      font-size: clamp(0.85rem, 2.5vw, 1.2rem);
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
       flex: 1;
       text-align: center;
       cursor: pointer;
-      transition: color 0.3s ease;
-      color: #f5f5f7;
-      font-style: normal;
-      font-weight: bolder;
-      line-height: 1.2;
+      transition: color 0.3s ease, transform 0.2s ease;
+      color: var(--text-light);
+      font-weight: 700;
+      line-height: 1.3;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .side-text:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+      color: var(--main-color-light);
     }
 
     .logo {
       height: auto;
-      width: clamp(90px, 18vw, 100px);
-      max-height: 100px;
-      border: 2px #918c65 solid;
-      transition: transform 0.3s ease;
+      width: clamp(90px, 18vw, 110px);
+      max-height: 110px;
+      border: 2px solid var(--main-color);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       flex: 0 0 auto;
       object-fit: contain;
       cursor: default;
-      border-radius: 3px;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.2);
+    }
+    .logo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(145, 140, 101, 0.3);
     }
 
-
-    @media (max-width: 480px) {
-      .side-text {
-        font-size: 1rem;
-      }
-
-      .logo {
-        max-height: 90px;
-      }
-    }
-
-    @media (max-width: 320px) {
-      .side-text {
-        font-size: 0.9rem;
-      }
-    }
-
-
-
-
-
-
-
-   #scrollBtnContainer {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            width: 55px;
-            height: 55px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: width 0.3s ease-in-out, height 0.3s ease-in-out, bottom 0.3s ease-in-out, right 0.3s ease-in-out;
-
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-
-        #scrollBtnContainer.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-
-        #scrollBtnContainer:active .scroll-top-button,
-        #scrollBtnContainer:focus .scroll-top-button {
-            background-color: #b45622;
-            transform: translateY(-2px);
-        }
-
-
-        #scrollBtnContainer .scroll-top-button.interacted + .progress-ring-svg circle.progress-ring-track {
-             stroke: #F4D35E;
-        }
-
-        #scrollBtnContainer .scroll-top-button.interacted + .progress-ring-svg circle.progress-ring {
-            stroke: #EE964B;
-        }
-
-        .scroll-top-button {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background-color: #763000;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s, width 0.3s ease-in-out, height 0.3s ease-in-out, font-size 0.3s ease-in-out;
-            position: absolute;
-            border: none;
-            outline: none;
-            touch-action: manipulation;
-        }
-
-        .scroll-top-button span {
-            line-height: 1;
-        }
-
-
-        .progress-ring-svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transform: rotate(-90deg);
-        }
-
-        .progress-ring-track {
-            stroke: #F7F5DD;
-            stroke-width: 4;
-            fill: transparent;
-        }
-
-        .progress-ring {
-            stroke: #fb6601;
-            stroke-width: 4;
-            fill: transparent;
-            stroke-linecap: round;
-            transition: stroke 0.3s ease-in-out;
-        }
-
-
-        @media (max-width: 480px) {
-
-            #scrollBtnContainer {
-                width: 50px;
-                height: 50px;
-                bottom: 1px;
-                right: 1px;
-            }
-
-            .scroll-top-button {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
-            }
-
-            .progress-ring-track,
-            .progress-ring {
-                stroke-width: 3;
-            }
-        }
-
-        @media (max-width: 320px) {
-            #scrollBtnContainer {
-                width: 45px;
-                height: 45px;
-                bottom: 1px;
-                right: 1px;
-            }
-
-            .scroll-top-button {
-                width: 35px;
-                height: 35px;
-                font-size: 16px;
-            }
-
-            .progress-ring-svg circle {
-                r: 21;
-                cx: 22.5;
-                cy: 22.5;
-            }
-
-            .progress-ring-track,
-            .progress-ring {
-                stroke-width: 2.5;
-            }
-        }
-
-
-
-        @media (min-width: 480px) {
-            p {
-                font-size: 16px;
-            }
-        }
-
-
-
-           .popupShowTrigger {
-      margin: 100px auto;
-      display: block;
-      padding: 16px 40px;
-      background-color: var(--main-color);
-      color: white;
-      border: none;
-      font-size: 18px;
-      border-radius: 6px;
+    /* Scroll To Top Butonu */
+    #scrollBtnContainer {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
+
+    #scrollBtnContainer.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    #scrollBtnContainer:active .scroll-top-button,
+    #scrollBtnContainer:hover .scroll-top-button {
+      background-color: var(--accent-hover);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 15px rgba(118, 48, 0, 0.4);
+    }
+
+    .scroll-top-button {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: var(--accent-color);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      position: absolute;
+      border: none;
+      outline: none;
+    }
+
+    .progress-ring-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .progress-ring-track {
+      stroke: rgba(255,255,255,0.1);
+      stroke-width: 3;
+      fill: transparent;
+    }
+
+    .progress-ring {
+      stroke: var(--main-color);
+      stroke-width: 3;
+      fill: transparent;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.1s linear;
+    }
+
+    /* Popup & Overlay Geliştirmeleri */
     .popupOverlay {
       display: flex;
       position: fixed;
       inset: 0;
       background-color: var(--popupOverlay-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       justify-content: center;
       align-items: flex-start;
       overflow-y: auto;
       z-index: 1000;
-      padding: 12px;
+      padding: 16px;
       visibility: hidden;
       opacity: 0;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
     }
     .popupOverlay.show {
       visibility: visible;
       opacity: 1;
     }
+    
     .popupOverlay-content {
-      background: white;
-      width: 95%;
+      background: #ffffff;
+      width: 100%;
       max-width: 1100px;
       max-height: 90vh;
       overflow-y: auto;
-      border-radius: 10px;
-      padding: 20px 24px 30px;
+      border-radius: 24px;
+      padding: 30px 24px;
       position: relative;
       display: flex;
       flex-direction: column;
-      transform: translateY(20px);
+      transform: translateY(30px) scale(0.98);
       opacity: 0;
-      transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     }
     .popupOverlay.show .popupOverlay-content {
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
       opacity: 1;
     }
+    
     .close-popupOverlay {
       position: absolute;
-      top: 0;
-      right: 4px;
-      font-size: 3rem;
-      color: #222;
+      top: 15px;
+      right: 20px;
+      font-size: 2.5rem;
+      color: #999;
       background: transparent;
       border: none;
       cursor: pointer;
       z-index: 100;
       padding: 0;
       line-height: 1;
-      transition: color 0.15s ease, transform 0.15s ease;
+      transition: color 0.2s ease, transform 0.2s ease;
     }
-    .close-popupOverlay:hover,
-    .close-popupOverlay:active {
-      color: #deccad;
-      transform: scale(1.15);
-      outline: none;
+    .close-popupOverlay:hover {
+      color: var(--accent-color);
+      transform: rotate(90deg);
     }
-    .popupCategoryTabs button {
-      padding: 8px 20px;
-      border-radius: 20px;
-      border: 1px solid #dadce0;
-      background: #f8f9fa;
-      color: #3c4043;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      box-shadow: 0 1px 2px 0 rgba(60,64,67,0.08), 0 1px 3px 1px rgba(60,64,67,0.05);
-    }
-    .popupCategoryTabs button:hover {
-      background-color: #e8eaed;
-      border-color: #d2d2d2;
-      box-shadow: 0 1px 3px 0 rgba(60,64,67,0.12), 0 1px 4px 1px rgba(60,64,67,0.08);
-    }
-    .popupCategoryTabs button.selected {
-      background-color: var(--main-color);
-      color: white;
-      font-weight: bold;
-      border-color: var(--main-color);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .popupCategoryTabs button:hover:not(.selected) {
-      background-color: #e0e0e0;
-    }
+
+    /* Kategori Tabları */
     .popupCategoryTabs {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
+      justify-content: center;
     }
+    .popupCategoryTabs button {
+      padding: 10px 22px;
+      border-radius: 30px;
+      border: 1px solid #eaeaea;
+      background: #f8f9fa;
+      color: #555;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .popupCategoryTabs button i {
+      font-style: normal;
+      background: #ffebee;
+      color: #d32f2f;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-left: 6px;
+    }
+    .popupCategoryTabs button:hover {
+      background-color: #fff;
+      border-color: var(--main-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(145, 140, 101, 0.15);
+    }
+    .popupCategoryTabs button.selected {
+      background: linear-gradient(135deg, var(--main-color), var(--main-color-light));
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 6px 15px rgba(145, 140, 101, 0.3);
+    }
+
+    /* Sepet Butonu */
     .popupBasketButton {
       position: sticky;
-      top: 10px;
-      background: var(--accent-color);
+      top: -10px;
+      background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
       color: white;
-      padding: 10px 18px;
-      border-radius: 25px;
-      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 700;
       cursor: pointer;
-      margin: 10px auto 20px;
-      max-width: 200px;
+      margin: 10px auto 24px;
+      max-width: max-content;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      gap: 10px;
+      box-shadow: 0 6px 16px rgba(118, 48, 0, 0.3);
       user-select: none;
-      z-index: 10;
-      transition: background-color 0.2s ease;
+      z-index: 50;
+      transition: all 0.3s ease;
+      font-family: 'Outfit', sans-serif;
     }
-    .popupBasketButton:hover,
-    .popupBasketButton:focus {
-      background-color: #6f4f3f;
-      outline: none;
+    .popupBasketButton:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(118, 48, 0, 0.4);
     }
-
     .popupBasketButton span {
       background: white;
       color: var(--accent-color);
-      padding: 4px 8px;
-      border-radius: 50px;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 15px;
     }
+
+    /* Ürün Izgarası */
     .popupProductGrid {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 20px;
       justify-content: center;
       position: relative;
       min-height: 150px;
     }
-
     .popupProductGrid.loading::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-color: rgba(255, 255, 255, 0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
       z-index: 100;
     }
-
     .popupProductGrid.loading::after {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      border: 5px solid #f3f3f3;
-      border-top: 5px solid #918c65;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--main-color);
       border-radius: 50%;
       width: 40px;
       height: 40px;
@@ -630,458 +572,403 @@
       z-index: 101;
     }
 
-
+    /* Ürün Kartları */
     .popupProductItem {
-  will-change: opacity, transform;
       opacity: 0;
-      transform: scale(0.95);
-      transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
-      width: 130px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 10px;
-      background: white;
+      transform: scale(0.9);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+      width: 145px;
+      border: 1px solid #f0f0f0;
+      border-radius: 16px;
+      padding: 12px;
+      background: #ffffff;
       text-align: center;
       display: none;
       flex-direction: column;
-      gap: 6px;
-      cursor: pointer;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     }
     .popupProductItem:hover {
-        background-color: #f9f9f9;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transform: translateY(-5px);
+      border-color: #e4e4e4;
     }
     .popupProductItem.popupVisible {
       opacity: 1;
-      transform: scale(1);
+      transform: scale(1) translateY(0);
     }
-
     .popupProductItem img {
       width: 100%;
-      height: 130px;
+      height: 140px;
       object-fit: cover;
-      border-radius: 4px;
+      border-radius: 12px;
     }
     .popupProductItem .popupProductPrice {
-      font-size: 14px;
-      color: #333;
-      font-weight: bold;
+      font-size: 16px;
+      color: #222;
+      font-weight: 800;
     }
     .popupProductItem button {
+      font-family: 'Outfit', sans-serif;
       background: var(--accent-color);
       color: white;
       border: none;
-      padding: 6px;
-      border-radius: 4px;
+      padding: 8px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.2s ease;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
       width: 100%;
     }
     .popupProductItem button:hover {
-        background-color: #6f4f3f;
+      background-color: var(--accent-hover);
     }
     .popupProductItem .details-button {
-        background-color: #555;
-        margin-top: 4px;
+      background-color: transparent;
+      color: #666;
+      border: 1px solid #ddd;
     }
     .popupProductItem .details-button:hover {
-        background-color: #333;
+      background-color: #f5f5f5;
+      color: #222;
+      border-color: #ccc;
     }
 
-    
-    .popupBasketButton-popupOverlay {
-        position: fixed;
-        inset: 0; 
-        background-color: rgba(0, 0, 0, 0.5); 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 3000; 
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-    .popupBasketButton-popupOverlay.show {
-        visibility: visible;
-        opacity: 1;
-    }
-    
-    .popupBasketButton-popupOverlay > div { 
-        background: white;
-        padding: 25px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        text-align: center;
-        max-width: 350px;
-        width: 90%;
-        transform: translateY(-20px); 
-        opacity: 0;
-        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    }
-    .popupBasketButton-popupOverlay.show > div {
-        transform: translateY(0); 
-        opacity: 1;
-    }
-
-
-    .popupBasketButton-popupOverlay h3 {
-      font-size: 20px;
-      margin-top: 0;
-      margin-bottom: 16px;
-      color: #333;
-      text-align: center;
-    }
-
-    .popupBasketButton-popupOverlay #popupBasketItems div {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #f8f8f8;
-      border-radius: 8px;
-      padding: 8px 12px;
-      margin-bottom: 10px;
-      font-size: 15px;
-    }
-
-    .popupBasketButton-popupOverlay #popupBasketItems div button {
-      background: transparent;
-      border: none;
-      color: #d00;
-      font-size: 16px;
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-    .popupBasketButton-popupOverlay #popupBasketItems div button:hover {
-        color: #f00;
-    }
-
-    .popupBasketButton-popupOverlay .popupWhatsAppButton {
-      background: #25d366;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 16px;
-      width: 100%;
-      margin-top: 10px;
-      transition: background-color 0.3s ease;
-    }
-
-    .popupBasketButton-popupOverlay .popupWhatsAppButton:hover {
-      background: #1ebe57;
-    }
-
-    .popupBasketButton-popupOverlay .popupCloseSmall {
-      position: absolute;
-      top: 5px;
-      right: 16px;
-      font-size: 3rem;
-      background: transparent;
-      border: none;
-      color: #888;
-      cursor: pointer;
-      transition: color 0.15s ease;
-    }
-
-    .popupBasketButton-popupOverlay .popupCloseSmall:active {
-      color: #deccad;
-    }
-
+    /* Özel Üretim Formu */
     .customProductionForm {
       display: none;
       flex-direction: column;
-      gap: 15px;
+      gap: 16px;
+      width: 100%;
       max-width: 500px;
       margin: 0 auto;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background-color: #f9f9f9;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 30px;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      background-color: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(15px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
-
     .customProductionForm.popupVisible {
       opacity: 1;
       transform: translateY(0);
     }
-
-    .customProductionForm label {
-      font-weight: bold;
-      color: #333;
+    .customProductionForm h3 {
+      font-size: 22px;
+      color: #222;
       margin-bottom: 5px;
-      display: block;
+      text-align: center;
     }
-
-    .customProductionForm input[type="text"],
-    .customProductionForm input[type="email"],
+    .customProductionForm label {
+      font-weight: 600;
+      color: #444;
+      font-size: 14px;
+    }
+    .customProductionForm input,
     .customProductionForm textarea {
       width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-      box-sizing: border-box;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      padding: 12px 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      background: #fcfcfc;
+      transition: all 0.2s ease;
     }
-    .customProductionForm input[type="text"]:focus,
-    .customProductionForm input[type="email"]:focus,
+    .customProductionForm input:focus,
     .customProductionForm textarea:focus {
-        border-color: var(--main-color);
-        box-shadow: 0 0 0 2px rgba(145, 140, 101, 0.2);
-        outline: none;
+      border-color: var(--main-color);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(145, 140, 101, 0.15);
     }
-
-
     .customProductionForm textarea {
       resize: vertical;
-      min-height: 100px;
+      min-height: 120px;
     }
-
     .customProductionForm button[type="submit"] {
-      background-color: var(--accent-color);
+      background: linear-gradient(135deg, #25d366, #1ebe57);
       color: white;
-      padding: 12px 20px;
+      padding: 14px;
       border: none;
-      border-radius: 5px;
-      font-size: 18px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      margin-top: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      font-family: inherit;
     }
-
     .customProductionForm button[type="submit"]:hover {
-      background-color: #6f4f3f;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
     }
 
+    /* Ürün Detay Popup */
     .productDetailsPopupOverlay {
-        display: flex;
-        position: fixed;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.7);
-        justify-content: center;
-        align-items: center;
-        z-index: 2000;
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+      display: flex;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-    .productDetailsPopupOverlay.show {
-        visibility: visible;
-        opacity: 1;
-    }
+    .productDetailsPopupOverlay.show { visibility: visible; opacity: 1; }
+    
     .productDetailsPopupContent {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        max-width: 90%;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transform: scale(0.9);
-        opacity: 0;
-        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+      background: #fff;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      max-width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(0.95);
+      opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
     }
     .productDetailsPopupOverlay.show .productDetailsPopupContent {
-        transform: scale(1);
-        opacity: 1;
+      transform: scale(1); opacity: 1;
     }
+    
     .close-productDetailsPopup {
-        position: absolute;
-        top: 0;
-        right: 3px;
-        font-size: 3rem;
-        color: #222;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        z-index: 10;
-        padding: 0;
-        line-height: 1;
-        transition: color 0.2s ease, transform 0.2s ease;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 2.5rem;
+      color: #999;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.2s, transform 0.2s;
     }
-    .close-productDetailsPopup:active {
-        color: #deccad;
-        transform: scale(1.15);
-    }
+    .close-productDetailsPopup:hover { color: var(--accent-color); transform: rotate(90deg); }
+
     .productDetailsImageMain { 
-        max-width: 100%;
-        height: auto;
-        max-height: 70vh;
-        border-radius: 8px;
-        margin-bottom: 15px;
-        margin-top: 15px;
-        object-fit: contain;
-        /* Added for loading animation */
-        transition: opacity 0.3s ease;
+      max-width: 100%;
+      height: auto;
+      max-height: 60vh;
+      border-radius: 12px;
+      margin: 15px 0;
+      object-fit: contain;
+      transition: opacity 0.3s ease;
     }
-    /* Styles for loading animation on main image */
-    .productDetailsImageMain.loading {
-        opacity: 0.5; /* Dim the image */
-        filter: blur(2px); /* Blur the image */
-    }
-    /* Spinner for main image loading */
+    .productDetailsImageMain.loading { opacity: 0.5; filter: blur(4px); }
+    
     .productDetailsImageMain-wrapper {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%; /* Adjust as needed */
-        max-width: 100%; /* Adjust as needed */
-        min-height: 200px; /* Minimum height for the spinner to be visible */
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 250px;
     }
     .productDetailsImageMain-wrapper.loading::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border: 5px solid #f3f3f3;
-        border-top: 5px solid #918c65;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        animation: spin 1s linear infinite;
-        z-index: 1;
+      content: '';
+      position: absolute;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--main-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
     }
 
     .productDetailsCode {
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #333;
-        text-align: center;
-        margin-top: 12px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #333;
+      text-align: center;
+      margin-top: 16px;
+      padding: 10px 20px;
+      background: #f5f5f5;
+      border-radius: 8px;
     }
 
-    
     .productDetailsImageGallery {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 15px;
-        max-width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 15px;
     }
-    /* New styles for thumbnail loading animation */
     .productDetailsImageGallery-item-wrapper {
-        position: relative;
-        width: 80px; 
-        height: 80px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 5px;
-        cursor: pointer;
-        border: 2px solid transparent;
-        transition: border-color 0.2s ease, transform 0.2s ease;
+      position: relative;
+      width: 70px; 
+      height: 70px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
+      overflow: hidden;
     }
-    .productDetailsImageGallery-item-wrapper.loading::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border: 3px solid #f3f3f3;
-        border-top: 3px solid #918c65;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        animation: spin 1s linear infinite;
-        z-index: 1;
-    }
-    .productDetailsImageGallery-item-wrapper.loading img {
-        opacity: 0.5;
-        filter: blur(1px);
-    }
-
     .productDetailsImageGallery-item-wrapper.active,
     .productDetailsImageGallery-item-wrapper:hover {
-        border-color: var(--main-color);
-        transform: scale(1.05);
+      border-color: var(--main-color);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     .productDetailsImageGallery img {
-        width: 100%; 
-        height: 100%;
-        object-fit: cover;
-        border-radius: 5px;
-        display: block; /* Ensure no extra space below image */
-        transition: opacity 0.3s ease, filter 0.3s ease;
+      width: 100%; 
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s;
     }
 
-    .custom-message-box-overlay {
-        position: fixed;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 3000;
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+    /* Mesaj Kutuları */
+    .custom-message-box-overlay, .popupBasketButton-popupOverlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-    .custom-message-box-overlay.show {
-        visibility: visible;
-        opacity: 1;
+    .custom-message-box-overlay.show, .popupBasketButton-popupOverlay.show {
+      visibility: visible;
+      opacity: 1;
     }
-    .custom-message-box-content {
-        background: white;
-        padding: 25px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        text-align: center;
-        max-width: 350px;
-        width: 90%;
-        transform: translateY(-20px);
-        opacity: 0;
-        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    .custom-message-box-content, .popupBasketButton-popupOverlay > div {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 360px;
+      width: 90%;
+      transform: translateY(-20px) scale(0.95);
+      opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
     }
-    .custom-message-box-overlay.show .custom-message-box-content {
-        transform: translateY(0);
-        opacity: 1;
+    .custom-message-box-overlay.show .custom-message-box-content, 
+    .popupBasketButton-popupOverlay.show > div {
+      transform: translateY(0) scale(1);
+      opacity: 1;
     }
     .custom-message-box-content p {
-        margin: 0 0 20px 0;
-        font-size: 16px;
-        color: #333;
-        max-width: none;
-        padding: 0;
+      margin: 0 0 24px 0;
+      font-size: 16px;
+      color: #333;
+      font-weight: 500;
     }
     .custom-message-box-content button {
-        background-color: var(--main-color);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.2s ease;
+      background: var(--main-color);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      transition: background 0.2s, transform 0.2s;
     }
     .custom-message-box-content button:hover {
-        background-color: #7b7550;
+      background: var(--main-color-light);
+      transform: translateY(-2px);
     }
 
-    
+    /* Sepet Paneli İçi */
+    .popupBasketButton-popupOverlay h3 {
+      font-size: 22px;
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #222;
+      font-weight: 800;
+    }
+    .popupBasketButton-popupOverlay #popupBasketItems div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f4f5f7;
+      border-radius: 10px;
+      padding: 10px 16px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #444;
+    }
+    .popupBasketButton-popupOverlay #popupBasketItems div button {
+      background: #ffebee;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      color: #d32f2f;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .popupBasketButton-popupOverlay #popupBasketItems div button:hover {
+      background: #ffcdd2;
+    }
+    .popupBasketButton-popupOverlay .popupWhatsAppButton {
+      background: linear-gradient(135deg, #25d366, #1ebe57);
+      color: white;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      width: 100%;
+      margin-top: 16px;
+      font-family: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .popupBasketButton-popupOverlay .popupWhatsAppButton:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
+    }
+    .popupBasketButton-popupOverlay .popupCloseSmall {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 2.5rem;
+      background: transparent;
+      border: none;
+      color: #aaa;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .popupBasketButton-popupOverlay .popupCloseSmall:hover { color: var(--accent-color); }
+
+    /* Bildirim */
     #popupAddNotice {
       position: fixed;
-      bottom: 20px;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(60, 179, 113, 0.95);
+      background: rgba(37, 211, 102, 0.95);
+      backdrop-filter: blur(4px);
       color: white;
-      padding: 10px 20px;
-      border-radius: 20px;
+      padding: 12px 24px;
+      border-radius: 30px;
       font-weight: 600;
+      font-size: 15px;
       display: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
       z-index: 9999; 
       transition: opacity 0.3s ease;
     }
+  
